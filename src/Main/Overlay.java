@@ -33,8 +33,13 @@ public class Overlay {
 		g.drawString("" + level, Game.WIDTH - 35, 30);
 
 		// draw FPS to lower right corner
-		g.drawString("FPS: ", Game.WIDTH - 80, Game.HEIGHT - 25);
-		g.drawString("" + Game.FPS, Game.WIDTH - 35, Game.HEIGHT - 25);
+		g.drawString("FPS: ", Game.WIDTH - 80, Game.HEIGHT - 30);
+		g.drawString("" + Game.FPS, Game.WIDTH - 35, Game.HEIGHT - 30);
+		
+		// draw author
+		g.drawString("Lauri Laidna IA18", 10, Game.HEIGHT - 30);
+		
+		
 		
 	}
 }
