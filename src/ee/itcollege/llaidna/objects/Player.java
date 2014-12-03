@@ -5,8 +5,6 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Random;
 
-import com.sun.xml.internal.bind.v2.util.CollisionCheckStack;
-
 import ee.itcollege.llaidna.Game;
 import ee.itcollege.llaidna.GameObject;
 import ee.itcollege.llaidna.Handler;
@@ -22,11 +20,10 @@ import ee.itcollege.llaidna.Overlay;
  * - tick
  * - collisions
  * - render
- * blablatest12
  */
 public class Player extends GameObject {
 
-	Random r = new Random();
+	Random random = new Random();							// Construct a Random object
 	Handler handler;										// create instance of Handler class
 	
 	public Player(int x, int y, ID id, Handler handler) {	// constructor
@@ -37,22 +34,32 @@ public class Player extends GameObject {
 //		velX = 0;
 //		velY = 0;
 //		
-		// start state player moving randomly
-		if (r.nextInt((1)+1) > 0) {
-			velX = 1;
-			velY = 0;			
+		// start direction of player moving randomly
+		int rm = random.nextInt((4 - 0)+ 0);
+		System.out.println("random for direction: " + rm);
+		if (rm == 0) {
+			velX =  2; velY =  0;			
 		}
-		else {
-			velX = 0;
-			velY = 1;
+		if (rm == 1) {
+			velX =  0; velY =  2;
+		}
+		if (rm == 2) {
+			velX = -2; velY =  0;
+		}
+		if (rm == 3) {
+			velX =  0; velY = -2;
 		}
 	}
 
+	public int getSingleRandomInt (int min, int max, short base) {
+		return base;
+	}
+
 	/**
-	 * Get Object bounds (rectangle size) to determine collisions.
+	 * Object bounds (rectangle size) to determine collisions.
 	 */
 	public Rectangle getBounds() {
-		return new Rectangle(x, y, 32, 32);
+		return new Rectangle(x, y, 10, 10);
 	}
 
 	public void tick() {							// implemented methods
@@ -66,29 +73,37 @@ public class Player extends GameObject {
 //			velY *= -1;
 //		}
 		
-		// Teleport to other side
-		if (x == -16) {
-			x = Game.WIDTH - 16;
-		}
-		
-		if (x > (Game.WIDTH - 16)) {				// manual clamping with if
-			x = 0;
-		}
-		
-		if (y == -16) {
-			y = Game.HEIGHT - 16;
-		}
-		
-		if (y > (Game.HEIGHT - 16)) {
-			y = 0;
-		}
-		
+		// move Player around each tick by amount of velX, velY
 		x += velX;
 		y += velY;
+
+		
+		// Teleport to other side
+		if (x <= 3) {					//keep smaller!
+			x = (Game.WIDTH - 13);		//keep smaller!
+		}
+		
+		if (x >= (Game.WIDTH - 12)) {	//keep bigger!
+			x = 4;						//keep bigger!
+		}
+		
+		if (y <= 3) {					//keep smaller!
+			y = (Game.HEIGHT - 33);		//keep smaller!
+		}
+		
+		if (y >= (Game.HEIGHT - 32)) {	//keep bigger!
+			y = 4; 						//keep bigger!
+		}
+		
 		
 		collision();
 	}
 
+	/**
+	 * Collision detection.
+	 * Loops through all objects (handler).
+	 * @author someone - of the logic
+	 */
 	private void collision() {
 		
 			for (int i = 0; i < handler.object.size(); i++) {				// for loop through all objects in game
@@ -96,7 +111,10 @@ public class Player extends GameObject {
 				if (tempObject.getId() == ID.BasicEnemy) {					// is tempObject valid to cause damage?
 					if (getBounds().intersects(tempObject.getBounds())) {	// use intersect method between getBounds & enemy
 						// what happens when collision occurs
-						Overlay.LIFE -=2;
+						Overlay.SCORE += 1;
+						handler.removeObject(tempObject);
+						handler.addObject(new BasicEnemy((random.nextInt(Game.WIDTH-30)),(random.nextInt(Game.HEIGHT-30)), ID.BasicEnemy));	// addObject to handler, create
+
 					}
 				}
 			}
@@ -109,7 +127,7 @@ public class Player extends GameObject {
 		} else {
 			g.setColor(Color.green);				// set color
 		}
-		g.fillOval(x, y, 32, 32);					// create oval
+		g.fillOval(x, y, 10, 10);					// create oval
 		
 	}
 

@@ -1,20 +1,16 @@
 package ee.itcollege.llaidna;
 
-import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Container;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-
 import ee.itcollege.llaidna.objects.BasicEnemy;
 import ee.itcollege.llaidna.objects.Player;
 
+@SuppressWarnings("serial")
 public class Game extends Canvas implements Runnable {
 	
 //	private static final long serialVersionUID = -1285670934175365101L;
@@ -23,12 +19,12 @@ public class Game extends Canvas implements Runnable {
 	private Thread thread;
 	private boolean running = false;									// running = true, false
 	
-	private Random r;													// random
+	private Random random;													// random
 	private Handler handler;											// create instance of handler
 	private Overlay overlay;
 	
 	/**
-	 * 
+	 * @author someone
 	 */
 	public Game() {
 		handler = new Handler();										// create new handler
@@ -38,13 +34,13 @@ public class Game extends Canvas implements Runnable {
 		
 		overlay = new Overlay();
 		
-		r = new Random();
+		random = new Random();
 		
-		handler.addObject(new Player(WIDTH/2-32, HEIGHT/2-32, ID.Player, handler));	// addObject to handler, create in the middle of the screen
-		handler.addObject(new Player(WIDTH/2+32, HEIGHT/2+32, ID.Player2, handler));	// addObject to handler, create in the middle of the screen
-		handler.addObject(new BasicEnemy((r.nextInt(WIDTH-16)),(r.nextInt(HEIGHT-16)), ID.BasicEnemy));	// addObject to handler, create in the middle of the screen
-		handler.addObject(new BasicEnemy((r.nextInt(WIDTH-16)),(r.nextInt(HEIGHT-16)), ID.BasicEnemy));	// addObject to handler, create in the middle of the screen
-		handler.addObject(new BasicEnemy((r.nextInt(WIDTH-16)),(r.nextInt(HEIGHT-16)), ID.BasicEnemy));	// addObject to handler, create in the middle of the screen
+		handler.addObject(new Player(random.nextInt((WIDTH - 0)+ 0), random.nextInt((HEIGHT - 0)+ 0), ID.Player, handler));	// addObject to handler, create
+		handler.addObject(new Player(random.nextInt((WIDTH - 0)+ 0), random.nextInt((HEIGHT - 0)+ 0), ID.Player2, handler));	// addObject to handler, create
+		handler.addObject(new BasicEnemy((random.nextInt(WIDTH-30)),(random.nextInt(HEIGHT-30)), ID.BasicEnemy));	// addObject to handler, create
+//		handler.addObject(new BasicEnemy((r.nextInt(WIDTH-16)),(r.nextInt(HEIGHT-16)), ID.BasicEnemy));	// addObject to handler, create in the middle of the screen
+//		handler.addObject(new BasicEnemy((r.nextInt(WIDTH-16)),(r.nextInt(HEIGHT-16)), ID.BasicEnemy));	// addObject to handler, create in the middle of the screen
 		
 	}
 	
@@ -75,6 +71,7 @@ public class Game extends Canvas implements Runnable {
 	
 	/**
 	 * Gameloop
+	 * @author someone
 	 */
 	static int FPS = 0;													// make new static variable FPS to be read from Overlay
 	public void run() {													// popular game loop typed in here
@@ -109,6 +106,7 @@ public class Game extends Canvas implements Runnable {
 	
 	/**
 	 * Tick method called from run. Makes handler and overlay tick!
+	 * @author someone
 	 */
 	private void tick() {														// called from run
 		handler.tick();
@@ -118,6 +116,7 @@ public class Game extends Canvas implements Runnable {
 	/**
 	 * Render called from run. Includes render settings like BufferStrategy. 
 	 * Draws background >> handler.render >> overlay.render >> g.dispose >> bs.show
+	 * @author someone
 	 */
 	private void render() {														// called from run
 		BufferStrategy bs = this.getBufferStrategy();							// bufferstrategy
@@ -137,6 +136,8 @@ public class Game extends Canvas implements Runnable {
 		// Background
 		g.setColor(Color.blue);													// Background color
 		g.fillRect(0, 0, WIDTH, HEIGHT);										// Background filled rectangle, size of frame, repaints!!!
+		g.setColor(Color.white);
+		g.drawRect(3, 3, WIDTH-6, HEIGHT-29);
 		
 		handler.render(g);
 		overlay.render(g);
@@ -153,19 +154,19 @@ public class Game extends Canvas implements Runnable {
 	 * @param min	minimum allowed value, clamped down to this
 	 * @param max	maximum allowed value, clamped up to this
 	 * @return clamped var
+	 * @author lauri
 	 */
 	public static int clamp(int var, int min, int max) {				// clamps value between min and max
-		if (var >= max) {
-			return var = max;
-		}
-		else if (var <= min) {
-			return var = min;
-		}
-		else {
-			return var;
-		}
+		if (var >= max) return max;
+		else if (var <= min) return min;
+		else return var;
 	}
 	
+	/**
+	 * Main method creates new Game instance object
+	 * @param args	Typical main-method with args input
+	 * @author lauri
+	 */
 	public static void main(String[] args) {							// main method
 		new Game();														// new instance of Game class
 	}
@@ -173,31 +174,31 @@ public class Game extends Canvas implements Runnable {
 	
 	// run as applet
 	
-	public void init() {
-	    //Execute a job on the event-dispatching thread:
-	    //creating this applet's GUI.
-	    try {
-	        javax.swing.SwingUtilities.invokeAndWait(new Runnable() {
-	            public void run() {
-	                createGUI();
-	            }
-	        });
-	    } catch (Exception e) {
-	        System.err.println("createGUI didn't successfully complete");
-	    }
-	}
-
-	private void createGUI() {
-	    JLabel label = new JLabel(
-	                       "You are successfully running a Swing applet!");
-	    label.setHorizontalAlignment(JLabel.CENTER);
-	    label.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.black));
-	    getContentPane().add(label, BorderLayout.CENTER);
-	}
-
-	private Container getContentPane() {
-		return null;
-	}
+//	public void init() {
+//	    //Execute a job on the event-dispatching thread:
+//	    //creating this applet's GUI.
+//	    try {
+//	        javax.swing.SwingUtilities.invokeAndWait(new Runnable() {
+//	            public void run() {
+//	                createGUI();
+//	            }
+//	        });
+//	    } catch (Exception e) {
+//	        System.err.println("createGUI didn't successfully complete");
+//	    }
+//	}
+//
+//	private void createGUI() {
+//	    JLabel label = new JLabel(
+//	                       "You are successfully running a Swing applet!");
+//	    label.setHorizontalAlignment(JLabel.CENTER);
+//	    label.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.black));
+//	    getContentPane().add(label, BorderLayout.CENTER);
+//	}
+//
+//	private Container getContentPane() {
+//		return null;
+//	}
 	
 }
 
