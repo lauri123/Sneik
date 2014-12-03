@@ -1,9 +1,13 @@
-package Main;
+package ee.itcollege.llaidna.objects;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Random;
+
+import ee.itcollege.llaidna.Game;
+import ee.itcollege.llaidna.GameObject;
+import ee.itcollege.llaidna.ID;
 
 public class BasicEnemy extends GameObject {
 

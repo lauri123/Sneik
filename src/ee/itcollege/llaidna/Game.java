@@ -1,13 +1,19 @@
-package Main;
+package ee.itcollege.llaidna;
 
+import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.Container;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
-import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
+
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+
+import ee.itcollege.llaidna.objects.BasicEnemy;
+import ee.itcollege.llaidna.objects.Player;
 
 public class Game extends Canvas implements Runnable {
 	
@@ -21,11 +27,14 @@ public class Game extends Canvas implements Runnable {
 	private Handler handler;											// create instance of handler
 	private Overlay overlay;
 	
+	/**
+	 * 
+	 */
 	public Game() {
 		handler = new Handler();										// create new handler
-		this.addKeyListener(new KeyInput(handler));							// listen for keys
+		this.addKeyListener(new KeyInput(handler));						// listen for keys
 		
-		new Window(WIDTH, HEIGHT, "Sneik!", this);			// create new Window class
+		new Window(WIDTH, HEIGHT, "Sneik!", this);						// create new Window class
 		
 		overlay = new Overlay();
 		
@@ -39,13 +48,23 @@ public class Game extends Canvas implements Runnable {
 		
 	}
 	
-	public synchronized void start() {									// is being called from Window.java
+	/**
+	 * Starts a new Thread. Values running = true. Is started from Window.java
+	 * Synchronized used for threads!
+	 * @author someone
+	 */
+	public synchronized void start() {									// is being called from Window.java. Synchronized used for threads!
 		thread = new Thread(this);										// initialize new thread
 		thread.start();													// start thread
-		running = true;													// say it's running
+		running = true;													// set it's running
 	}
 	
-	public synchronized void stop() {									// is being called from Game > run
+	/**
+	 * Stops the thread. Values running = false. Executed in the end of Gameloop run().
+	 * Synchronized used for threads!
+	 * @author someone
+	 */
+	public synchronized void stop() {									// is being called from Game > run. Synchronized used for threads!
 		try {
 			thread.join();
 			running = false;											// say it's not running
@@ -54,6 +73,9 @@ public class Game extends Canvas implements Runnable {
 		}
 	}
 	
+	/**
+	 * Gameloop
+	 */
 	static int FPS = 0;													// make new static variable FPS to be read from Overlay
 	public void run() {													// popular game loop typed in here
 		this.requestFocus();											// don't have to click on the windows!
@@ -94,8 +116,8 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	/**
-	 * Render method called from run. Includes render settings like BufferStrategy. 
-	 * Draws background >> handler.render >> overlay.render > g.dispose > bs.show
+	 * Render called from run. Includes render settings like BufferStrategy. 
+	 * Draws background >> handler.render >> overlay.render >> g.dispose >> bs.show
 	 */
 	private void render() {														// called from run
 		BufferStrategy bs = this.getBufferStrategy();							// bufferstrategy
@@ -127,9 +149,9 @@ public class Game extends Canvas implements Runnable {
 	
 	/**
 	 * Clamps variable between min and max.
-	 * @param var
-	 * @param min
-	 * @param max
+	 * @param var	input variable to be clamped
+	 * @param min	minimum allowed value, clamped down to this
+	 * @param max	maximum allowed value, clamped up to this
 	 * @return clamped var
 	 */
 	public static int clamp(int var, int min, int max) {				// clamps value between min and max
@@ -148,6 +170,35 @@ public class Game extends Canvas implements Runnable {
 		new Game();														// new instance of Game class
 	}
 
+	
+	// run as applet
+	
+	public void init() {
+	    //Execute a job on the event-dispatching thread:
+	    //creating this applet's GUI.
+	    try {
+	        javax.swing.SwingUtilities.invokeAndWait(new Runnable() {
+	            public void run() {
+	                createGUI();
+	            }
+	        });
+	    } catch (Exception e) {
+	        System.err.println("createGUI didn't successfully complete");
+	    }
+	}
+
+	private void createGUI() {
+	    JLabel label = new JLabel(
+	                       "You are successfully running a Swing applet!");
+	    label.setHorizontalAlignment(JLabel.CENTER);
+	    label.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.black));
+	    getContentPane().add(label, BorderLayout.CENTER);
+	}
+
+	private Container getContentPane() {
+		return null;
+	}
+	
 }
 
 

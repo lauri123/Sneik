@@ -1,4 +1,4 @@
-package Main;
+package ee.itcollege.llaidna;
 
 import java.awt.Graphics;
 import java.util.LinkedList;
@@ -7,9 +7,13 @@ import java.util.LinkedList;
  * Loops through all game objects inside LinkedList... updates them, renders them to the screen
  */
 public class Handler {													// loops through all game objects, updates them, renders them to the screen
+
+//	LinkedList<GameObject> object = new LinkedList<GameObject>();		// list of all objects in the game
+
 	
-	LinkedList<GameObject> object = new LinkedList<GameObject>();		// list of all objects in the game
-	
+	// set public, cause Player in different package. list of all objects in the game.
+	// alternative to use public setter, getter and not make this LList public. Should?
+	public LinkedList<GameObject> object = new LinkedList<GameObject>();		
 	
 	public void tick() {
 		for (int i = 0; i < object.size(); i++) {						// loops through ALL game objects

@@ -1,4 +1,4 @@
-package Main;
+package ee.itcollege.llaidna;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

@@ -1,4 +1,4 @@
-package Main;
+package ee.itcollege.llaidna.objects;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -7,16 +7,22 @@ import java.util.Random;
 
 import com.sun.xml.internal.bind.v2.util.CollisionCheckStack;
 
+import ee.itcollege.llaidna.Game;
+import ee.itcollege.llaidna.GameObject;
+import ee.itcollege.llaidna.Handler;
+import ee.itcollege.llaidna.ID;
+import ee.itcollege.llaidna.Overlay;
+
 
 /**
  * Player class extends GameObjects:
  * - Handler
- * - puclib Player constructor
+ * - public Player constructor
  * - Rectangle getBounds
  * - tick
  * - collisions
  * - render
- *
+ * blablatest12
  */
 public class Player extends GameObject {
 

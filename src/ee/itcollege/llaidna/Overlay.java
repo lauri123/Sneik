@@ -1,8 +1,13 @@
-package Main;
+package ee.itcollege.llaidna;
 
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Random;
+
+
+/**
+ * Overlay class - which includes everything we need to draw on screen as an overlay
+ */
 
 public class Overlay {
 	
@@ -19,6 +24,10 @@ public class Overlay {
 		score++;
 	}
 
+	/**
+	 * 
+	 * @param g
+	 */
 	public void render(Graphics g) {
 		g.setColor(Color.gray);
 		g.fillRect(10, 10, 200, 6);

@@ -1,4 +1,4 @@
-package Main;
+package ee.itcollege.llaidna;
 
 import java.awt.Canvas;
 import java.awt.Dimension;

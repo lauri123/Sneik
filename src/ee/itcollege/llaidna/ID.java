@@ -1,4 +1,4 @@
-package Main;
+package ee.itcollege.llaidna;
 
 public enum ID {
 	Player(),
