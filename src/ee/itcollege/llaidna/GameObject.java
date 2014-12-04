@@ -6,10 +6,17 @@ import java.awt.Rectangle;
 // all game objects considered this GameObject. Inheriting functions from here! Initializes variables etc. 
 // Other objects will extend this GameObject
 
+
+/**
+ * 
+ * @author someone - most of logic and code
+ */
 public abstract class GameObject {
 	protected int x, y;							// xy coordinates
 	protected ID id;							// enum
 	protected int velX, velY;					// velocity aka speed
+	protected int tailX, tailY;					// xy coordinates
+	protected int tailVelX, tailVelY;			// tail velocity aka speed
 	
 	public GameObject(int x, int y, ID id){		// constructor for GameObject. Sets automatically GameObject variables
 		this.x = x;
@@ -44,7 +51,24 @@ public abstract class GameObject {
 	public ID getId() {
 		return id;
 	}
+	// ------------------------------------------------ tail
 	
+	public void setTailVelX(int tailVelX) {
+		this.tailVelX = tailVelX;
+	}
+	
+	public void setTailVelY(int tailVelY) {
+		this.tailVelY = tailVelY;
+	}
+	
+	public int getTailVelX() {
+		return tailVelX;
+	}
+	
+	public int getTailVelY() {
+		return tailVelY;
+	}
+	// ------------------------------------------------
 	public void setVelX(int velX) {
 		this.velX = velX;
 	}

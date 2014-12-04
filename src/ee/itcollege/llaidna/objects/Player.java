@@ -49,11 +49,17 @@ public class Player extends GameObject {
 		if (rm == 3) {
 			velX =  0; velY = -2;
 		}
+		
+		
 	}
 
-	public int getSingleRandomInt (int min, int max, short base) {
-		return base;
-	}
+	
+
+
+
+
+
+
 
 	/**
 	 * Object bounds (rectangle size) to determine collisions.
@@ -95,8 +101,7 @@ public class Player extends GameObject {
 			y = 4; 						//keep bigger!
 		}
 		
-		
-		collision();
+		collision();					//check collision
 	}
 
 	/**
@@ -114,7 +119,8 @@ public class Player extends GameObject {
 						Overlay.SCORE += 1;
 						handler.removeObject(tempObject);
 						handler.addObject(new BasicEnemy((random.nextInt(Game.WIDTH-30)),(random.nextInt(Game.HEIGHT-30)), ID.BasicEnemy));	// addObject to handler, create
-
+						handler.addObject(new Tail(this.x - this.velX*5, this.y - this.velY*5, ID.Tail, handler));	// addObject to handler, create
+//						handler.addObject(new Tail(this.x - this.velX*5, this.y - this.velY*5, ID.Tail, handler));	// addObject to handler, create
 					}
 				}
 			}

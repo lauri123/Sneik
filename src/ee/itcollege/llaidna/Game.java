@@ -7,26 +7,28 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import ee.itcollege.llaidna.audio.Audio;
 import ee.itcollege.llaidna.objects.BasicEnemy;
 import ee.itcollege.llaidna.objects.Player;
 
 @SuppressWarnings("serial")
 public class Game extends Canvas implements Runnable {
 	
-//	private static final long serialVersionUID = -1285670934175365101L;
-	public static final int WIDTH = 640, HEIGHT = WIDTH  / 16 * 10;	// set width and height (16x10)
-	
+	public static final int WIDTH = 640, HEIGHT = WIDTH  / 16 * 9;		// set width and height (16x10). final sets values unchangeable
 	private Thread thread;
-	private boolean running = false;									// running = true, false
-	
+	private boolean running = false;									// running = true, false	
 	private Random random;													// random
 	private Handler handler;											// create instance of handler
 	private Overlay overlay;
+	private Audio music;												// music
 	
 	/**
 	 * @author someone
 	 */
 	public Game() {
+		
 		handler = new Handler();										// create new handler
 		this.addKeyListener(new KeyInput(handler));						// listen for keys
 		
