@@ -59,13 +59,13 @@ public class Tail extends GameObject {
 	}
 
 	int counter = 0;
-	public void tick() {							// implemented methods
+	public void tick() {											// implemented methods
 		
 		counter ++;
-		for (int i = 0; i < handler.object.size(); i++) {				// for loop through all objects in game
-			GameObject tempObject = handler.object.get(i);				// create tempObject
+		for (int i = 0; i < handler.object.size(); i++) {			// for loop through all objects in game
+			GameObject tempObject = handler.object.get(i);			// create tempObject
 			if (tempObject.getId() == ID.Tail) {					// is tempObject valid to cause damage?
-				if (counter == Overlay.SCORE*7) {	// use intersect method between getBounds & enemy
+				if (counter == Overlay.SCORE*7) {					// use intersect method between getBounds & enemy
 					// what happens when collision occurs
 					handler.removeObject(tempObject);
 					counter = 0;
