@@ -56,27 +56,44 @@ public class KeyInput extends KeyAdapter {
 				}
 			}
 
-// player 2
-			if (tempObject.getId() == ID.Player2) {									// find ID.Player
-				if(key == KeyEvent.VK_A) {						// if KeyEvent = "A" key
-					tempObject.setVelY(0); 
-					tempObject.setVelX(-2);
+			// Player2 KeyEvents when Score < 1
+			if (Overlay.SCORE < 1 && tempObject.getId() == ID.Player2) {
+				if(key == KeyEvent.VK_A) {					// if KeyEvent = "Left" key
+					tempObject.setVelY(0); 						// sets other axis vel to 0
+					tempObject.setVelX(-2);						// sets desired axis vel to ...
 				}
-				if(key == KeyEvent.VK_W) {						// if KeyEvent = "W" key
+				if(key == KeyEvent.VK_W) {						// if KeyEvent = "Up" key
 					tempObject.setVelX(0);
 					tempObject.setVelY(-2);
 				}
-				if(key == KeyEvent.VK_D) {						// if KeyEvent = "D" key
+				if(key == KeyEvent.VK_D) {					// if KeyEvent = "Right" key
 					tempObject.setVelY(0); 
 					tempObject.setVelX(2);
 				}
-				if(key == KeyEvent.VK_S) {						// if KeyEvent = "S" key
+				if(key == KeyEvent.VK_S) {					// if KeyEvent = "Down" key
 					tempObject.setVelX(0); 
 					tempObject.setVelY(2);
 				}
 			}
-    	
-    	}
+			// Player2 KeyEvents when Score >= 1 - not allowed to get directly opposite direction!
+			else if (Overlay.SCORE >= 1 && tempObject.getId() == ID.Player2) {
+				if(key == KeyEvent.VK_A && tempObject.getVelX() != 2) {					// if KeyEvent = "Left" key && current direction is not...
+					tempObject.setVelX(-2);						// sets desired axis vel to ...
+					tempObject.setVelY(0); 						// sets other axis vel to 0
+				}
+				if(key == KeyEvent.VK_W && tempObject.getVelY() != 2) {						// if KeyEvent = "Up" key
+					tempObject.setVelX(0);
+					tempObject.setVelY(-2);
+				}
+				if(key == KeyEvent.VK_D && tempObject.getVelX() != -2) {					// if KeyEvent = "Right" key
+					tempObject.setVelX(2);
+					tempObject.setVelY(0); 
+				}
+				if(key == KeyEvent.VK_S && tempObject.getVelY() != -2) {					// if KeyEvent = "Down" key
+					tempObject.setVelX(0); 
+					tempObject.setVelY(2);
+				}
+			}
     	
     	if(key == KeyEvent.VK_ESCAPE) System.exit(0);			// on ESCAPE keypress exits the game
     	
@@ -108,4 +125,5 @@ public class KeyInput extends KeyAdapter {
 //	
 //
 //}
+}
 }
