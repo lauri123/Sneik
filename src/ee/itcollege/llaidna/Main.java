@@ -57,30 +57,26 @@ public class Main extends Canvas implements Runnable {
 		// Create Player2 ... with new & addObject to handler
 		handler.addObject(new Player(
 				clamp(
-						(random.nextInt((WIDTH - 0)+ 0)),				// clamps stat X value so doesn't start at edge
+						(random.nextInt(WIDTH)),				// clamps stat X value so doesn't start at edge >> random.nextInt((WIDTH - 0)+ 0)
 						100, 											// min value allowed
 						Main.WIDTH - 100), 								// max value allowed
 				clamp(
-						random.nextInt((HEIGHT - 0)+ 0), 				// clamps stat X value so doesn't start at edge
+						(random.nextInt(HEIGHT)), 				// clamps stat X value so doesn't start at edge
 						100, 											// min value allowed
 						Main.HEIGHT - 100),  							// max value allowed
 				Id.PLAYER2, 
 				handler
-				));	
-		// Create Food
-		handler.addObject(new Food(
-				(random.nextInt(WIDTH-30)),
-				(random.nextInt(HEIGHT-30)),
-				Id.FOOD
-				));	// addObject to handler, create
-
-		//		handler.addObject(new BasicEnemy((r.nextInt(WIDTH-16)),(r.nextInt(HEIGHT-16)), ID.BasicEnemy));	// addObject to handler, create in the middle of the screen
-//		handler.addObject(new BasicEnemy((r.nextInt(WIDTH-16)),(r.nextInt(HEIGHT-16)), ID.BasicEnemy));	// addObject to handler, create in the middle of the screen
+				));
 		
-		// music things
+		// Create Food ... with new & addObject to handler
+		handler.addObject(new Food(
+				clamp((random.nextInt(Main.WIDTH)), 100, Main.WIDTH - 100),
+				clamp((random.nextInt(Main.HEIGHT)), 100, Main.HEIGHT - 100),
+				Id.FOOD
+				));
+		
+		// start music
 		PlayMusic.music(false, 0.3);											// true makes loop
-//		music = TinySound.loadMusic(("167849.wav"), true);				// true straight from file
-//		music.play(true);												// true makes loop
 	}
 	
 	/**
