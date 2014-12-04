@@ -13,12 +13,12 @@ import java.awt.Rectangle;
  */
 public abstract class GameObject {
 	protected int x, y;							// xy coordinates
-	protected ID id;							// enum
+	protected Id id;							// enum
 	protected int velX, velY;					// velocity aka speed
 	protected int tailX, tailY;					// xy coordinates
 	protected int tailVelX, tailVelY;			// tail velocity aka speed
 	
-	public GameObject(int x, int y, ID id){		// constructor for GameObject. Sets automatically GameObject variables
+	public GameObject(int x, int y, Id id){		// constructor for GameObject. Sets automatically GameObject variables
 		this.x = x;
 		this.y = y;
 		this.id = id;
@@ -44,11 +44,11 @@ public abstract class GameObject {
 		return y;
 	}
 	
-	public void setId(ID id){
+	public void setId(Id id){
 		this.id = id;
 	}
 	
-	public ID getId() {
+	public Id getId() {
 		return id;
 	}
 	// ------------------------------------------------ tail

@@ -8,7 +8,7 @@ import java.util.Random;
 import ee.itcollege.llaidna.Game;
 import ee.itcollege.llaidna.GameObject;
 import ee.itcollege.llaidna.Handler;
-import ee.itcollege.llaidna.ID;
+import ee.itcollege.llaidna.Id;
 import ee.itcollege.llaidna.Overlay;
 
 
@@ -26,7 +26,7 @@ public class Tail extends GameObject {
 	Random random = new Random();							// Construct a Random object
 	Handler handler;										// create instance of Handler class
 	
-	public Tail(int x, int y, ID id, Handler handler) {	// constructor
+	public Tail(int x, int y, Id id, Handler handler) {	// constructor
 		super(x, y, id);
 		this.handler = handler;								// handler into Player
 		
@@ -64,7 +64,7 @@ public class Tail extends GameObject {
 		counter ++;
 		for (int i = 0; i < handler.object.size(); i++) {			// for loop through all objects in game
 			GameObject tempObject = handler.object.get(i);			// create tempObject
-			if (tempObject.getId() == ID.Tail) {					// is tempObject valid to cause damage?
+			if (tempObject.getId() == Id.TAIL) {					// is tempObject valid to cause damage?
 				if (counter == Overlay.SCORE1*7) {					// use intersect method between getBounds & enemy
 					// what happens when collision occurs
 					handler.removeObject(tempObject);
@@ -123,7 +123,7 @@ public class Tail extends GameObject {
 //	}
 //	
 	public void render(Graphics g) {				// implemented methods
-		if (id == ID.Tail) {
+		if (id == Id.TAIL) {
 			g.setColor(Color.white);;					// set color
 		} else {
 			g.setColor(Color.cyan);					// set color

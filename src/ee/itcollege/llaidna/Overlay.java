@@ -38,12 +38,19 @@ public class Overlay {
 		// draw score and level to upper right corner
 		g.setColor(Color.WHITE);
 
-		g.drawString("Score P1:", 15, 20);
-		g.drawString("" + SCORE1, 80, 20);
+		// P1 score info
+		g.drawString("Score P1:", Game.WIDTH - 100, 20);
+		g.drawString("" + SCORE1, Game.WIDTH - 35, 20);
+		g.setColor(Color.GREEN);							// colored box around score to indicate player color
+		g.draw3DRect(7, 7, 97, 16, true);
 		
-		g.drawString("Score P2:", Game.WIDTH - 100, 20);
-		g.drawString("" + SCORE2, Game.WIDTH - 35, 20);
-		
+		// P2 score info
+		g.drawString("Score P2:", 15, 20);
+		g.drawString("" + SCORE2, 80, 20);
+		g.setColor(Color.RED);								// colored box around score to indicate player color
+		g.draw3DRect((Game.WIDTH - 104), 7, 97, 16, true);
+
+		g.setColor(Color.WHITE);							
 		g.drawString("Level: ", Game.WIDTH/2 - 25, 20);
 		g.drawString("" + level, Game.WIDTH/2 + 15, 20);
 

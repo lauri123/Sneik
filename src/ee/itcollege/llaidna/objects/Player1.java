@@ -8,7 +8,7 @@ import java.util.Random;
 import ee.itcollege.llaidna.Game;
 import ee.itcollege.llaidna.GameObject;
 import ee.itcollege.llaidna.Handler;
-import ee.itcollege.llaidna.ID;
+import ee.itcollege.llaidna.Id;
 import ee.itcollege.llaidna.Overlay;
 import ee.itcollege.llaidna.audio.PlaySFX;
 
@@ -22,12 +22,20 @@ import ee.itcollege.llaidna.audio.PlaySFX;
  * - collisions
  * - render
  */
-public class Player extends GameObject {
+public class Player1 extends GameObject {
 
 	Random random = new Random();							// Construct a Random object
 	Handler handler;										// create instance of Handler class
 	
-	public Player(int x, int y, ID id, Handler handler) {	// constructor
+	/**
+	 * 
+	 * @param x			x-coordinate
+	 * @param y			y-coordinate
+	 * @param id		name
+	 * @param handler	
+	 */
+	
+	public Player1(int x, int y, Id id, Handler handler) {	// constructor
 		super(x, y, id);
 		this.handler = handler;								// handler into Player
 		
@@ -101,7 +109,7 @@ public class Player extends GameObject {
 		collision();					//check collision
 		counter ++;
 		if (Overlay.SCORE1 > 0 && counter >= 7) {
-			handler.addObject(new Tail(this.x, this.y, ID.Tail, handler));	// addObject to handler, create
+			handler.addObject(new Tail(this.x, this.y, Id.TAIL, handler));	// addObject to handler, create
 			counter = 0;
 		}
 	}
@@ -109,20 +117,21 @@ public class Player extends GameObject {
 	/**
 	 * Collision detection.
 	 * Loops through all objects (handler).
-	 * @author someone - of the logic
+	 * @author someone (of the basic logic)
 	 */
 	private void collision() {
 		
 			for (int i = 0; i < handler.object.size(); i++) {				// for loop through all objects in game
 				GameObject tempObject = handler.object.get(i);				// create tempObject
-				if (tempObject.getId() == ID.BasicEnemy) {					// is tempObject valid to cause damage?
+				if (tempObject.getId() == Id.FOOD) {					// is tempObject valid to cause damage?
 					if (getBounds().intersects(tempObject.getBounds())) {	// use intersect method between getBounds & enemy
 						// what happens when collision occurs
 						PlaySFX.scorefx();
 						Overlay.SCORE1 += 1;
+						System.out.println(this.getId() + " skooris");
 						handler.removeObject(tempObject);
-						handler.addObject(new BasicEnemy((random.nextInt(Game.WIDTH-30)),(random.nextInt(Game.HEIGHT-30)), ID.BasicEnemy));	// addObject to handler, create
-						handler.addObject(new Tail(this.x, this.y, ID.Tail, handler));	// addObject to handler, create
+						handler.addObject(new BasicEnemy((random.nextInt(Game.WIDTH-30)),(random.nextInt(Game.HEIGHT-30)), Id.FOOD));	// addObject to handler, create
+						handler.addObject(new Tail(this.x, this.y, Id.TAIL, handler));	// addObject to handler, create
 					}
 				}
 			}
@@ -132,7 +141,7 @@ public class Player extends GameObject {
 	}
 	
 	public void render(Graphics g) {				// implemented methods
-		if (id == ID.Player) {
+		if (id == Id.PLAYER1) {
 			g.setColor(Color.red);					// set color
 //		if (id == ID.Tail) {
 //			g.setColor(Color.white);					// set color

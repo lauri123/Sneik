@@ -5,6 +5,7 @@ import java.util.LinkedList;
 
 /**
  * Loops through all game objects inside LinkedList... updates them, renders them to the screen
+ * @author someone
  */
 public class Handler {													// loops through all game objects, updates them, renders them to the screen
 

@@ -1,9 +1,12 @@
 package ee.itcollege.llaidna;
-
-public enum ID {
-	Player(),
-	Player2(),
-	Enemy(),
-	BasicEnemy(),
-	Tail();
+/**
+ * Enums used
+ * @author lauri
+ *
+ */
+public enum Id {
+	PLAYER1(),
+	PLAYER2(),
+	FOOD(),
+	TAIL();
 }

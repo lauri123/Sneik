@@ -7,13 +7,13 @@ import java.util.Random;
 
 import ee.itcollege.llaidna.Game;
 import ee.itcollege.llaidna.GameObject;
-import ee.itcollege.llaidna.ID;
+import ee.itcollege.llaidna.Id;
 
 public class BasicEnemy extends GameObject {
 
 	Random r = new Random();
 	
-	public BasicEnemy(int x, int y, ID id) {
+	public BasicEnemy(int x, int y, Id id) {
 		super(x, y, id);
 		
 //		velX = 0;
