@@ -10,7 +10,7 @@ import ee.itcollege.llaidna.GameObject;
 import ee.itcollege.llaidna.Handler;
 import ee.itcollege.llaidna.ID;
 import ee.itcollege.llaidna.Overlay;
-import ee.itcollege.llaidna.audio.Sfx;
+import ee.itcollege.llaidna.audio.PlaySFX;
 
 
 /**
@@ -80,18 +80,22 @@ public class Player extends GameObject {
 		// Teleport to other side
 		if (x <= 3) {					//keep smaller!
 			x = (Game.WIDTH - 13);		//keep smaller!
+			PlaySFX.teleportfx();		//teleport sfx play
 		}
 		
 		if (x >= (Game.WIDTH - 12)) {	//keep bigger!
 			x = 4;						//keep bigger!
+			PlaySFX.teleportfx();		//teleport sfx play
 		}
 		
 		if (y <= 3) {					//keep smaller!
 			y = (Game.HEIGHT - 33);		//keep smaller!
+			PlaySFX.teleportfx();		//teleport sfx play
 		}
 		
 		if (y >= (Game.HEIGHT - 32)) {	//keep bigger!
 			y = 4; 						//keep bigger!
+			PlaySFX.teleportfx();		//teleport sfx play
 		}
 		
 		collision();					//check collision
@@ -114,7 +118,7 @@ public class Player extends GameObject {
 				if (tempObject.getId() == ID.BasicEnemy) {					// is tempObject valid to cause damage?
 					if (getBounds().intersects(tempObject.getBounds())) {	// use intersect method between getBounds & enemy
 						// what happens when collision occurs
-						Sfx.score();
+						PlaySFX.scorefx();
 						Overlay.SCORE += 1;
 						handler.removeObject(tempObject);
 						handler.addObject(new BasicEnemy((random.nextInt(Game.WIDTH-30)),(random.nextInt(Game.HEIGHT-30)), ID.BasicEnemy));	// addObject to handler, create

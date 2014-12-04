@@ -4,15 +4,10 @@ import kuusisto.tinysound.Music;
 import kuusisto.tinysound.TinySound;
 
 /**
- * TinySound is the main class of the TinySound system.  In order to use the
- * TinySound system, it must be initialized.  After that, Music and Sound
- * objects can be loaded and used.  When finished with the TinySound system, it
- * must be shutdown.
- * 
- * @author (original) Finn Kuusisto
+ * Class for music.
  * @author lauri
  */
-public class Audio {
+public class PlayMusic {
 
 	/**
 	 * Play music
@@ -20,16 +15,29 @@ public class Audio {
 	 * @param loop		true or false (length parameter doesn't matter!)
 	 */
 	public static void music(int length, boolean loop) {
-//		// initialize TinySound
-//		TinySound.init();
-		//load music //note: you can also load with Files, URLs and InputStreams
 		Music music = TinySound.loadMusic("167849.wav");
 		music = TinySound.loadMusic(("167849.wav"), true);				// true straight from file
 		music.play(loop);												// true makes loop
 	}
 }
 		
-		
+
+
+
+
+
+
+
+
+
+
+
+// -------------- ignore -------------------------------------------------------
+
+
+//		// initialize TinySound
+//		TinySound.init();
+//load music //note: you can also load with Files, URLs and InputStreams
 		//start playing the music on loop
 //		if (loop == true) {
 //			music.play(true);

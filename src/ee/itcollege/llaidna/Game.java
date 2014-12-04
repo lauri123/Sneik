@@ -10,7 +10,7 @@ import java.util.Random;
 import kuusisto.tinysound.Music;
 import kuusisto.tinysound.Sound;
 import kuusisto.tinysound.TinySound;
-import ee.itcollege.llaidna.audio.Audio;
+import ee.itcollege.llaidna.audio.PlayMusic;
 import ee.itcollege.llaidna.objects.BasicEnemy;
 import ee.itcollege.llaidna.objects.Player;
 
@@ -50,7 +50,7 @@ public class Game extends Canvas implements Runnable {
 		
 		// music things
 		TinySound.init();
-		Audio.music(0, true);
+		PlayMusic.music(0, true);
 //		music = TinySound.loadMusic(("167849.wav"), true);				// true straight from file
 //		music.play(true);												// true makes loop
 	}
