@@ -10,6 +10,7 @@ import java.util.Random;
 import kuusisto.tinysound.Music;
 import kuusisto.tinysound.Sound;
 import kuusisto.tinysound.TinySound;
+import ee.itcollege.llaidna.audio.Audio;
 import ee.itcollege.llaidna.objects.BasicEnemy;
 import ee.itcollege.llaidna.objects.Player;
 
@@ -47,12 +48,11 @@ public class Game extends Canvas implements Runnable {
 //		handler.addObject(new BasicEnemy((r.nextInt(WIDTH-16)),(r.nextInt(HEIGHT-16)), ID.BasicEnemy));	// addObject to handler, create in the middle of the screen
 //		handler.addObject(new BasicEnemy((r.nextInt(WIDTH-16)),(r.nextInt(HEIGHT-16)), ID.BasicEnemy));	// addObject to handler, create in the middle of the screen
 		
-		// audio test
 		// music things
 		TinySound.init();
-		music = TinySound.loadMusic(Game.class.getResource("/167849.wav"), true);
-		music.play(true);
-//		shoot = TinySound.loadMusic(Game.class.getResource("/voiss_134_martin_mill.mp3"));
+		Audio.music(0, true);
+//		music = TinySound.loadMusic(("167849.wav"), true);				// true straight from file
+//		music.play(true);												// true makes loop
 	}
 	
 	/**
@@ -178,9 +178,9 @@ public class Game extends Canvas implements Runnable {
 	 * @param args	Typical main-method with args input
 	 * @author lauri
 	 */
-//	public static void main(String[] args) {							// main method
-//		new Game();														// new instance of Game class
-//	}
+	public static void main(String[] args) {							// main method
+		new Game();														// new instance of Game class
+	}
 
 	
 	// run as applet

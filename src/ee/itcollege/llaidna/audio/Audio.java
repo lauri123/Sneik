@@ -1,10 +1,7 @@
 package ee.itcollege.llaidna.audio;
 
 import kuusisto.tinysound.Music;
-import kuusisto.tinysound.Sound;
 import kuusisto.tinysound.TinySound;
-
-
 
 /**
  * TinySound is the main class of the TinySound system.  In order to use the
@@ -17,130 +14,76 @@ import kuusisto.tinysound.TinySound;
  */
 public class Audio {
 
+	/**
+	 * Play music
+	 * @param length	length in seconds (put loop parameter false!)
+	 * @param loop		true or false (length parameter doesn't matter!)
+	 */
 	public static void music(int length, boolean loop) {
-		//initialize TinySound
-		TinySound.init();
-		//load a sound and music
-		//note: you can also load with Files, URLs and InputStreams
-		Music song = TinySound.loadMusic("167849.wav");
-		Sound coin = TinySound.loadSound("silence.wav");
-		if (loop == true) {
-			//start playing the music on loop
-			song.play(true);
-			System.out.println("music on loop");
-			while (loop) {
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {}
-			}
-		}
-		if (loop == false) {
-			//start playing the music on loop
-			song.play(true);
-			System.out.println("music playtime " + length +"s");
-			//play the sound a few times in a loop
-			for (int i = 0; i < length; i++) {
-				coin.play();
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {}
-			}
-		}
-		//be sure to shutdown TinySound when done
-		TinySound.shutdown();
-		
+//		// initialize TinySound
+//		TinySound.init();
+		//load music //note: you can also load with Files, URLs and InputStreams
+		Music music = TinySound.loadMusic("167849.wav");
+		music = TinySound.loadMusic(("167849.wav"), true);				// true straight from file
+		music.play(loop);												// true makes loop
 	}
-	
-	// lets test audio stuff!
-	public static void main(String[] args) {
-		music(3, true);
-	}
-	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//package ee.itcollege.llaidna.audio;
-//
-//import javafx.scene.media.Media;
-//import javafx.scene.media.MediaPlayer;
-//
-//public class Audio {
-//
-////	private Clip clip;
-//	
-//	public Audio(String s) {
-//		
-//		String bip = "s";
-//		Media hit = new Media(bip);
-//		MediaPlayer mediaPlayer = new MediaPlayer(hit);
-//		mediaPlayer.play();
-//		
-//	}
-//}
-//		
-//		
-//		
 		
 		
-//		try {
-//			
-//		AudioInputStream audioin;
-//			audioin = AudioSystem.getAudioInputStream(
-//					getClass().getResourceAsStream(s));
-//			AudioFormat baseFormat = audioin.getFormat();
-//			AudioFormat decodeFormat = new AudioFormat(
-//				
-//				AudioFormat.Encoding.PCM_SIGNED, 
-//				baseFormat.getSampleRate(), 
-//				16, 
-//				baseFormat.getChannels(), 
-//				baseFormat.getChannels() * 2, 
-//				baseFormat.getSampleRate(), 
-//				false
-//				);
-//		AudioInputStream dais = AudioSystem.getAudioInputStream(
-//				decodeFormat, audioin);
-//		clip = AudioSystem.getClip();
-//		clip.open(dais);
-//
-//		} catch (UnsupportedAudioFileException e) {
-//			e.printStackTrace();
-//		} catch (Exception e) {
-//			e.printStackTrace();
+		//start playing the music on loop
+//		if (loop == true) {
+//			music.play(true);
+//			System.out.println("music on loop");
+//			while (loop) {
+//				try {
+//					Thread.sleep(1000);
+//				} catch (InterruptedException e) {}
+//			}
+//		}
+//		
+//		//play music for given "length" of seconds
+//		if (loop == false) {
+//			music.play(true);
+//			System.out.println("music playtime " + length +"s");
+//			//play the sound "length" times 1s in a loop
+//			for (int i = 0; i < length*100; i++) {
+//				try {
+//					Thread.sleep(10);
+//				} catch (InterruptedException e) {}
+//			}
 //		}
 //	}
-//		
-//	public void play() {
-//		if (clip == null) return;
-//		stop();
-//		clip.setFramePosition(0);
-//		clip.start();
-//	}
 //	
-//	public void stop() {
-//		if(clip.isRunning()) clip.stop();
+//	public static void sfx() {
+//		//load sfx
+//		//note: you can also load with Files, URLs and InputStreams
+//		System.out.println("sfx");
+//		TinySound.init();
+//		Sound sfx = TinySound.loadSound("sfx/238283.wav");
+//		sfx.play();
+//		TinySound.shutdown();
+//		//start playing the music on loop
+//			//play the sound "length" times 1s in a loop
+////			for (int i = 0; i < 1; i++) {
+////				try {
+////					Thread.sleep(300);
+////				} catch (InterruptedException e) {}
+//			}
 //	}
-//	
-//	public void close() {
-//		stop();
-//		clip.close();
-
+//
+//	/*
+//	// lets test audio stuff!
+//	public static void main(String[] args) {
+////		music(3, true);
+//		//initialize TinySound
+//		TinySound.init();
+//		music(3, false);
+//		sfx();
+////		sfx();
+////		sfx();
+//
+//		//shutdown when done
+//		TinySound.shutdown();
+//	}
+//	*/
+//}
