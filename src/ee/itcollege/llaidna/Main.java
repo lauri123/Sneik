@@ -11,20 +11,18 @@ import kuusisto.tinysound.Music;
 import kuusisto.tinysound.Sound;
 import kuusisto.tinysound.TinySound;
 import ee.itcollege.llaidna.audio.PlayMusic;
-import ee.itcollege.llaidna.objects.BasicEnemy;
+import ee.itcollege.llaidna.objects.Food;
 import ee.itcollege.llaidna.objects.Player;
 
 @SuppressWarnings("serial")
 public class Main extends Canvas implements Runnable {
 	
-	public static final int WIDTH = 640, HEIGHT = WIDTH  / 16 * 9;		// set width and height (16x10). final sets values unchangeable
+	public static final int WIDTH = 640, HEIGHT = WIDTH  / 16 * 10;		// set width and height (16x10). final sets values unchangeable
 	private Thread thread;
 	private boolean running = false;									// running = true, false	
-	private Random random;													// random
+	private Random random;												// random
 	private Handler handler;											// create instance of handler
 	private Overlay overlay;
-	private Music music;
-	public Sound shoot;
 	
 	/**
 	 * @author someone
@@ -56,14 +54,31 @@ public class Main extends Canvas implements Runnable {
 				handler
 				));	
 		
-		
-		handler.addObject(new Player(random.nextInt((WIDTH - 0)+ 0), random.nextInt((HEIGHT - 0)+ 0), Id.PLAYER2, handler));	// addObject to handler, create
-		handler.addObject(new BasicEnemy((random.nextInt(WIDTH-30)),(random.nextInt(HEIGHT-30)), Id.FOOD));	// addObject to handler, create
-//		handler.addObject(new BasicEnemy((r.nextInt(WIDTH-16)),(r.nextInt(HEIGHT-16)), ID.BasicEnemy));	// addObject to handler, create in the middle of the screen
+		// Create Player2 ... with new & addObject to handler
+		handler.addObject(new Player(
+				clamp(
+						(random.nextInt((WIDTH - 0)+ 0)),				// clamps stat X value so doesn't start at edge
+						100, 											// min value allowed
+						Main.WIDTH - 100), 								// max value allowed
+				clamp(
+						random.nextInt((HEIGHT - 0)+ 0), 				// clamps stat X value so doesn't start at edge
+						100, 											// min value allowed
+						Main.HEIGHT - 100),  							// max value allowed
+				Id.PLAYER2, 
+				handler
+				));	
+		// Create Food
+		handler.addObject(new Food(
+				(random.nextInt(WIDTH-30)),
+				(random.nextInt(HEIGHT-30)),
+				Id.FOOD
+				));	// addObject to handler, create
+
+		//		handler.addObject(new BasicEnemy((r.nextInt(WIDTH-16)),(r.nextInt(HEIGHT-16)), ID.BasicEnemy));	// addObject to handler, create in the middle of the screen
 //		handler.addObject(new BasicEnemy((r.nextInt(WIDTH-16)),(r.nextInt(HEIGHT-16)), ID.BasicEnemy));	// addObject to handler, create in the middle of the screen
 		
 		// music things
-		PlayMusic.music(false);											// true makes loop
+		PlayMusic.music(false, 0.3);											// true makes loop
 //		music = TinySound.loadMusic(("167849.wav"), true);				// true straight from file
 //		music.play(true);												// true makes loop
 	}

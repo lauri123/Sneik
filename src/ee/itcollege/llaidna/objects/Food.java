@@ -3,25 +3,33 @@ package ee.itcollege.llaidna.objects;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.util.Random;
 
-import ee.itcollege.llaidna.Main;
 import ee.itcollege.llaidna.GameObject;
 import ee.itcollege.llaidna.Id;
+import ee.itcollege.llaidna.Main;
 
-public class BasicEnemy extends GameObject {
+/**
+ * Class for food creation.
+ * @author lauri
+ *
+ */
+public class Food extends GameObject {
 
-	Random r = new Random();
+//	Random r = new Random();
 	
-	public BasicEnemy(int x, int y, Id id) {
+	/**
+	 * 
+	 * @param x		x-coordinate
+	 * @param y		y-coordinate
+	 * @param id	id
+	 */
+	public Food(int x, int y, Id id) {
 		super(x, y, id);
 		
 //		velX = 0;
 //		velY = 5;
 //		x = r.nextInt();
 //		y = r.nextInt();
-		
-		
 	}
 
 	/**
@@ -45,7 +53,5 @@ public class BasicEnemy extends GameObject {
 		g.setColor(Color.RED);
 		g.fillRect(x, y, 16, 16);
 	}
-	
-	
 
 }

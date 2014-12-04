@@ -11,11 +11,13 @@ public class PlayMusic {
 
 	/**
 	 * Method for music.
-	 * @param loop	boolean true or false, to loop or not to loop?
+	 * @param loop		boolean true or false, to loop or not to loop?
+	 * @param volume	set volume
 	 */
-	public static void music(boolean loop) {
+	public static void music(boolean loop, double volume) {
 		Music music = TinySound.loadMusic("167849.wav");
 		music = TinySound.loadMusic(("167849.wav"), true);				// true straight from file
+		music.setVolume(volume);
 		music.play(loop);												// true makes loop
 	}
 }

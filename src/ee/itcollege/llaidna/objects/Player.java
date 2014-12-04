@@ -138,7 +138,7 @@ public class Player extends GameObject {
 						}
 						PlaySFX.scorefx();
 						handler.removeObject(tempObject);
-						handler.addObject(new BasicEnemy((random.nextInt(Main.WIDTH-30)),(random.nextInt(Main.HEIGHT-30)), Id.FOOD));	// addObject to handler, create
+						handler.addObject(new Food((random.nextInt(Main.WIDTH-30)),(random.nextInt(Main.HEIGHT-30)), Id.FOOD));	// addObject to handler, create
 						handler.addObject(new Tail(this.x, this.y, Id.TAIL, handler));	// addObject to handler, create
 					}
 				}
