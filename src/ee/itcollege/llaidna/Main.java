@@ -15,7 +15,7 @@ import ee.itcollege.llaidna.objects.BasicEnemy;
 import ee.itcollege.llaidna.objects.Player;
 
 @SuppressWarnings("serial")
-public class Game extends Canvas implements Runnable {
+public class Main extends Canvas implements Runnable {
 	
 	public static final int WIDTH = 640, HEIGHT = WIDTH  / 16 * 9;		// set width and height (16x10). final sets values unchangeable
 	private Thread thread;
@@ -29,7 +29,7 @@ public class Game extends Canvas implements Runnable {
 	/**
 	 * @author someone
 	 */
-	public Game() {
+	public Main() {
 		
 		TinySound.init();												// initiates TinySound
 		
@@ -47,11 +47,11 @@ public class Game extends Canvas implements Runnable {
 				clamp(
 						(random.nextInt((WIDTH - 0)+ 0)),				// clamps stat X value so doesn't start at edge
 						100, 											// min value allowed
-						Game.WIDTH - 100), 								// max value allowed
+						Main.WIDTH - 100), 								// max value allowed
 				clamp(
 						random.nextInt((HEIGHT - 0)+ 0), 				// clamps stat X value so doesn't start at edge
 						100, 											// min value allowed
-						Game.HEIGHT - 100),  							// max value allowed
+						Main.HEIGHT - 100),  							// max value allowed
 				Id.PLAYER1, 
 				handler
 				));	
@@ -192,7 +192,7 @@ public class Game extends Canvas implements Runnable {
 	 * @author lauri
 	 */
 	public static void main(String[] args) {							// main method
-		new Game();														// new instance of Game class
+		new Main();														// new instance of Game class
 	}
 
 	

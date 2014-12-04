@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Random;
 
-import ee.itcollege.llaidna.Game;
+import ee.itcollege.llaidna.Main;
 import ee.itcollege.llaidna.GameObject;
 import ee.itcollege.llaidna.Id;
 
@@ -35,7 +35,7 @@ public class BasicEnemy extends GameObject {
 		x += velX;
 		y += velY;
 		
-		if (y <= 0 || y >= (Game.HEIGHT - 32)) {
+		if (y <= 0 || y >= (Main.HEIGHT - 32)) {
 			velY *= -1;
 		}
 		

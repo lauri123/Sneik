@@ -24,7 +24,7 @@ public class Overlay {
 	
 	public void tick() {
 //		LIFE = r.nextInt(65) + 20;				// wiggly life value
-		LIFE = Game.clamp(LIFE, 0, 98);			// clamps life value
+		LIFE = Main.clamp(LIFE, 0, 98);			// clamps life value
 //		score++;
 	}
 
@@ -39,27 +39,27 @@ public class Overlay {
 		g.setColor(Color.WHITE);
 
 		// P1 score info
-		g.drawString("Score P1:", Game.WIDTH - 100, 20);
-		g.drawString("" + SCORE1, Game.WIDTH - 35, 20);
-		g.setColor(Color.GREEN);							// colored box around score to indicate player color
-		g.draw3DRect(7, 7, 97, 16, true);
+		g.drawString("P1 score:", Main.WIDTH - 100, 20);
+		g.drawString("" + SCORE1, Main.WIDTH - 35, 20);
+		g.setColor(Color.RED);								// colored box around score to indicate player color
+		g.draw3DRect((Main.WIDTH - 104), 7, 97, 16, true);
 		
 		// P2 score info
-		g.drawString("Score P2:", 15, 20);
+		g.setColor(Color.GREEN);							// colored box around score to indicate player color
+		g.drawString("P2 score:", 15, 20);
 		g.drawString("" + SCORE2, 80, 20);
-		g.setColor(Color.RED);								// colored box around score to indicate player color
-		g.draw3DRect((Game.WIDTH - 104), 7, 97, 16, true);
+		g.draw3DRect(7, 7, 97, 16, true);
 
 		g.setColor(Color.WHITE);							
-		g.drawString("Level: ", Game.WIDTH/2 - 25, 20);
-		g.drawString("" + level, Game.WIDTH/2 + 15, 20);
+		g.drawString("Level: ", Main.WIDTH/2 - 25, 20);
+		g.drawString("" + level, Main.WIDTH/2 + 15, 20);
 
 		// draw FPS to lower right corner
-		g.drawString("FPS: ", Game.WIDTH - 80, Game.HEIGHT - 30);
-		g.drawString("" + Game.FPS, Game.WIDTH - 35, Game.HEIGHT - 30);
+		g.drawString("FPS: ", Main.WIDTH - 80, Main.HEIGHT - 30);
+		g.drawString("" + Main.FPS, Main.WIDTH - 35, Main.HEIGHT - 30);
 		
 		// draw author
-		g.drawString("Lauri Laidna IA18", 10, Game.HEIGHT - 30);
+		g.drawString("Lauri Laidna IA18", 10, Main.HEIGHT - 30);
 		
 		
 		

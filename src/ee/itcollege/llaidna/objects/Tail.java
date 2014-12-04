@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Random;
 
-import ee.itcollege.llaidna.Game;
+import ee.itcollege.llaidna.Main;
 import ee.itcollege.llaidna.GameObject;
 import ee.itcollege.llaidna.Handler;
 import ee.itcollege.llaidna.Id;
@@ -62,18 +62,18 @@ public class Tail extends GameObject {
 		
 		// Teleport to other side
 		if (x <= 3) {					//keep smaller!
-			x = (Game.WIDTH - 13);		//keep smaller!
+			x = (Main.WIDTH - 13);		//keep smaller!
 		}
 		
-		if (x >= (Game.WIDTH - 12)) {	//keep bigger!
+		if (x >= (Main.WIDTH - 12)) {	//keep bigger!
 			x = 4;						//keep bigger!
 		}
 		
 		if (y <= 3) {					//keep smaller!
-			y = (Game.HEIGHT - 33);		//keep smaller!
+			y = (Main.HEIGHT - 33);		//keep smaller!
 		}
 		
-		if (y >= (Game.HEIGHT - 32)) {	//keep bigger!
+		if (y >= (Main.HEIGHT - 32)) {	//keep bigger!
 			y = 4; 						//keep bigger!
 		}
 		

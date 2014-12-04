@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Random;
 
-import ee.itcollege.llaidna.Game;
+import ee.itcollege.llaidna.Main;
 import ee.itcollege.llaidna.GameObject;
 import ee.itcollege.llaidna.Handler;
 import ee.itcollege.llaidna.Id;
@@ -87,21 +87,21 @@ public class Player extends GameObject {
 		
 		// Teleport to other side
 		if (x <= 3) {					//keep smaller!
-			x = (Game.WIDTH - 13);		//keep smaller!
+			x = (Main.WIDTH - 13);		//keep smaller!
 			PlaySFX.teleportfx();		//teleport sfx play
 		}
 		
-		if (x >= (Game.WIDTH - 12)) {	//keep bigger!
+		if (x >= (Main.WIDTH - 12)) {	//keep bigger!
 			x = 4;						//keep bigger!
 			PlaySFX.teleportfx();		//teleport sfx play
 		}
 		
 		if (y <= 3) {					//keep smaller!
-			y = (Game.HEIGHT - 33);		//keep smaller!
+			y = (Main.HEIGHT - 33);		//keep smaller!
 			PlaySFX.teleportfx();		//teleport sfx play
 		}
 		
-		if (y >= (Game.HEIGHT - 32)) {	//keep bigger!
+		if (y >= (Main.HEIGHT - 32)) {	//keep bigger!
 			y = 4; 						//keep bigger!
 			PlaySFX.teleportfx();		//teleport sfx play
 		}
@@ -138,7 +138,7 @@ public class Player extends GameObject {
 						}
 						PlaySFX.scorefx();
 						handler.removeObject(tempObject);
-						handler.addObject(new BasicEnemy((random.nextInt(Game.WIDTH-30)),(random.nextInt(Game.HEIGHT-30)), Id.FOOD));	// addObject to handler, create
+						handler.addObject(new BasicEnemy((random.nextInt(Main.WIDTH-30)),(random.nextInt(Main.HEIGHT-30)), Id.FOOD));	// addObject to handler, create
 						handler.addObject(new Tail(this.x, this.y, Id.TAIL, handler));	// addObject to handler, create
 					}
 				}
