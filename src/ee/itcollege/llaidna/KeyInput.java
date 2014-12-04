@@ -13,11 +13,12 @@ public class KeyInput extends KeyAdapter {
 	
     public void keyPressed(KeyEvent e) {
     	int key = e.getKeyCode();													// variable key - gets number value of pressed key
+//    	int lastpressed = 0;															// records last pressed key
     	
     	for (int i = 0; i < handler.object.size(); i++) {							// loop through all the objects
 			GameObject tempObject = handler.object.get(i);
-// player 1
-			if (tempObject.getId() == ID.Player) {									// find ID.Player2
+			// Player1 KeyEvents when Score < 1
+			if (Overlay.SCORE < 1 && tempObject.getId() == ID.Player) {
 				if(key == KeyEvent.VK_LEFT) {					// if KeyEvent = "Left" key
 					tempObject.setVelY(0); 						// sets other axis vel to 0
 					tempObject.setVelX(-2);						// sets desired axis vel to ...
@@ -31,6 +32,25 @@ public class KeyInput extends KeyAdapter {
 					tempObject.setVelX(2);
 				}
 				if(key == KeyEvent.VK_DOWN) {					// if KeyEvent = "Down" key
+					tempObject.setVelX(0); 
+					tempObject.setVelY(2);
+				}
+			}
+			// Player1 KeyEvents when Score >= 1 - not allowed to get directly opposite direction!
+			else if (Overlay.SCORE >= 1 && tempObject.getId() == ID.Player) {
+				if(key == KeyEvent.VK_LEFT && tempObject.getVelX() != 2) {					// if KeyEvent = "Left" key && current direction is not...
+					tempObject.setVelX(-2);						// sets desired axis vel to ...
+					tempObject.setVelY(0); 						// sets other axis vel to 0
+				}
+				if(key == KeyEvent.VK_UP && tempObject.getVelY() != 2) {						// if KeyEvent = "Up" key
+					tempObject.setVelX(0);
+					tempObject.setVelY(-2);
+				}
+				if(key == KeyEvent.VK_RIGHT && tempObject.getVelX() != -2) {					// if KeyEvent = "Right" key
+					tempObject.setVelX(2);
+					tempObject.setVelY(0); 
+				}
+				if(key == KeyEvent.VK_DOWN && tempObject.getVelY() != -2) {					// if KeyEvent = "Down" key
 					tempObject.setVelX(0); 
 					tempObject.setVelY(2);
 				}

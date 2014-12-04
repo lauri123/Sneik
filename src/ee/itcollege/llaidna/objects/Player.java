@@ -53,14 +53,6 @@ public class Player extends GameObject {
 		
 	}
 
-	
-
-
-
-
-
-
-
 	/**
 	 * Object bounds (rectangle size) to determine collisions.
 	 */
@@ -103,7 +95,7 @@ public class Player extends GameObject {
 		
 		collision();					//check collision
 		counter ++;
-		if (Overlay.SCORE > 0 && counter >= 2) {
+		if (Overlay.SCORE > 0 && counter >= 7) {
 			handler.addObject(new Tail(this.x, this.y, ID.Tail, handler));	// addObject to handler, create
 			counter = 0;
 		}
@@ -129,6 +121,8 @@ public class Player extends GameObject {
 				}
 			}
 			
+			
+			
 	}
 	
 	public void render(Graphics g) {				// implemented methods
@@ -141,6 +135,10 @@ public class Player extends GameObject {
 		}
 		g.fillOval(x, y, 10, 10);					// create oval
 		
+	}
+
+	public int getCounter() {
+		return counter;
 	}
 
 

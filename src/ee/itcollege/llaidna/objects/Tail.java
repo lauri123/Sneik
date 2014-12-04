@@ -65,7 +65,7 @@ public class Tail extends GameObject {
 		for (int i = 0; i < handler.object.size(); i++) {				// for loop through all objects in game
 			GameObject tempObject = handler.object.get(i);				// create tempObject
 			if (tempObject.getId() == ID.Tail) {					// is tempObject valid to cause damage?
-				if (counter == Overlay.SCORE*10) {	// use intersect method between getBounds & enemy
+				if (counter == Overlay.SCORE*7) {	// use intersect method between getBounds & enemy
 					// what happens when collision occurs
 					handler.removeObject(tempObject);
 					counter = 0;
@@ -123,12 +123,12 @@ public class Tail extends GameObject {
 //	}
 //	
 	public void render(Graphics g) {				// implemented methods
-		if (id == ID.Player) {
-			g.setColor(Color.red);					// set color
+		if (id == ID.Tail) {
+			g.setColor(Color.white);;					// set color
 		} else {
-			g.setColor(Color.green);				// set color
+			g.setColor(Color.cyan);					// set color
 		}
-		g.fillOval(x, y, 10, 10);					// create oval
+		g.fillRoundRect(x, y, 8, 8, 3, 3);					// create rectangle
 		
 	}
 
