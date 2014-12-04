@@ -35,20 +35,20 @@ public class Player extends GameObject {
 //		velY = 0;
 //		
 		// start direction of player moving randomly
-		int rm = random.nextInt((4 - 0)+ 0);
-		System.out.println("random for direction: " + rm);
-		if (rm == 0) {
-			velX =  2; velY =  0;			
-		}
-		if (rm == 1) {
-			velX =  0; velY =  2;
-		}
-		if (rm == 2) {
-			velX = -2; velY =  0;
-		}
-		if (rm == 3) {
-			velX =  0; velY = -2;
-		}
+//		int rm = random.nextInt((4 - 0)+ 0);
+//		System.out.println("random for direction: " + rm);
+//		if (rm == 0) {
+//			velX =  2; velY =  0;			
+//		}
+//		if (rm == 1) {
+//			velX =  0; velY =  2;
+//		}
+//		if (rm == 2) {
+//			velX = -2; velY =  0;
+//		}
+//		if (rm == 3) {
+//			velX =  0; velY = -2;
+//		}
 		
 		
 	}
@@ -67,7 +67,7 @@ public class Player extends GameObject {
 	public Rectangle getBounds() {
 		return new Rectangle(x, y, 10, 10);
 	}
-
+	int counter;
 	public void tick() {							// implemented methods
 		
 //		// bumps from border of window
@@ -102,6 +102,11 @@ public class Player extends GameObject {
 		}
 		
 		collision();					//check collision
+		counter ++;
+		if (Overlay.SCORE > 0 && counter >= 2) {
+			handler.addObject(new Tail(this.x, this.y, ID.Tail, handler));	// addObject to handler, create
+			counter = 0;
+		}
 	}
 
 	/**
@@ -119,8 +124,7 @@ public class Player extends GameObject {
 						Overlay.SCORE += 1;
 						handler.removeObject(tempObject);
 						handler.addObject(new BasicEnemy((random.nextInt(Game.WIDTH-30)),(random.nextInt(Game.HEIGHT-30)), ID.BasicEnemy));	// addObject to handler, create
-						handler.addObject(new Tail(this.x - this.velX*5, this.y - this.velY*5, ID.Tail, handler));	// addObject to handler, create
-//						handler.addObject(new Tail(this.x - this.velX*5, this.y - this.velY*5, ID.Tail, handler));	// addObject to handler, create
+						handler.addObject(new Tail(this.x, this.y, ID.Tail, handler));	// addObject to handler, create
 					}
 				}
 			}
@@ -130,6 +134,8 @@ public class Player extends GameObject {
 	public void render(Graphics g) {				// implemented methods
 		if (id == ID.Player) {
 			g.setColor(Color.red);					// set color
+//		if (id == ID.Tail) {
+//			g.setColor(Color.white);					// set color
 		} else {
 			g.setColor(Color.green);				// set color
 		}
