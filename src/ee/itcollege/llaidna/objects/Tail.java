@@ -29,30 +29,12 @@ public class Tail extends GameObject {
 	public Tail(int x, int y, Id id, Handler handler) {	// constructor
 		super(x, y, id);
 		this.handler = handler;								// handler into Player
-		
-//		// start state players still
-//		setTailVelX() = getVelX();
-//		tailVelY = getVelY();
-//		
-		// start direction of player moving randomly
-//		int rm = random.nextInt((4 - 0)+ 0);
-//		System.out.println("random for direction: " + rm);
-//		if (rm == 0) {
-//			velX =  2; velY =  0;			
-//		}
-//		if (rm == 1) {
-//			velX =  0; velY =  2;
-//		}
-//		if (rm == 2) {
-//			velX = -2; velY =  0;
-//		}
-//		if (rm == 3) {
-//			velX =  0; velY = -2;
-//		}
 	}
 
 	/**
 	 * Object bounds (rectangle size) to determine collisions.
+	 * @author someone
+	 * @author lauri edited, added, modified
 	 */
 	public Rectangle getBounds() {
 		return new Rectangle(x, y, 10, 10);
@@ -71,13 +53,8 @@ public class Tail extends GameObject {
 					counter = 0;
 				}
 			}
-			
 //		System.out.println("counter: " + counter);
 		}
-		
-		
-		
-		
 		
 		// move Player around each tick by amount of velX, velY
 //		this.x = handler.object(Player);
@@ -129,9 +106,5 @@ public class Tail extends GameObject {
 			g.setColor(Color.cyan);					// set color
 		}
 		g.fillRoundRect(x, y, 8, 8, 3, 3);					// create rectangle
-		
 	}
-
-
-
 }

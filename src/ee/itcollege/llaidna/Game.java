@@ -12,7 +12,7 @@ import kuusisto.tinysound.Sound;
 import kuusisto.tinysound.TinySound;
 import ee.itcollege.llaidna.audio.PlayMusic;
 import ee.itcollege.llaidna.objects.BasicEnemy;
-import ee.itcollege.llaidna.objects.Player1;
+import ee.itcollege.llaidna.objects.Player;
 
 @SuppressWarnings("serial")
 public class Game extends Canvas implements Runnable {
@@ -43,7 +43,7 @@ public class Game extends Canvas implements Runnable {
 		random = new Random();
 		
 		// Create Player1 ... with new & addObject to handler
-		handler.addObject(new Player1(
+		handler.addObject(new Player(
 				clamp(
 						(random.nextInt((WIDTH - 0)+ 0)),				// clamps stat X value so doesn't start at edge
 						100, 											// min value allowed
@@ -57,7 +57,7 @@ public class Game extends Canvas implements Runnable {
 				));	
 		
 		
-		handler.addObject(new Player1(random.nextInt((WIDTH - 0)+ 0), random.nextInt((HEIGHT - 0)+ 0), Id.PLAYER2, handler));	// addObject to handler, create
+		handler.addObject(new Player(random.nextInt((WIDTH - 0)+ 0), random.nextInt((HEIGHT - 0)+ 0), Id.PLAYER2, handler));	// addObject to handler, create
 		handler.addObject(new BasicEnemy((random.nextInt(WIDTH-30)),(random.nextInt(HEIGHT-30)), Id.FOOD));	// addObject to handler, create
 //		handler.addObject(new BasicEnemy((r.nextInt(WIDTH-16)),(r.nextInt(HEIGHT-16)), ID.BasicEnemy));	// addObject to handler, create in the middle of the screen
 //		handler.addObject(new BasicEnemy((r.nextInt(WIDTH-16)),(r.nextInt(HEIGHT-16)), ID.BasicEnemy));	// addObject to handler, create in the middle of the screen

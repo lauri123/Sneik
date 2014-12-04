@@ -22,7 +22,7 @@ import ee.itcollege.llaidna.audio.PlaySFX;
  * - collisions
  * - render
  */
-public class Player1 extends GameObject {
+public class Player extends GameObject {
 
 	Random random = new Random();							// Construct a Random object
 	Handler handler;										// create instance of Handler class
@@ -35,7 +35,7 @@ public class Player1 extends GameObject {
 	 * @param handler	
 	 */
 	
-	public Player1(int x, int y, Id id, Handler handler) {	// constructor
+	public Player(int x, int y, Id id, Handler handler) {	// constructor
 		super(x, y, id);
 		this.handler = handler;								// handler into Player
 		
@@ -108,6 +108,8 @@ public class Player1 extends GameObject {
 		
 		collision();					//check collision
 		counter ++;
+		
+		// add tail
 		if (Overlay.SCORE1 > 0 && counter >= 7) {
 			handler.addObject(new Tail(this.x, this.y, Id.TAIL, handler));	// addObject to handler, create
 			counter = 0;
@@ -126,9 +128,15 @@ public class Player1 extends GameObject {
 				if (tempObject.getId() == Id.FOOD) {					// is tempObject valid to cause damage?
 					if (getBounds().intersects(tempObject.getBounds())) {	// use intersect method between getBounds & enemy
 						// what happens when collision occurs
+						if (this.getId() == Id.PLAYER1) {
+							Overlay.SCORE1 += 1;
+							System.out.println(this.getId() + " skooris");							
+						}
+						else {
+							Overlay.SCORE2 += 1;
+							System.out.println(this.getId() + " skooris");
+						}
 						PlaySFX.scorefx();
-						Overlay.SCORE1 += 1;
-						System.out.println(this.getId() + " skooris");
 						handler.removeObject(tempObject);
 						handler.addObject(new BasicEnemy((random.nextInt(Game.WIDTH-30)),(random.nextInt(Game.HEIGHT-30)), Id.FOOD));	// addObject to handler, create
 						handler.addObject(new Tail(this.x, this.y, Id.TAIL, handler));	// addObject to handler, create
