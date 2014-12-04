@@ -3,6 +3,13 @@ package ee.itcollege.llaidna;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
+/**
+ * KeyListener and "driver"
+ * @author someone - main logic
+ * @author lauri - modified a lot!
+ *
+ */
+
 public class KeyInput extends KeyAdapter {
 	
 	private Handler handler;
@@ -13,7 +20,7 @@ public class KeyInput extends KeyAdapter {
 	
     public void keyPressed(KeyEvent e) {
     	int key = e.getKeyCode();													// variable key - gets number value of pressed key
-//    	int lastpressed = 0;															// records last pressed key
+//    	int lastpressed = 0;														// records last pressed key
     	
     	for (int i = 0; i < handler.object.size(); i++) {							// loop through all the objects
 			GameObject tempObject = handler.object.get(i);
@@ -95,9 +102,9 @@ public class KeyInput extends KeyAdapter {
 				}
 			}
     	
-    	if(key == KeyEvent.VK_ESCAPE) System.exit(0);			// on ESCAPE keypress exits the game
+			System.out.println(key);											// print out keyinput
+    	if(key == KeyEvent.VK_ESCAPE) System.exit(0);								// on ESCAPE keypress exits the game
     	
-    	    	System.out.println(key);				// print out keyinput
     }
 
 //    public void keyReleased(KeyEvent e) {

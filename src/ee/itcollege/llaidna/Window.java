@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import javax.swing.JFrame;
 
 // create a window class
+@SuppressWarnings("serial")
 public class Window extends Canvas {
 
 //	private static final long serialVersionUID = 7883803474888262873L;	//??
@@ -18,7 +19,7 @@ public class Window extends Canvas {
 		frame.setMinimumSize(new Dimension(width, height));
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);			// close program thread when windows is closed
-		frame.setResizable(false);										// disable window resize
+		frame.setResizable(true);										// disable window resize
 		frame.setLocationRelativeTo(null);								// window default location on screen (not corner)
 		frame.add(game);												// add Game class into frame, important (why?)
 		frame.setVisible(true);											// make frame visible

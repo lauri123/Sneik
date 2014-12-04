@@ -7,8 +7,6 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
-import kuusisto.tinysound.Music;
-import kuusisto.tinysound.Sound;
 import kuusisto.tinysound.TinySound;
 import ee.itcollege.llaidna.audio.PlayMusic;
 import ee.itcollege.llaidna.objects.Food;
@@ -17,7 +15,7 @@ import ee.itcollege.llaidna.objects.Player;
 @SuppressWarnings("serial")
 public class Main extends Canvas implements Runnable {
 	
-	public static final int WIDTH = 640, HEIGHT = WIDTH  / 16 * 10;		// set width and height (16x10). final sets values unchangeable
+	public static final int WIDTH = 300, HEIGHT = WIDTH  / 16 * 30;		// set width and height (16x10). final sets values unchangeable
 	private Thread thread;
 	private boolean running = false;									// running = true, false	
 	private Random random;												// random
@@ -57,11 +55,11 @@ public class Main extends Canvas implements Runnable {
 		// Create Player2 ... with new & addObject to handler
 		handler.addObject(new Player(
 				clamp(
-						(random.nextInt(WIDTH)),				// clamps stat X value so doesn't start at edge >> random.nextInt((WIDTH - 0)+ 0)
+						(random.nextInt(WIDTH)),						// clamps stat X value so doesn't start at edge >> random.nextInt((WIDTH - 0)+ 0)
 						100, 											// min value allowed
 						Main.WIDTH - 100), 								// max value allowed
 				clamp(
-						(random.nextInt(HEIGHT)), 				// clamps stat X value so doesn't start at edge
+						(random.nextInt(HEIGHT)), 						// clamps stat X value so doesn't start at edge
 						100, 											// min value allowed
 						Main.HEIGHT - 100),  							// max value allowed
 				Id.PLAYER2, 
@@ -76,12 +74,12 @@ public class Main extends Canvas implements Runnable {
 				));
 		
 		// start music
-		PlayMusic.music(false, 0.3);											// true makes loop
+		PlayMusic.music(false, 0.3);									// true makes loop, value sets volume
 	}
 	
 	/**
 	 * Starts a new Thread. Values running = true. Is started from Window.java
-	 * Synchronized used for threads!
+	 * "synchronized" is used for threads!
 	 * @author someone
 	 */
 	public synchronized void start() {									// is being called from Window.java. Synchronized used for threads!
@@ -91,8 +89,8 @@ public class Main extends Canvas implements Runnable {
 	}
 	
 	/**
-	 * Stops the thread. Values running = false. Executed in the end of Gameloop run().
-	 * Synchronized used for threads!
+	 * Stops the thread. Values running = false. Executed in the end of Game loop run().
+	 * "synchronized" is used for threads!
 	 * @author someone
 	 */
 	public synchronized void stop() {									// is being called from Game > run. Synchronized used for threads!
@@ -105,7 +103,7 @@ public class Main extends Canvas implements Runnable {
 	}
 	
 	/**
-	 * Gameloop
+	 * Game loop
 	 * @author someone
 	 */
 	static int FPS = 0;													// make new static variable FPS to be read from Overlay

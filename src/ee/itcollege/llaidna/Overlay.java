@@ -2,7 +2,6 @@ package ee.itcollege.llaidna;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Random;
 
 
 /**
@@ -29,11 +28,11 @@ public class Overlay {
 	}
 
 	public void render(Graphics g) {
-		// health bar
-		g.setColor(Color.gray);
-		g.fillRect(10, 100, 200, 6);
-		g.setColor(Color.green);
-		g.fillRect(12, 102, LIFE * 2 , 2);
+//		// health bar
+//		g.setColor(Color.gray);
+//		g.fillRect(10, 100, 200, 6);
+//		g.setColor(Color.green);
+//		g.fillRect(12, 102, LIFE * 2 , 2);
 		
 		// draw score and level to upper right corner
 		g.setColor(Color.WHITE);
