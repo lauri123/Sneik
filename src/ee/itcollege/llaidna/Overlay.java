@@ -7,6 +7,8 @@ import java.util.Random;
 
 /**
  * Overlay class - which includes everything we need to draw on screen as an overlay
+ * @author someone
+ * @author lauri modified and edited
  */
 
 public class Overlay {
@@ -16,7 +18,8 @@ public class Overlay {
 	public static int LIFE = 100;
 
 //	private int score = 0;
-	public static int SCORE = 0;
+	public static int SCORE1 = 0;
+	public static int SCORE2 = 0;
 	private int level = 1;
 	
 	public void tick() {
@@ -25,22 +28,24 @@ public class Overlay {
 //		score++;
 	}
 
-	/**
-	 * 
-	 * @param g
-	 */
 	public void render(Graphics g) {
+		// health bar
 		g.setColor(Color.gray);
-		g.fillRect(10, 10, 200, 6);
+		g.fillRect(10, 100, 200, 6);
 		g.setColor(Color.green);
-		g.fillRect(12, 12, LIFE * 2 , 2);
+		g.fillRect(12, 102, LIFE * 2 , 2);
 		
 		// draw score and level to upper right corner
 		g.setColor(Color.WHITE);
-		g.drawString("Score:", Game.WIDTH - 80, 15);
-		g.drawString("" + SCORE, Game.WIDTH - 35, 15);
-		g.drawString("Level: ", Game.WIDTH - 80 , 30);
-		g.drawString("" + level, Game.WIDTH - 35, 30);
+
+		g.drawString("Score P1:", 15, 20);
+		g.drawString("" + SCORE1, 80, 20);
+		
+		g.drawString("Score P2:", Game.WIDTH - 100, 20);
+		g.drawString("" + SCORE2, Game.WIDTH - 35, 20);
+		
+		g.drawString("Level: ", Game.WIDTH/2 - 25, 20);
+		g.drawString("" + level, Game.WIDTH/2 + 15, 20);
 
 		// draw FPS to lower right corner
 		g.drawString("FPS: ", Game.WIDTH - 80, Game.HEIGHT - 30);

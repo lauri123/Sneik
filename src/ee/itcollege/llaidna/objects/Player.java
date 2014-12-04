@@ -100,7 +100,7 @@ public class Player extends GameObject {
 		
 		collision();					//check collision
 		counter ++;
-		if (Overlay.SCORE > 0 && counter >= 7) {
+		if (Overlay.SCORE1 > 0 && counter >= 7) {
 			handler.addObject(new Tail(this.x, this.y, ID.Tail, handler));	// addObject to handler, create
 			counter = 0;
 		}
@@ -119,7 +119,7 @@ public class Player extends GameObject {
 					if (getBounds().intersects(tempObject.getBounds())) {	// use intersect method between getBounds & enemy
 						// what happens when collision occurs
 						PlaySFX.scorefx();
-						Overlay.SCORE += 1;
+						Overlay.SCORE1 += 1;
 						handler.removeObject(tempObject);
 						handler.addObject(new BasicEnemy((random.nextInt(Game.WIDTH-30)),(random.nextInt(Game.HEIGHT-30)), ID.BasicEnemy));	// addObject to handler, create
 						handler.addObject(new Tail(this.x, this.y, ID.Tail, handler));	// addObject to handler, create

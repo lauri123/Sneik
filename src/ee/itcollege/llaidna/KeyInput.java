@@ -18,7 +18,7 @@ public class KeyInput extends KeyAdapter {
     	for (int i = 0; i < handler.object.size(); i++) {							// loop through all the objects
 			GameObject tempObject = handler.object.get(i);
 			// Player1 KeyEvents when Score < 1
-			if (Overlay.SCORE < 1 && tempObject.getId() == ID.Player) {
+			if (Overlay.SCORE1 < 1 && tempObject.getId() == ID.Player) {
 				if(key == KeyEvent.VK_LEFT) {					// if KeyEvent = "Left" key
 					tempObject.setVelY(0); 						// sets other axis vel to 0
 					tempObject.setVelX(-2);						// sets desired axis vel to ...
@@ -37,7 +37,7 @@ public class KeyInput extends KeyAdapter {
 				}
 			}
 			// Player1 KeyEvents when Score >= 1 - not allowed to get directly opposite direction!
-			else if (Overlay.SCORE >= 1 && tempObject.getId() == ID.Player) {
+			else if (Overlay.SCORE1 >= 1 && tempObject.getId() == ID.Player) {
 				if(key == KeyEvent.VK_LEFT && tempObject.getVelX() != 2) {					// if KeyEvent = "Left" key && current direction is not...
 					tempObject.setVelX(-2);						// sets desired axis vel to ...
 					tempObject.setVelY(0); 						// sets other axis vel to 0
@@ -57,7 +57,7 @@ public class KeyInput extends KeyAdapter {
 			}
 
 			// Player2 KeyEvents when Score < 1
-			if (Overlay.SCORE < 1 && tempObject.getId() == ID.Player2) {
+			if (Overlay.SCORE1 < 1 && tempObject.getId() == ID.Player2) {
 				if(key == KeyEvent.VK_A) {					// if KeyEvent = "Left" key
 					tempObject.setVelY(0); 						// sets other axis vel to 0
 					tempObject.setVelX(-2);						// sets desired axis vel to ...
@@ -76,7 +76,7 @@ public class KeyInput extends KeyAdapter {
 				}
 			}
 			// Player2 KeyEvents when Score >= 1 - not allowed to get directly opposite direction!
-			else if (Overlay.SCORE >= 1 && tempObject.getId() == ID.Player2) {
+			else if (Overlay.SCORE1 >= 1 && tempObject.getId() == ID.Player2) {
 				if(key == KeyEvent.VK_A && tempObject.getVelX() != 2) {					// if KeyEvent = "Left" key && current direction is not...
 					tempObject.setVelX(-2);						// sets desired axis vel to ...
 					tempObject.setVelY(0); 						// sets other axis vel to 0

@@ -50,7 +50,7 @@ public class Game extends Canvas implements Runnable {
 		
 		// music things
 		TinySound.init();
-		PlayMusic.music(0, true);
+		PlayMusic.music(false);
 //		music = TinySound.loadMusic(("167849.wav"), true);				// true straight from file
 //		music.play(true);												// true makes loop
 	}

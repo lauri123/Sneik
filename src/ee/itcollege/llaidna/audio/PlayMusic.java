@@ -10,11 +10,10 @@ import kuusisto.tinysound.TinySound;
 public class PlayMusic {
 
 	/**
-	 * Play music
-	 * @param length	length in seconds (put loop parameter false!)
-	 * @param loop		true or false (length parameter doesn't matter!)
+	 * Method for music.
+	 * @param loop	boolean true or false, to loop or not to loop?
 	 */
-	public static void music(int length, boolean loop) {
+	public static void music(boolean loop) {
 		Music music = TinySound.loadMusic("167849.wav");
 		music = TinySound.loadMusic(("167849.wav"), true);				// true straight from file
 		music.play(loop);												// true makes loop
@@ -34,7 +33,12 @@ public class PlayMusic {
 
 // -------------- ignore -------------------------------------------------------
 
-
+// 	public static void music(int length, boolean loop) {
+// /**
+// * Play music
+// * @param length	length in seconds (put loop parameter false!)
+// * @param loop		true or false (length parameter doesn't matter!)
+// */
 //		// initialize TinySound
 //		TinySound.init();
 //load music //note: you can also load with Files, URLs and InputStreams
