@@ -12,6 +12,8 @@ import java.awt.event.KeyEvent;
 
 public class KeyInput extends KeyAdapter {
 	
+	public static boolean visibility = true;												// visibility for help
+	
 	private Handler handler;
 
 	public KeyInput(Handler handler) {												// constructor. put to private Handler handler
@@ -24,6 +26,13 @@ public class KeyInput extends KeyAdapter {
     	
     	for (int i = 0; i < handler.object.size(); i++) {							// loop through all the objects
 			GameObject tempObject = handler.object.get(i);
+			
+			// Remove Help
+			if (key == KeyEvent.VK_SPACE) {
+				visibility = false;
+				System.out.println("visibility set " + key + " and " + visibility);
+			}
+			
 			// Player1 KeyEvents when Score < 1
 			if (Overlay.SCORE1 < 1 && tempObject.getId() == Id.PLAYER1) {
 				if(key == KeyEvent.VK_LEFT) {					// if KeyEvent = "Left" key
@@ -106,7 +115,24 @@ public class KeyInput extends KeyAdapter {
     	if(key == KeyEvent.VK_ESCAPE) System.exit(0);								// on ESCAPE keypress exits the game
     	
     }
+    }
+}
 
+
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
 //    public void keyReleased(KeyEvent e) {
 //    	int key = e.getKeyCode();
 //    	
@@ -132,5 +158,3 @@ public class KeyInput extends KeyAdapter {
 //	
 //
 //}
-}
-}

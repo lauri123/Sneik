@@ -127,18 +127,19 @@ public class Player extends GameObject {
 				GameObject tempObject = handler.object.get(i);				// create tempObject
 				if (tempObject.getId() == Id.FOOD) {					// is tempObject valid to cause damage?
 					if (getBounds().intersects(tempObject.getBounds())) {	// use intersect method between getBounds & enemy
-						// what happens when collision occurs
+						
+						// Collision with FOOD
 						if (this.getId() == Id.PLAYER1) {
 							Overlay.SCORE1 += 1;
-							System.out.println(this.getId() + " skooris");							
+							System.out.println(this.getId() + " scored");							
 						}
 						else {
 							Overlay.SCORE2 += 1;
-							System.out.println(this.getId() + " skooris");
+							System.out.println(this.getId() + " scored");
 						}
 						PlaySFX.scorefx();
 						handler.removeObject(tempObject);
-						handler.addObject(new Food((random.nextInt(Main.WIDTH-30)),(random.nextInt(Main.HEIGHT-30)), Id.FOOD));	// addObject to handler, create
+						handler.addObject(new Food((Main.clamp(random.nextInt(Main.WIDTH), 10, Main.WIDTH - 40)), Main.clamp((random.nextInt(Main.HEIGHT)), 10, Main.HEIGHT - 50), Id.FOOD));	// addObject to handler, create
 						handler.addObject(new Tail(this.x, this.y, Id.TAIL, handler));	// addObject to handler, create
 					}
 				}

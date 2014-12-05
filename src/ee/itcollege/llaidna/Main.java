@@ -21,6 +21,8 @@ public class Main extends Canvas implements Runnable {
 	private Random random;												// random
 	private Handler handler;											// create instance of handler
 	private Overlay overlay;
+	private Help help;
+	public static int timeri;
 	
 	/**
 	 * @author someone
@@ -34,8 +36,8 @@ public class Main extends Canvas implements Runnable {
 		
 		new Window(WIDTH, HEIGHT, "Sneiks", this);						// create new Window class
 		
-		overlay = new Overlay();
-		
+		overlay = new Overlay();		
+		help = new Help();
 		random = new Random();
 		
 		// Create Player1 ... with new & addObject to handler
@@ -142,8 +144,11 @@ public class Main extends Canvas implements Runnable {
 	 * @author someone
 	 */
 	private void tick() {														// called from run
+		timeri += 1;
 		handler.tick();
 		overlay.tick();
+		help.tick();
+		
 	}
 	
 	/**
@@ -174,12 +179,12 @@ public class Main extends Canvas implements Runnable {
 		
 		handler.render(g);
 		overlay.render(g);
+		help.render(g);
 		
 		g.dispose();
 		bs.show();
 		
 	}
-	
 	
 	/**
 	 * Clamps variable between min and max.
@@ -202,37 +207,7 @@ public class Main extends Canvas implements Runnable {
 	 */
 	public static void main(String[] args) {							// main method
 		new Main();														// new instance of Game class
-	}
-
-	
-	// run as applet
-	
-//	public void init() {
-//	    //Execute a job on the event-dispatching thread:
-//	    //creating this applet's GUI.
-//	    try {
-//	        javax.swing.SwingUtilities.invokeAndWait(new Runnable() {
-//	            public void run() {
-//	                createGUI();
-//	            }
-//	        });
-//	    } catch (Exception e) {
-//	        System.err.println("createGUI didn't successfully complete");
-//	    }
-//	}
-//
-//	private void createGUI() {
-//	    JLabel label = new JLabel(
-//	                       "You are successfully running a Swing applet!");
-//	    label.setHorizontalAlignment(JLabel.CENTER);
-//	    label.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.black));
-//	    getContentPane().add(label, BorderLayout.CENTER);
-//	}
-//
-//	private Container getContentPane() {
-//		return null;
-//	}
-	
+	}	
 }
 
 
