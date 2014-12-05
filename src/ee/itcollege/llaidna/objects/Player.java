@@ -198,7 +198,7 @@ public class Player extends GameObject {
 						}
 						if (Overlay.score1 == Overlay.score2) {
 							PlaySFX.tiesfx();
-						}
+						}<>ˇÜÕ'’<	ˇ1q
 						Main.end();
 //						Main.running = false;
 						System.out.println("Game OVER! Player 1 WINS with score of " + Overlay.score1 + " : " + Overlay.score2);
