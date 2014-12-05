@@ -112,15 +112,15 @@ public class Main extends Canvas implements Runnable {
 	public void run() {													// popular game loop typed in here
 		this.requestFocus();											// don't have to click on the windows!
 		long lastTime = System.nanoTime();								// time with nanosecond precision
-		double amountOfTicks = 60.0;									// game speed
-//				+ (double)Overlay.level;								
+		double amountOfTicks = 60.0;
+//				+ 60*(double)Overlay.level;								// game speed
 		double ns = 1000000000 / amountOfTicks;							
 		double delta = 0;
 		int frames = 0;
 		long timer = System.currentTimeMillis();						// current time in ms
 		while(running) {												// while running loop
 			long now = System.nanoTime();
-			delta += (now - lastTime) / ns;
+			delta += (now - lastTime) / ns + (double)Overlay.level/30;
 			lastTime = now;
 			while(delta >= 1) {
 				tick();

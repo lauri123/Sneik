@@ -41,8 +41,15 @@ public class Help {
 			g.drawString("Touch opponent's tail - You LOSE!", 38, 208);
 			
 			g.drawString("Press ESC to quit", 25, 250);
-			g.drawString("Now press SPACE to start!", 25, 265);
+			g.drawString("Press SPACE to start!", 25, 265);
 
+//			g.setColor(Color.GRAY);
+			g.setFont(new Font("Roboto", Font.PLAIN, 8));
+//			g.drawString("disclamer:", 15, Main.HEIGHT-60);
+			g.drawString("Most of the back-end code has been written by", 15, Main.HEIGHT-50);
+			g.drawString("others, even if not so clearly marked in the code!", 15, Main.HEIGHT-40);
+			g.drawString("Lauri Laidna, IA18, Dec 2014", 15, Main.HEIGHT-30);
+			
 			
 		}		
 	}

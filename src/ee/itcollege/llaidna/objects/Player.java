@@ -141,12 +141,16 @@ public class Player extends GameObject {
 						if (this.getId() == Id.PLAYER1) {
 							Overlay.score1 += 1;
 							System.out.println(this.getId() + " scored");
+							System.out.println("level: " + 60*(double)Overlay.level);								
+
 							PlaySFX.scorefx1();								// sfx after scoring for player1
 							handler.addObject(new Tail(tempObject.getX(), tempObject.getY(), Id.TAIL1, handler));	// addObject to handler, create
 						}
 						if (this.getId() == Id.PLAYER2) {
 							Overlay.score2 += 1;
 							System.out.println(this.getId() + " scored");
+							System.out.println("level: " + 60*(double)Overlay.level);								
+
 							PlaySFX.scorefx2();								// sfx after scoring for player2
 							handler.addObject(new Tail(tempObject.getX(), tempObject.getY(), Id.TAIL2, handler));	// addObject to handler, create
 						}
