@@ -34,7 +34,7 @@ public class KeyInput extends KeyAdapter {
 			}
 			
 			// Player1 KeyEvents when Score < 1
-			if (Overlay.SCORE1 < 1 && tempObject.getId() == Id.PLAYER1) {
+			if (visibility == false && Overlay.SCORE1 < 1 && tempObject.getId() == Id.PLAYER1) {
 				if(key == KeyEvent.VK_LEFT) {					// if KeyEvent = "Left" key
 					tempObject.setVelY(0); 						// sets other axis vel to 0
 					tempObject.setVelX(-2);						// sets desired axis vel to ...
@@ -53,7 +53,7 @@ public class KeyInput extends KeyAdapter {
 				}
 			}
 			// Player1 KeyEvents when Score >= 1 - not allowed to get directly opposite direction!
-			else if (Overlay.SCORE1 >= 1 && tempObject.getId() == Id.PLAYER1) {
+			else if (visibility == false && Overlay.SCORE1 >= 1 && tempObject.getId() == Id.PLAYER1) {
 				if(key == KeyEvent.VK_LEFT && tempObject.getVelX() != 2) {					// if KeyEvent = "Left" key && current direction is not...
 					tempObject.setVelX(-2);						// sets desired axis vel to ...
 					tempObject.setVelY(0); 						// sets other axis vel to 0
@@ -73,7 +73,7 @@ public class KeyInput extends KeyAdapter {
 			}
 
 			// Player2 KeyEvents when Score < 1
-			if (Overlay.SCORE1 < 1 && tempObject.getId() == Id.PLAYER2) {
+			if (visibility == false && Overlay.SCORE2 < 1 && tempObject.getId() == Id.PLAYER2) {
 				if(key == KeyEvent.VK_A) {					// if KeyEvent = "Left" key
 					tempObject.setVelY(0); 						// sets other axis vel to 0
 					tempObject.setVelX(-2);						// sets desired axis vel to ...
@@ -92,7 +92,7 @@ public class KeyInput extends KeyAdapter {
 				}
 			}
 			// Player2 KeyEvents when Score >= 1 - not allowed to get directly opposite direction!
-			else if (Overlay.SCORE1 >= 1 && tempObject.getId() == Id.PLAYER2) {
+			else if (visibility == false && Overlay.SCORE2 >= 1 && tempObject.getId() == Id.PLAYER2) {
 				if(key == KeyEvent.VK_A && tempObject.getVelX() != 2) {					// if KeyEvent = "Left" key && current direction is not...
 					tempObject.setVelX(-2);						// sets desired axis vel to ...
 					tempObject.setVelY(0); 						// sets other axis vel to 0
