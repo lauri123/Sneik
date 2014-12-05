@@ -34,7 +34,6 @@ public class Help {
 			g.drawString("- Player 2 is GREEN - use WASD keys", 25, 125);
 			g.drawString("Press ESC to quit.", 25, 150);
 			g.drawString("Press SPACE to start!", 25, 165);
-			
 		}		
 	}
 

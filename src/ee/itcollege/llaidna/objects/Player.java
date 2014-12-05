@@ -132,14 +132,16 @@ public class Player extends GameObject {
 							Overlay.SCORE1 += 1;
 							System.out.println(this.getId() + " scored");
 							PlaySFX.scorefx1();								// sfx after scoring for player1
-							handler.addObject(new Tail(this.x, this.y, Id.TAIL1, handler));	// addObject to handler, create
+							handler.addObject(new Tail(tempObject.getX(), tempObject.getY(), Id.TAIL1, handler));	// addObject to handler, create
 						}
 						if (this.getId() == Id.PLAYER2) {
 							Overlay.SCORE2 += 1;
 							System.out.println(this.getId() + " scored");
 							PlaySFX.scorefx2();								// sfx after scoring for player2
-							handler.addObject(new Tail(this.x, this.y, Id.TAIL2, handler));	// addObject to handler, create
-							Main.start();
+							handler.addObject(new Tail(tempObject.getX(), tempObject.getY(), Id.TAIL2, handler));	// addObject to handler, create
+							// game over! win, tie
+//							Main.running = false;
+//							System.out.println("Game OVER!");
 						}
 						handler.removeObject(tempObject);
 						handler.addObject(new Food((Main.clamp(random.nextInt(Main.WIDTH), 25, Main.WIDTH - 40)), Main.clamp((random.nextInt(Main.HEIGHT)), 25, Main.HEIGHT - 50), Id.FOOD));	// addObject to handler, create

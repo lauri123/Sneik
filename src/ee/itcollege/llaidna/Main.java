@@ -17,7 +17,7 @@ public class Main extends Canvas implements Runnable {
 	
 	public static final int WIDTH = 300, HEIGHT = WIDTH  / 16 * 30;		// set width and height (16x10). final sets values unchangeable
 	private Thread thread;
-	private boolean running = false;									// running = true, false	
+	public static boolean running = false;									// running = true, false	
 	private Random random;												// random
 	private Handler handler;											// create instance of handler
 	private Overlay overlay;

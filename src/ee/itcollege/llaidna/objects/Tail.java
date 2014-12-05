@@ -101,9 +101,10 @@ public class Tail extends GameObject {
 //	
 	public void render(Graphics g) {						// implemented methods
 		if (id == Id.TAIL1) {
-			g.setColor(Color.white);;						// set color
-		} else {
-			g.setColor(Color.cyan);							// set color
+			g.setColor(Color.red);;						// set color
+		} 
+		if (id == Id.TAIL2) {
+			g.setColor(Color.green);							// set color
 		}
 		g.fillRoundRect(x, y, 8, 8, 3, 3);					// create rectangle
 	}
