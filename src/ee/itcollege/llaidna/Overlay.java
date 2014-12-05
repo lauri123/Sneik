@@ -42,15 +42,15 @@ public class Overlay {
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Roboto", Font.PLAIN, 13));
 		// P1 score info
-		g.drawString("P1 score:", Main.WIDTH - 100, 20);
-		g.drawString("" + SCORE1, Main.WIDTH - 20, 20);
+		g.drawString("P1 score:", Main.WIDTH - 99, 20);
+		g.drawString("" + SCORE1, Main.WIDTH - 30, 20);
 		g.setColor(Color.RED);								// colored box around score to indicate player color
 		g.draw3DRect((Main.WIDTH - 104), 7, 97, 16, true);
 		
 		// P2 score info
 		g.setColor(Color.GREEN);							// colored box around score to indicate player color
-		g.drawString("P2 score:", 15, 20);
-		g.drawString("" + SCORE2, 90, 20);
+		g.drawString("P2 score:", 13, 20);
+		g.drawString("" + SCORE2, 81, 20);
 		g.draw3DRect(7, 7, 97, 16, true);
 
 		g.setColor(Color.WHITE);							

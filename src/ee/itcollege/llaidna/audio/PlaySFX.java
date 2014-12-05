@@ -9,24 +9,24 @@ import kuusisto.tinysound.TinySound;
  */
 public class PlaySFX {
 	
-	public static void scorefx() {
+	public static void scorefx1() {
 		Sound score = TinySound.loadSound("sfx/213149.wav");
 		score.play();
-		System.out.println("scorefx");
+		System.out.println("scorefx1");
 	}
+	
+	
+	public static void scorefx2() {
+		Sound die = TinySound.loadSound("sfx/147262.wav");
+		die.play();
+		System.out.println("scorefx1");
+	}
+	
 	
 	public static void teleportfx() {
 		Sound teleport = TinySound.loadSound("sfx/238283.wav");
 		teleport.play();
 		System.out.println("teleportfx");
 	}
-	
-	public static void diefx() {
-		Sound die = TinySound.loadSound("sfx/147262.wav");
-		die.play();
-		System.out.println("diefx");
-	}
-	
-	
 	
 }
