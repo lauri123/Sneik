@@ -110,7 +110,7 @@ public class KeyInput extends KeyAdapter {
 				}
 			}
     	
-			System.out.println(key);											// print out keyinput
+//			System.out.println(key);											// print out keyinput
     	if(key == KeyEvent.VK_ESCAPE) System.exit(0);								// on ESCAPE keypress exits the game
     	
     }

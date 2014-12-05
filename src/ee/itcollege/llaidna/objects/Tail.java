@@ -40,20 +40,26 @@ public class Tail extends GameObject {
 		return new Rectangle(x, y, 10, 10);
 	}
 
-	int counter = 0;
-	public void tick() {											// implemented methods
+	int counter1 = 0;
+	int counter2 = 0;
+	
+	public void tick() {																	// implemented methods
 		// this cuts off the tail after counted time. Kills the tail elements
-		counter ++;
-		for (int i = 0; i < handler.object.size(); i++) {			// for loop through all objects in game
-			GameObject tempObject = handler.object.get(i);			// create tempObject
-			if (tempObject.getId() == Id.TAIL1) {					// is tempObject eaten?
-				if (counter == Overlay.SCORE1 * 7) {				// use intersect method between getBounds & FOOD
-					// what happens when it is time to die
+		counter1 ++;
+		counter2 ++;
+		for (int i = 0; i < handler.object.size(); i++) {									// for loop through all objects in game
+			GameObject tempObject = handler.object.get(i);									// create tempObject
+			if (tempObject.getId() == Id.TAIL1 && counter1 == Overlay.SCORE1 * 7) {			// is tempObject eaten?
 					handler.removeObject(tempObject);
-					counter = 0;
-				}
+					counter1 = 0;
 			}
-//		System.out.println("counter: " + counter);
+			
+			if (tempObject.getId() == Id.TAIL2 && counter2 == Overlay.SCORE2 * 7) {
+				handler.removeObject(tempObject);
+				counter2 = 0;
+			}
+			
+		System.out.println("counter1: " + counter1 + "counter2: " + counter2);
 		}
 		
 		// move Player around each tick by amount of velX, velY

@@ -148,7 +148,6 @@ public class Main extends Canvas implements Runnable {
 		handler.tick();
 		overlay.tick();
 		help.tick();
-		
 	}
 	
 	/**

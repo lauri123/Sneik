@@ -58,7 +58,6 @@ public class Player extends GameObject {
 //			velX =  0; velY = -2;
 //		}
 		
-		
 	}
 
 	/**
@@ -67,7 +66,10 @@ public class Player extends GameObject {
 	public Rectangle getBounds() {
 		return new Rectangle(x, y, 10, 10);
 	}
-	int counter;
+	
+	int counter1;									// counter for player1 tail
+	int counter2;									// counter for player1 tail
+	
 	public void tick() {							// implemented methods
 		
 //		// bumps from border of window
@@ -105,14 +107,21 @@ public class Player extends GameObject {
 			PlaySFX.teleportfx();		//teleport sfx play
 		}
 		
-		collision();					//check collision
-		counter ++;
+		collision();					//check collision every tick
+		counter1 ++;
+		counter2 ++;
 		
-		// add tail
-		if (Overlay.SCORE1 > 0 && counter >= 7) {
+		// add tail Player1
+		if (this.getId() == Id.PLAYER1 && Overlay.SCORE1 > 0 && counter1 >= 7) {
 			handler.addObject(new Tail(this.x, this.y, Id.TAIL1, handler));	// addObject to handler, create
-			counter = 0;
+			counter1 = 0;
 		}
+		
+		// add tail Player2
+				if (this.getId() == Id.PLAYER2 && Overlay.SCORE2 > 0 && counter2 >= 7) {
+					handler.addObject(new Tail(this.x, this.y, Id.TAIL2, handler));	// addObject to handler, create
+					counter2 = 0;
+				}
 	}
 
 	/**
