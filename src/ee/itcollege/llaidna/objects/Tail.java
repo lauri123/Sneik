@@ -26,7 +26,7 @@ public class Tail extends GameObject {
 	Random random = new Random();							// Construct a Random object
 	Handler handler;										// create instance of Handler class
 	
-	public Tail(int x, int y, Id id, Handler handler) {	// constructor
+	public Tail(int x, int y, Id id, Handler handler) {		// constructor
 		super(x, y, id);
 		this.handler = handler;								// handler into Player
 	}
@@ -42,13 +42,13 @@ public class Tail extends GameObject {
 
 	int counter = 0;
 	public void tick() {											// implemented methods
-		
+		// this cuts off the tail after counted time. Kills the tail elements
 		counter ++;
 		for (int i = 0; i < handler.object.size(); i++) {			// for loop through all objects in game
 			GameObject tempObject = handler.object.get(i);			// create tempObject
-			if (tempObject.getId() == Id.TAIL) {					// is tempObject valid to cause damage?
-				if (counter == Overlay.SCORE1*7) {					// use intersect method between getBounds & enemy
-					// what happens when collision occurs
+			if (tempObject.getId() == Id.TAIL1) {					// is tempObject eaten?
+				if (counter == Overlay.SCORE1 * 7) {				// use intersect method between getBounds & FOOD
+					// what happens when it is time to die
 					handler.removeObject(tempObject);
 					counter = 0;
 				}
@@ -99,11 +99,11 @@ public class Tail extends GameObject {
 //			
 //	}
 //	
-	public void render(Graphics g) {				// implemented methods
-		if (id == Id.TAIL) {
-			g.setColor(Color.white);;					// set color
+	public void render(Graphics g) {						// implemented methods
+		if (id == Id.TAIL1) {
+			g.setColor(Color.white);;						// set color
 		} else {
-			g.setColor(Color.cyan);					// set color
+			g.setColor(Color.cyan);							// set color
 		}
 		g.fillRoundRect(x, y, 8, 8, 3, 3);					// create rectangle
 	}

@@ -8,5 +8,6 @@ public enum Id {
 	PLAYER1(),
 	PLAYER2(),
 	FOOD(),
-	TAIL();
+	TAIL1(),
+	TAIL2();
 }

@@ -76,7 +76,7 @@ public class Main extends Canvas implements Runnable {
 				));
 		
 		// start music
-		PlayMusic.music(false, 0.3);									// true makes loop, value sets volume
+		PlayMusic.music(true, 0.22);									// true makes loop, value sets volume
 	}
 	
 	/**
@@ -131,7 +131,7 @@ public class Main extends Canvas implements Runnable {
 
 			if(System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-				System.out.println("FPS: " + frames);					// prints out FPS to console
+//				System.out.println("FPS: " + frames);					// prints out FPS to console
 				FPS = frames;											// make FPS readable
 				frames = 0;
 			}

@@ -5,13 +5,12 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.Random;
 
-import ee.itcollege.llaidna.Main;
 import ee.itcollege.llaidna.GameObject;
 import ee.itcollege.llaidna.Handler;
 import ee.itcollege.llaidna.Id;
+import ee.itcollege.llaidna.Main;
 import ee.itcollege.llaidna.Overlay;
 import ee.itcollege.llaidna.audio.PlaySFX;
-
 
 /**
  * Player class extends GameObjects:
@@ -43,7 +42,7 @@ public class Player extends GameObject {
 //		velX = 0;
 //		velY = 0;
 //		
-		// start direction of player moving randomly
+//		// start direction of player moving randomly
 //		int rm = random.nextInt((4 - 0)+ 0);
 //		System.out.println("random for direction: " + rm);
 //		if (rm == 0) {
@@ -72,11 +71,11 @@ public class Player extends GameObject {
 	public void tick() {							// implemented methods
 		
 //		// bumps from border of window
-//		if (x <= 0 || x >= (Game.WIDTH - 32)) {		// manual clamping with if
+//		if (x <= 0 || x >= (Main.WIDTH - 14)) {		// manual clamping with if
 //			velX *= -1;
 //		}
 //		
-//		if (y <= 0 || y >= (Game.HEIGHT - 52)) {
+//		if (y <= 8 || y >= (Main.HEIGHT - 18)) {
 //			velY *= -1;
 //		}
 		
@@ -111,7 +110,7 @@ public class Player extends GameObject {
 		
 		// add tail
 		if (Overlay.SCORE1 > 0 && counter >= 7) {
-			handler.addObject(new Tail(this.x, this.y, Id.TAIL, handler));	// addObject to handler, create
+			handler.addObject(new Tail(this.x, this.y, Id.TAIL1, handler));	// addObject to handler, create
 			counter = 0;
 		}
 	}
@@ -140,7 +139,7 @@ public class Player extends GameObject {
 						PlaySFX.scorefx();
 						handler.removeObject(tempObject);
 						handler.addObject(new Food((Main.clamp(random.nextInt(Main.WIDTH), 10, Main.WIDTH - 40)), Main.clamp((random.nextInt(Main.HEIGHT)), 10, Main.HEIGHT - 50), Id.FOOD));	// addObject to handler, create
-						handler.addObject(new Tail(this.x, this.y, Id.TAIL, handler));	// addObject to handler, create
+						handler.addObject(new Tail(this.x, this.y, Id.TAIL1, handler));	// addObject to handler, create
 					}
 				}
 			}

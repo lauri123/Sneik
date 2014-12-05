@@ -16,8 +16,6 @@ import javax.swing.JFrame;
  *
  */
 
-
-
 @SuppressWarnings("serial")
 public class Window extends Canvas {
 
@@ -35,7 +33,6 @@ public class Window extends Canvas {
 //		cp.add(new JButton("three"));
 //		cp.add(new JButton("four"));
 		
-		
 		frame.pack();
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);			// close program thread when windows is closed
@@ -46,10 +43,6 @@ public class Window extends Canvas {
 		frame.pack();													// Causes this Window to be sized to fit the preferred size and layouts of its subcomponents. 
 		game.start();													// run start method from Game class
 		
-		
-		
 	}
-	
-	
 
 }
