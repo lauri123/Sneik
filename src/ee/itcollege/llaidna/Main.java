@@ -113,6 +113,7 @@ public class Main extends Canvas implements Runnable {
 		this.requestFocus();											// don't have to click on the windows!
 		long lastTime = System.nanoTime();								// time with nanosecond precision
 		double amountOfTicks = 60.0;									// game speed
+//				+ (double)Overlay.level;								
 		double ns = 1000000000 / amountOfTicks;							
 		double delta = 0;
 		int frames = 0;
@@ -162,9 +163,8 @@ public class Main extends Canvas implements Runnable {
 			return;
 		}
 
-//		Graphics g = bs.getDrawGraphics();										// Graphics without aa
-		
-		// Graphics2D for with aa
+//		Graphics g = bs.getDrawGraphics();										// Graphics without AA
+		// Graphics2D for with AA
 		Graphics2D g = (Graphics2D) bs.getDrawGraphics();
 		RenderingHints hints = new RenderingHints(
 		    RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -207,6 +207,11 @@ public class Main extends Canvas implements Runnable {
 	public static void main(String[] args) {							// main method
 		new Main();														// new instance of Game class
 	}	
+	
+	public static void end() {
+		Main.running = false;
+	}
+	
 }
 
 

@@ -49,12 +49,12 @@ public class Tail extends GameObject {
 		counter2 ++;
 		for (int i = 0; i < handler.object.size(); i++) {									// for loop through all objects in game
 			GameObject tempObject = handler.object.get(i);									// create tempObject
-			if (tempObject.getId() == Id.TAIL1 && counter1 == Overlay.SCORE1 * 7) {			// is tempObject eaten?
+			if (tempObject.getId() == Id.TAIL1 && counter1 == Overlay.score1 * 7) {			// is tempObject eaten?
 					handler.removeObject(tempObject);
 					counter1 = 0;
 			}
 			
-			if (tempObject.getId() == Id.TAIL2 && counter2 == Overlay.SCORE2 * 7) {
+			if (tempObject.getId() == Id.TAIL2 && counter2 == Overlay.score2 * 7) {
 				handler.removeObject(tempObject);
 				counter2 = 0;
 			}

@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 
+import javax.swing.JComponent;
+
 
 /**
  * Help overlay
@@ -14,12 +16,12 @@ import java.awt.Graphics2D;
 public class Help {
 
 	public void tick() {
-		Overlay.LIFE = Main.clamp(Overlay.LIFE, 0, 98);			// clamps life value
+//		Overlay.life = Main.clamp(Overlay.life, 0, 98);			// clamps life value
 		
 		}
 
 	public void render(Graphics2D g) {
-		
+
 //		int type = AlphaComposite.SRC_OVER; 
 //		AlphaComposite composite = AlphaComposite.getInstance(type, alpha);
 		g.setColor(Color.WHITE);
@@ -40,6 +42,8 @@ public class Help {
 			
 			g.drawString("Press ESC to quit", 25, 250);
 			g.drawString("Now press SPACE to start!", 25, 265);
+
+			
 		}		
 	}
 
