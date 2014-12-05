@@ -170,6 +170,15 @@ public class Player extends GameObject {
 //						Overlay.score1 = 0;
 						System.out.println(this.getId() + " died");
 						PlaySFX.diefx();												// sfx after death
+						if (Overlay.score1 > Overlay.score2) {
+							PlaySFX.player1winsfx();
+						}
+						if (Overlay.score1 < Overlay.score2) {
+							PlaySFX.player2winsfx();
+						}
+						if (Overlay.score1 == Overlay.score2) {
+							PlaySFX.tiesfx();
+						}
 						Main.end();
 //						Main.running = false;
 						System.out.println("Game OVER! Player 2 WINS with score of " + Overlay.score1 + " : " + Overlay.score2);
@@ -181,6 +190,15 @@ public class Player extends GameObject {
 //						Overlay.score2 = 0;
 						System.out.println(this.getId() + " died");
 						PlaySFX.diefx();												// sfx after death
+						if (Overlay.score1 > Overlay.score2) {
+							PlaySFX.player1winsfx();
+						}
+						if (Overlay.score1 < Overlay.score2) {
+							PlaySFX.player2winsfx();
+						}
+						if (Overlay.score1 == Overlay.score2) {
+							PlaySFX.tiesfx();
+						}
 						Main.end();
 //						Main.running = false;
 						System.out.println("Game OVER! Player 1 WINS with score of " + Overlay.score1 + " : " + Overlay.score2);
