@@ -80,8 +80,8 @@ public class Player extends GameObject {
 //		if (y <= 8 || y >= (Main.HEIGHT - 18)) {
 //			velY *= -1;
 //		}
-		
-		// move Player around each tick by amount of velX, velY
+//		
+//		// move Player around each tick by amount of velX, velY
 		x += velX;
 		y += velY;
 
@@ -141,16 +141,12 @@ public class Player extends GameObject {
 						if (this.getId() == Id.PLAYER1) {
 							Overlay.score1 += 1;
 							System.out.println(this.getId() + " scored");
-							System.out.println("level: " + 60*(double)Overlay.level);								
-
 							PlaySFX.scorefx1();								// sfx after scoring for player1
 							handler.addObject(new Tail(tempObject.getX(), tempObject.getY(), Id.TAIL1, handler));	// addObject to handler, create
 						}
 						if (this.getId() == Id.PLAYER2) {
 							Overlay.score2 += 1;
 							System.out.println(this.getId() + " scored");
-							System.out.println("level: " + 60*(double)Overlay.level);								
-
 							PlaySFX.scorefx2();								// sfx after scoring for player2
 							handler.addObject(new Tail(tempObject.getX(), tempObject.getY(), Id.TAIL2, handler));	// addObject to handler, create
 						}
@@ -180,7 +176,7 @@ public class Player extends GameObject {
 							PlaySFX.tiesfx();
 						}
 						Main.end();
-//						Main.running = false;
+						Main.running = false;
 						System.out.println("Game OVER! Player 2 WINS with score of " + Overlay.score1 + " : " + Overlay.score2);
 					}
 				}
@@ -198,15 +194,12 @@ public class Player extends GameObject {
 						}
 						if (Overlay.score1 == Overlay.score2) {
 							PlaySFX.tiesfx();
-						}<>ˇÜÕ'’<	ˇ1q
+						}
 						Main.end();
-//						Main.running = false;
+						Main.running = false;
 						System.out.println("Game OVER! Player 1 WINS with score of " + Overlay.score1 + " : " + Overlay.score2);
 					}
 				}
-
-				
-				
 			}
 	}
 	

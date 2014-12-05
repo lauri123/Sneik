@@ -30,31 +30,31 @@ public class Overlay {
 	public void tick() {
 //		timer -= timer*0.002f;
 		
-		if (Main.timeri < 200) {
+		if (Main.timeri < 400) {
 			level = 0;
 		}
-		if (Main.timeri >= 400) {
+		if (Main.timeri >= 800) {
 			level = 1;
 		}
-		if (Main.timeri >= 600) {
+		if (Main.timeri >= 1200) {
 			level = 2;
 		}
-		if (Main.timeri >= 800) {
+		if (Main.timeri >= 1500) {
 			level = 3;
 		}
-		if (Main.timeri >= 1000) {
+		if (Main.timeri >= 2000) {
 			level = 4;
 		}
-		if (Main.timeri >= 1500) {
+		if (Main.timeri >= 2500) {
 			level = 5;
 		}
-		if (Main.timeri >= 2000) {
+		if (Main.timeri >= 3000) {
 			level = 6;
 		}
-		if (Main.timeri >= 3000) {
+		if (Main.timeri >= 4000) {
 			level = 7;
 		}
-		if (Main.timeri >= 4500) {
+		if (Main.timeri >= 5000) {
 			level = 8;
 		}
 		if (Main.timeri >= 6000) {
@@ -68,33 +68,39 @@ public class Overlay {
 //		System.out.println(timer);
 //		score++;
 	}
-
+/**
+ * @author lauri
+ * @param g
+ */
 	public void render(Graphics2D g) {
-//		// health bar
-//		g.setColor(Color.gray);
-//		g.fillRect(10, 100, 200, 6);
-//		g.setColor(Color.green);
-//		g.fillRect(12, 102, LIFE * 2 , 2);
 		
-		// draw score and level to upper right corner
+		// Draw score and level to upper right corner
 		g.setColor(Color.WHITE);
 		g.setFont(new Font("Roboto", Font.PLAIN, 13));
-		// P1 score info
-		g.drawString("P1 score:", Main.WIDTH - 99, 20);
-		g.drawString("" + score1, Main.WIDTH - 30, 20);
-		g.setColor(Color.RED);								// colored box around score to indicate player color
-		g.draw3DRect((Main.WIDTH - 104), 7, 97, 16, true);
 		
-		// P2 score info
-		g.setColor(Color.GREEN);							// colored box around score to indicate player color
-		g.drawString("P2 score:", 13, 20);
-		g.drawString("" + score2, 81, 20);
+		// Draw P1 score info
+		g.drawString("P1 score:", 13, 20);
+		g.drawString("" + score1, 81, 20);
+		g.setColor(Color.RED);								// colored box around score to indicate player color
 		g.draw3DRect(7, 7, 97, 16, true);
+		
+		// Draw P2 score info
+		g.setColor(Color.GREEN);							// colored box around score to indicate player color
+		g.drawString("P2 score:", 13, 41);
+		g.drawString("" + score2, 81, 41);
+		g.draw3DRect(7, 28, 97, 16, true);
 
-		// LEVEL info
-		g.setColor(Color.WHITE);							
-		g.drawString("Level: ", Main.WIDTH/2 - 25, 20);
-		g.drawString("" + (level), Main.WIDTH/2 + 15, 20);
+		// Draw Level info
+		g.setColor(Color.WHITE);
+		
+		if (level < 10) {
+			g.drawString("Level: ", Main.WIDTH - 65, 20);
+			g.drawString("" + (level), Main.WIDTH - 21, 20);			
+		}
+		else {
+			g.drawString("Deathmatch!", Main.WIDTH - 90, 20);
+		}
+		
 
 		// draw FPS to lower right corner
 		g.setFont(new Font("Roboto", Font.PLAIN, 12));

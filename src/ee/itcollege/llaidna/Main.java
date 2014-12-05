@@ -15,9 +15,11 @@ import ee.itcollege.llaidna.objects.Player;
 @SuppressWarnings("serial")
 public class Main extends Canvas implements Runnable {
 	
-	public static final int WIDTH = 300, HEIGHT = WIDTH  / 16 * 30;		// set width and height (16x10). final sets values unchangeable
+//	public static final int WIDTH = 640, HEIGHT = WIDTH / 16 * 10;		// set width and height (16x10 aspect)
+	public static final int WIDTH = 300, HEIGHT = 720;					// set width and height (skyscraper)
+//	public static final int WIDTH = 640, HEIGHT = 480;					// set width and height
 	private Thread thread;
-	public static boolean running = false;									// running = true, false	
+	public static boolean running = false;								// running = true, false	
 	private Random random;												// random
 	private Handler handler;											// create instance of handler
 	private Overlay overlay;
