@@ -27,13 +27,13 @@ public class Help {
 		Color color = new Color(0, 0.2f, 0.6f, 1f); //Red
 		g.setPaint(color);
 		if (KeyInput.visibility != false) {
-			g.fillRect(15, 70, 252, 110);
+			g.fillRect(15, 70, 260, 203);
 			g.setPaint(Color.WHITE);
 			g.drawString("Sneik game for 2 players:", 25, 95);
-			g.drawString("- Player 1 is RED     - use arrow keys", 25, 110);
+			g.drawString("- Player 1 is RED     - use ARROW keys", 25, 110);
 			g.drawString("- Player 2 is GREEN - use WASD keys", 25, 125);
-			g.drawString("Press ESC to quit.", 25, 150);
-			g.drawString("Press SPACE to start!", 25, 165);
+			g.drawString("Press ESC to quit", 25, 250);
+			g.drawString("Press SPACE to start", 25, 265);
 		}		
 	}
 

@@ -22,11 +22,17 @@ public class PlaySFX {
 		System.out.println("scorefx1");
 	}
 	
-	
+
 	public static void teleportfx() {
 		Sound teleport = TinySound.loadSound("sfx/238283.wav");
 		teleport.play();
 		System.out.println("teleportfx");
+	}
+
+	public static void diefx() {
+		Sound teleport = TinySound.loadSound("sfx/147262.wav");
+		teleport.play();
+		System.out.println("diefx");
 	}
 	
 }

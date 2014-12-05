@@ -59,7 +59,7 @@ public class Tail extends GameObject {
 				counter2 = 0;
 			}
 			
-		System.out.println("counter1: " + counter1 + "counter2: " + counter2);
+//		System.out.println("counter1: " + counter1 + "counter2: " + counter2);
 		}
 		
 		// move Player around each tick by amount of velX, velY
