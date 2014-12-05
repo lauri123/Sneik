@@ -164,9 +164,9 @@ public class Player extends GameObject {
 				GameObject tempObject = handler.object.get(i);							// create tempObject
 				if (tempObject.getId() == Id.TAIL2 && this.getId() == Id.PLAYER1) {		// is tempObject TAIL2 and this PLAYER1?
 					if (getBounds().intersects(tempObject.getBounds())) {				// use intersect method between getBounds this & TAIL2
-						Overlay.SCORE1 = 0;
+//						Overlay.SCORE1 = 0;
 						System.out.println(this.getId() + " died");
-						PlaySFX.diefx();											// sfx after death
+						PlaySFX.diefx();												// sfx after death
 						Main.running = false;
 						System.out.println("Game OVER! Player 2 WINS with score of " + Overlay.SCORE1 + " : " + Overlay.SCORE2);
 					}
@@ -174,9 +174,9 @@ public class Player extends GameObject {
 				
 				if (tempObject.getId() == Id.TAIL1 && this.getId() == Id.PLAYER2) {		// is tempObject TAIL2 and this PLAYER1?
 					if (getBounds().intersects(tempObject.getBounds())) {				// use intersect method between getBounds this & TAIL2
-						Overlay.SCORE2 = 0;
+//						Overlay.SCORE2 = 0;
 						System.out.println(this.getId() + " died");
-						PlaySFX.diefx();											// sfx after death
+						PlaySFX.diefx();												// sfx after death
 						Main.running = false;
 						System.out.println("Game OVER! Player 1 WINS with score of " + Overlay.SCORE1 + " : " + Overlay.SCORE2);
 					}
@@ -189,13 +189,12 @@ public class Player extends GameObject {
 	
 	public void render(Graphics g) {				// implemented methods
 		if (id == Id.PLAYER1) {
-			g.setColor(Color.red);					// set color
-//		if (id == ID.Tail) {
-//			g.setColor(Color.white);					// set color
+			g.setColor(Color.red);					// set color PLAYER1
 		} else {
-			g.setColor(Color.green);				// set color
+			g.setColor(Color.green);				// set color PLAYER2
 		}
 		g.fillOval(x, y, 10, 10);					// create oval
+//		g.drawString("x", x, y);
 		
 	}
 

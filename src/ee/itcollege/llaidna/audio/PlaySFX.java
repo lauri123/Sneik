@@ -17,7 +17,7 @@ public class PlaySFX {
 	
 	
 	public static void scorefx2() {
-		Sound die = TinySound.loadSound("sfx/147262.wav");
+		Sound die = TinySound.loadSound("sfx/212977.wav");
 		die.play();
 		System.out.println("scorefx1");
 	}

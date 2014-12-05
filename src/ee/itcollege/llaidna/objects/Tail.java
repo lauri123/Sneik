@@ -58,8 +58,6 @@ public class Tail extends GameObject {
 				handler.removeObject(tempObject);
 				counter2 = 0;
 			}
-			
-//		System.out.println("counter1: " + counter1 + "counter2: " + counter2);
 		}
 		
 		// move Player around each tick by amount of velX, velY
@@ -83,35 +81,15 @@ public class Tail extends GameObject {
 			y = 4; 						//keep bigger!
 		}
 		
-//		collision();					//check collision
 	}
-//
-//	/**
-//	 * Collision detection.
-//	 * Loops through all objects (handler).
-//	 * @author someone - of the logic
-//	 */
-//	private void collision() {
-//		
-//			for (int i = 0; i < handler.object.size(); i++) {				// for loop through all objects in game
-//				GameObject tempObject = handler.object.get(i);				// create tempObject
-//				if (tempObject.getId() == ID.BasicEnemy) {					// is tempObject valid to cause damage?
-//					if (getBounds().intersects(tempObject.getBounds())) {	// use intersect method between getBounds & enemy
-//						// what happens when collision occurs
-//
-//					}
-//				}
-//			}
-//			
-//	}
-//	
+
 	public void render(Graphics g) {						// implemented methods
 		if (id == Id.TAIL1) {
-			g.setColor(Color.red);;						// set color
+			g.setColor(Color.red);;							// set PLAYER1 TAIL1 color
 		} 
 		if (id == Id.TAIL2) {
-			g.setColor(Color.green);							// set color
+			g.setColor(Color.green);						// set PLAYER2 TAIL2 color
 		}
-		g.fillRoundRect(x, y, 8, 8, 3, 3);					// create rectangle
+		g.fillRoundRect(x+2, y+2, 5, 5, 1, 1);					// create rectangle
 	}
 }
