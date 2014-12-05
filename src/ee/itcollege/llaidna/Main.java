@@ -34,7 +34,7 @@ public class Main extends Canvas implements Runnable {
 		handler = new Handler();										// create new handler
 		this.addKeyListener(new KeyInput(handler));						// listen for keys
 		
-		new Window(WIDTH, HEIGHT, "Sneiks", this);						// create new Window class
+		new Window(WIDTH, HEIGHT, "Sneik!", this);						// create new Window class
 		
 		overlay = new Overlay();		
 		help = new Help();

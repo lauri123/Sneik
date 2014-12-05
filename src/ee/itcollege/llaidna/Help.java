@@ -29,11 +29,17 @@ public class Help {
 		if (KeyInput.visibility != false) {
 			g.fillRect(15, 70, 260, 203);
 			g.setPaint(Color.WHITE);
-			g.drawString("Sneik game for 2 players:", 25, 95);
-			g.drawString("- Player 1 is RED     - use ARROW keys", 25, 110);
-			g.drawString("- Player 2 is GREEN - use WASD keys", 25, 125);
+			g.drawString("Sneik!  ... a game for two", 25, 95);
+			g.drawString("- Player 1 is RED     - use ARROW keys", 25, 120);
+			g.drawString("- Player 2 is GREEN - use WASD keys", 25, 135);
+
+			g.drawString("The story goes like this:", 25, 160);
+			g.drawString("Find food and grow your tail", 38, 178);
+			g.drawString("Touch your own tail - no probs", 38, 193);
+			g.drawString("Touch opponent's tail - You LOSE!", 38, 208);
+			
 			g.drawString("Press ESC to quit", 25, 250);
-			g.drawString("Press SPACE to start", 25, 265);
+			g.drawString("Now press SPACE to start!", 25, 265);
 		}		
 	}
 
