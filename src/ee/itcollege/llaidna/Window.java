@@ -1,11 +1,8 @@
 package ee.itcollege.llaidna;
 
 import java.awt.Canvas;
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 
 // create a window class
@@ -42,7 +39,6 @@ public class Window extends Canvas {
 		frame.setVisible(true);											// make frame visible
 		frame.pack();													// Causes this Window to be sized to fit the preferred size and layouts of its subcomponents. 
 		game.start();													// run start method from Game class
-		
 	}
 
 }

@@ -186,10 +186,10 @@ public class Player extends GameObject {
 						if (OverlayScores.score1 == OverlayScores.score2) {
 							PlaySFX.tiesfx();
 						}
-						Main.end();
 //						Main.running = false;
 						System.out.println(
 								"Game OVER! Player 2 WINS with score of " + OverlayScores.score1 + " : " + OverlayScores.score2);
+						Main.end();
 					}
 				}
 				
@@ -210,10 +210,10 @@ public class Player extends GameObject {
 						if (OverlayScores.score1 == OverlayScores.score2) {
 							PlaySFX.tiesfx();
 						}
-						Main.end();
 //						Main.running = false;
 						System.out.println(
 								"Game OVER! Player 1 WINS with score of "+ OverlayScores.score1 + " : " + OverlayScores.score2);
+						Main.end();
 					}
 				}
 			}

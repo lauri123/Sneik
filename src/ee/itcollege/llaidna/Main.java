@@ -16,7 +16,7 @@ import ee.itcollege.llaidna.objects.Player;
 public class Main extends Canvas implements Runnable {
 	
 //	public static final int WIDTH = 640, HEIGHT = WIDTH / 16 * 10;		// set width and height (16x10 aspect)
-	public static final int WIDTH = 300, HEIGHT = 720;					// set width and height (skyscraper)
+	public static final int WIDTH = 350, HEIGHT = 700;					// set width and height (skyscraper)
 //	public static final int WIDTH = 1920, HEIGHT = 1040;				// set width and height
 	private Thread thread;
 	public static boolean running = false;								// running = true, false	
@@ -37,7 +37,6 @@ public class Main extends Canvas implements Runnable {
 		this.addKeyListener(new KeyInput(handler));						// listen for keys
 		
 		new Window(WIDTH, HEIGHT, "Sneik!", this);						// create new Window class
-		
 		overlay = new OverlayScores();		
 		help = new Help();
 		random = new Random();
@@ -229,13 +228,13 @@ public class Main extends Canvas implements Runnable {
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {}
-		for (int i = 0; i < 20; i++) {
+		for (int i = 0; i < 22; i++) {
 			TinySound.setGlobalVolume(1.0 - ((double) i)/20);
 			try {
 				Thread.sleep(150);
 			} catch (InterruptedException e) {}
 		}
-		TinySound.shutdown();
+//		TinySound.shutdown();
 		Main.running = false;
 	}
 }
