@@ -9,7 +9,7 @@ import ee.itcollege.llaidna.GameObject;
 import ee.itcollege.llaidna.Handler;
 import ee.itcollege.llaidna.Id;
 import ee.itcollege.llaidna.Main;
-import ee.itcollege.llaidna.Overlay;
+import ee.itcollege.llaidna.OverlayScores;
 import ee.itcollege.llaidna.audio.PlaySFX;
 
 /**
@@ -118,14 +118,14 @@ public class Player extends GameObject {
 		counter2 ++; // counter for TAIL object creation
 
 		// add tail Player1
-		if (this.getId() == Id.PLAYER1 && Overlay.score1 > 0 && counter1 > 7) {
+		if (this.getId() == Id.PLAYER1 && OverlayScores.score1 > 0 && counter1 > 7) {
 			// addObject to handler, create
 			handler.addObject(new Tail(this.x, this.y, Id.TAIL1, handler));
 			counter1 = 0;
 		}
 
 		// add tail Player2
-		if (this.getId() == Id.PLAYER2 && Overlay.score2 > 0 && counter2 > 7) {
+		if (this.getId() == Id.PLAYER2 && OverlayScores.score2 > 0 && counter2 > 7) {
 			// addObject to handler, create
 			handler.addObject(new Tail(this.x, this.y, Id.TAIL2, handler));
 			counter2 = 0;
@@ -147,13 +147,13 @@ public class Player extends GameObject {
 						
 						// Collision with FOOD
 						if (this.getId() == Id.PLAYER1) {
-							Overlay.score1 += 1;
+							OverlayScores.score1 += 1;
 							System.out.println(this.getId() + " scored");
 							PlaySFX.scorefx1(); // sfx after scoring for player1
 							handler.addObject(new Tail(tempObject.getX(), tempObject.getY(), Id.TAIL1, handler)); // addObject to handler, create
 						}
 						if (this.getId() == Id.PLAYER2) {
-							Overlay.score2 += 1;
+							OverlayScores.score2 += 1;
 							System.out.println(this.getId() + " scored");
 							PlaySFX.scorefx2(); // sfx after scoring for player2
 							handler.addObject(new Tail(tempObject.getX(), tempObject.getY(), Id.TAIL2, handler)); // addObject to handler, create
@@ -177,19 +177,19 @@ public class Player extends GameObject {
 						System.out.println(this.getId() + " died");
 						// sfx after death
 						PlaySFX.diefx();
-						if (Overlay.score1 > Overlay.score2) {
+						if (OverlayScores.score1 > OverlayScores.score2) {
 							PlaySFX.player1winsfx();
 						}
-						if (Overlay.score1 < Overlay.score2) {
+						if (OverlayScores.score1 < OverlayScores.score2) {
 							PlaySFX.player2winsfx();
 						}
-						if (Overlay.score1 == Overlay.score2) {
+						if (OverlayScores.score1 == OverlayScores.score2) {
 							PlaySFX.tiesfx();
 						}
 						Main.end();
-						Main.running = false;
+//						Main.running = false;
 						System.out.println(
-								"Game OVER! Player 2 WINS with score of " + Overlay.score1 + " : " + Overlay.score2);
+								"Game OVER! Player 2 WINS with score of " + OverlayScores.score1 + " : " + OverlayScores.score2);
 					}
 				}
 				
@@ -201,19 +201,19 @@ public class Player extends GameObject {
 						System.out.println(this.getId() + " died");
 						// sfx after death
 						PlaySFX.diefx();
-						if (Overlay.score1 > Overlay.score2) {
+						if (OverlayScores.score1 > OverlayScores.score2) {
 							PlaySFX.player1winsfx();
 						}
-						if (Overlay.score1 < Overlay.score2) {
+						if (OverlayScores.score1 < OverlayScores.score2) {
 							PlaySFX.player2winsfx();
 						}
-						if (Overlay.score1 == Overlay.score2) {
+						if (OverlayScores.score1 == OverlayScores.score2) {
 							PlaySFX.tiesfx();
 						}
 						Main.end();
-						Main.running = false;
+//						Main.running = false;
 						System.out.println(
-								"Game OVER! Player 1 WINS with score of "+ Overlay.score1 + " : " + Overlay.score2);
+								"Game OVER! Player 1 WINS with score of "+ OverlayScores.score1 + " : " + OverlayScores.score2);
 					}
 				}
 			}

@@ -13,12 +13,16 @@ public class PlayMusic {
 	 * Method for music.
 	 * @param loop		boolean true or false, to loop or not to loop?
 	 * @param volume	set volume
+	 * @param start		start music or not, true or false
 	 */
-	public static void music(boolean loop, double volume) {
+	public static void music(boolean loop, double volume, boolean start) {
 		Music music = TinySound.loadMusic("167849.wav");
 		music = TinySound.loadMusic(("167849.wav"), true);				// true straight from file
 		music.setVolume(volume);
-		music.play(loop);												// true makes loop
+		System.out.println(volume);
+		if (start == true) {
+			music.play(loop);												// true makes loop
+		}
 	}
 }
 		

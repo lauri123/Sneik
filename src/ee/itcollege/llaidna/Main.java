@@ -22,7 +22,7 @@ public class Main extends Canvas implements Runnable {
 	public static boolean running = false;								// running = true, false	
 	private Random random;												// random
 	private Handler handler;											// create instance of handler
-	private Overlay overlay;
+	private OverlayScores overlay;
 	private Help help;
 	public static int timeri;
 	
@@ -38,7 +38,7 @@ public class Main extends Canvas implements Runnable {
 		
 		new Window(WIDTH, HEIGHT, "Sneik!", this);						// create new Window class
 		
-		overlay = new Overlay();		
+		overlay = new OverlayScores();		
 		help = new Help();
 		random = new Random();
 		
@@ -73,7 +73,7 @@ public class Main extends Canvas implements Runnable {
 				));
 		
 		// start music
-		PlayMusic.music(true, 0.22);									// true makes loop, value sets volume
+		PlayMusic.music(true, 0.25, true);									// true makes loop, value sets volume
 	}
 	
 	/**
@@ -107,11 +107,11 @@ public class Main extends Canvas implements Runnable {
 	 * @author someone
 	 */
 	static int FPS = 0; // make new static variable FPS to be read from Overlay
-
+	
 	public void run() { // popular game loop typed in here
 		this.requestFocus(); // don't have to click on the windows!
 		long lastTime = System.nanoTime(); // time with nanosecond precision
-		double amountOfTicks = 60.0; // refreshrate
+		double amountOfTicks = 60.0; // refresh rate
 		double ns = 1000000000 / amountOfTicks;
 		double delta = 0;
 		int frames = 0;
@@ -119,12 +119,14 @@ public class Main extends Canvas implements Runnable {
 		while (running) { // while running loop
 			long now = System.nanoTime();
 			// game speed, sped up by level
-			delta += (now - lastTime) / ns + (double) Overlay.level / 30; 
+			delta += (now - lastTime) / ns + (double) OverlayScores.level / 20; 
 			lastTime = now;
+			
 			while (delta >= 1) {
 				tick();
 				delta--;
 			}
+			
 			if (running)
 				render();
 			frames++;
@@ -150,7 +152,6 @@ public class Main extends Canvas implements Runnable {
 		timeri += 1;
 		handler.tick();
 		overlay.tick();
-		help.tick();
 	}
 	
 	/**
@@ -225,11 +226,16 @@ public class Main extends Canvas implements Runnable {
 	}
 
 	public static void end() {
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {}
+		for (int i = 0; i < 20; i++) {
+			TinySound.setGlobalVolume(1.0 - ((double) i)/20);
+			try {
+				Thread.sleep(150);
+			} catch (InterruptedException e) {}
+		}
+		TinySound.shutdown();
 		Main.running = false;
 	}
-	
 }
-
-
-// ideas
-// - show stats info in corner - kb shortcut i - fps, frames, etc
