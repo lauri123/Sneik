@@ -17,7 +17,7 @@ public class Main extends Canvas implements Runnable {
 	
 //	public static final int WIDTH = 640, HEIGHT = WIDTH / 16 * 10;		// set width and height (16x10 aspect)
 	public static final int WIDTH = 300, HEIGHT = 720;					// set width and height (skyscraper)
-//	public static final int WIDTH = 640, HEIGHT = 480;					// set width and height
+//	public static final int WIDTH = 1920, HEIGHT = 1040;				// set width and height
 	private Thread thread;
 	public static boolean running = false;								// running = true, false	
 	private Random random;												// random
@@ -43,15 +43,10 @@ public class Main extends Canvas implements Runnable {
 		random = new Random();
 		
 		// Create Player1 ... with new & addObject to handler
+		// clamps x,y values so doesn't start at edge
 		handler.addObject(new Player(
-				clamp(
-						(random.nextInt((WIDTH - 0)+ 0)),				// clamps stat X value so doesn't start at edge
-						100, 											// min value allowed
-						Main.WIDTH - 100), 								// max value allowed
-				clamp(
-						random.nextInt((HEIGHT - 0)+ 0), 				// clamps stat X value so doesn't start at edge
-						100, 											// min value allowed
-						Main.HEIGHT - 100),  							// max value allowed
+				clamp(random.nextInt((WIDTH - 0)+ 0), 100, Main.WIDTH - 100),
+				clamp(random.nextInt((HEIGHT - 0)+ 0), 100, Main.HEIGHT - 100),
 				Id.PLAYER1, 
 				handler
 				));	
@@ -108,34 +103,37 @@ public class Main extends Canvas implements Runnable {
 	
 	/**
 	 * Game loop
+	 * 
 	 * @author someone
 	 */
-	static int FPS = 0;													// make new static variable FPS to be read from Overlay
-	public void run() {													// popular game loop typed in here
-		this.requestFocus();											// don't have to click on the windows!
-		long lastTime = System.nanoTime();								// time with nanosecond precision
-		double amountOfTicks = 60.0;
-//				+ 60*(double)Overlay.level;								// game speed
-		double ns = 1000000000 / amountOfTicks;							
+	static int FPS = 0; // make new static variable FPS to be read from Overlay
+
+	public void run() { // popular game loop typed in here
+		this.requestFocus(); // don't have to click on the windows!
+		long lastTime = System.nanoTime(); // time with nanosecond precision
+		double amountOfTicks = 60.0; // refreshrate
+		double ns = 1000000000 / amountOfTicks;
 		double delta = 0;
 		int frames = 0;
-		long timer = System.currentTimeMillis();						// current time in ms
-		while(running) {												// while running loop
+		long timer = System.currentTimeMillis(); // current time in ms
+		while (running) { // while running loop
 			long now = System.nanoTime();
-			delta += (now - lastTime) / ns + (double)Overlay.level/30;
+			// game speed, sped up by level
+			delta += (now - lastTime) / ns + (double) Overlay.level / 30; 
 			lastTime = now;
-			while(delta >= 1) {
+			while (delta >= 1) {
 				tick();
 				delta--;
 			}
-			if(running)
+			if (running)
 				render();
 			frames++;
 
-			if(System.currentTimeMillis() - timer > 1000) {
+			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-//				System.out.println("FPS: " + frames);					// prints out FPS to console
-				FPS = frames;											// make FPS readable
+				// System.out.println("FPS: " + frames); // prints out FPS to
+				// console
+				FPS = frames; // make FPS readable
 				frames = 0;
 			}
 		}
@@ -144,9 +142,11 @@ public class Main extends Canvas implements Runnable {
 	
 	/**
 	 * Tick method called from run. Makes handler and overlay tick!
+	 * 
 	 * @author someone
 	 */
-	private void tick() {														// called from run
+	// called from run
+	private void tick() {
 		timeri += 1;
 		handler.tick();
 		overlay.tick();
@@ -154,27 +154,31 @@ public class Main extends Canvas implements Runnable {
 	}
 	
 	/**
-	 * Render called from run. Includes render settings like BufferStrategy. 
-	 * Draws background >> handler.render >> overlay.render >> g.dispose >> bs.show
+	 * Render called from run. Includes render settings like BufferStrategy.
+	 * Draws background >> handler.render >> overlay.render >> g.dispose >>
+	 * bs.show
+	 * 
 	 * @author someone
 	 */
-	private void render() {														// called from run
-		BufferStrategy bs = this.getBufferStrategy();							// bufferstrategy
+	private void render() { // called from run
+		BufferStrategy bs = this.getBufferStrategy(); // bufferstrategy
 		if (bs == null) {
-			this.createBufferStrategy(3);										// 3 buffers within the game, must be >=1
+			// 3 buffers within the game, must be >=1
+			this.createBufferStrategy(3);
 			return;
 		}
 
-//		Graphics g = bs.getDrawGraphics();										// Graphics without AA
+		// Graphics g = bs.getDrawGraphics(); // Graphics without AA
 		// Graphics2D for with AA
 		Graphics2D g = (Graphics2D) bs.getDrawGraphics();
 		RenderingHints hints = new RenderingHints(
-		    RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+				RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
 		g.setRenderingHints(hints);
 
 		// Background
-		g.setColor(Color.blue);													// Background color
-		g.fillRect(0, 0, WIDTH, HEIGHT);										// Background filled rectangle, size of frame, repaints!!!
+		g.setColor(Color.blue); // Background color
+		g.fillRect(0, 0, WIDTH, HEIGHT); // Background filled rectangle, size of frame, repaints!
 		g.setColor(Color.white);
 		g.drawRect(3, 3, WIDTH-6, HEIGHT-29);
 		
@@ -189,27 +193,37 @@ public class Main extends Canvas implements Runnable {
 	
 	/**
 	 * Clamps variable between min and max.
-	 * @param var	input variable to be clamped
-	 * @param min	minimum allowed value, clamped down to this
-	 * @param max	maximum allowed value, clamped up to this
+	 * 
+	 * @param var
+	 *            input variable to be clamped
+	 * @param min
+	 *            minimum allowed value, clamped down to this
+	 * @param max
+	 *            maximum allowed value, clamped up to this
 	 * @return clamped var
 	 * @author lauri
 	 */
-	public static int clamp(int var, int min, int max) {				// clamps value between min and max
-		if (var >= max) return max;
-		else if (var <= min) return min;
-		else return var;
+	// clamps value between min and max
+	public static int clamp(int var, int min, int max) {
+		if (var >= max)
+			return max;
+		else if (var <= min)
+			return min;
+		else
+			return var;
 	}
-	
+
 	/**
 	 * Main method creates new Game instance object
-	 * @param args	Typical main-method with args input
+	 * 
+	 * @param args
+	 *            Typical main-method with args input
 	 * @author lauri
 	 */
-	public static void main(String[] args) {							// main method
-		new Main();														// new instance of Game class
-	}	
-	
+	public static void main(String[] args) { // main method
+		new Main(); // new instance of Game class
+	}
+
 	public static void end() {
 		Main.running = false;
 	}

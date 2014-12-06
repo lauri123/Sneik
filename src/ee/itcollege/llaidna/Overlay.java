@@ -100,24 +100,11 @@ public class Overlay {
 		else {
 			g.drawString("Deathmatch!", Main.WIDTH - 90, 20);
 		}
-		
 
 		// draw FPS to lower right corner
 		g.setFont(new Font("Roboto", Font.PLAIN, 12));
 		g.drawString("FPS: ", Main.WIDTH - 65, Main.HEIGHT - 30);
 		g.drawString("" + Main.FPS, Main.WIDTH - 35, Main.HEIGHT - 30);
-		
-		// draw author with fadeout
-		//http://www.informit.com/articles/article.aspx?p=26349&seqNum=5
-//		float alpha = timer;
-//		Color color = new Color(1, 1, 1, alpha); //Red
-//		g.setPaint(color);
-//		g.drawString("Lauri Laidna IA18 2014", 10, Main.HEIGHT - 30);
-		
-//		Image img1 = Toolkit.getDefaultToolkit().getImage("image.jpg");
-//		g.drawImage(img1, 100, 100, this);
-//		g.finalize();
-//		g.drawImage(img1, 0, 0, Main.HEIGHT, Main.HEIGHT, 0, 0, 600, 600, this);
 		
 	}
 }

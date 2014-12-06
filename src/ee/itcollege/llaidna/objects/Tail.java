@@ -23,16 +23,17 @@ import ee.itcollege.llaidna.Overlay;
  */
 public class Tail extends GameObject {
 
-	Random random = new Random();							// Construct a Random object
-	Handler handler;										// create instance of Handler class
-	
-	public Tail(int x, int y, Id id, Handler handler) {		// constructor
+	Random random = new Random(); // Construct a Random object
+	Handler handler; // create instance of Handler class
+
+	public Tail(int x, int y, Id id, Handler handler) { // constructor
 		super(x, y, id);
-		this.handler = handler;								// handler into Player
+		this.handler = handler; // handler into Player
 	}
 
 	/**
 	 * Object bounds (rectangle size) to determine collisions.
+	 * 
 	 * @author someone
 	 * @author lauri edited, added, modified
 	 */
@@ -42,14 +43,16 @@ public class Tail extends GameObject {
 
 	int counter1 = 0;
 	int counter2 = 0;
-	
-	public void tick() {																	// implemented methods
+
+	public void tick() { // implemented methods
 		// this cuts off the tail after counted time. Kills the tail elements
 		counter1 ++;
 		counter2 ++;
-		for (int i = 0; i < handler.object.size(); i++) {									// for loop through all objects in game
-			GameObject tempObject = handler.object.get(i);									// create tempObject
-			if (tempObject.getId() == Id.TAIL1 && counter1 == Overlay.score1 * 7) {			// is tempObject eaten?
+		// for loop through all objects in game
+		for (int i = 0; i < handler.object.size(); i++) {
+			GameObject tempObject = handler.object.get(i); // create tempObject
+			// is tempObject eaten?
+			if (tempObject.getId() == Id.TAIL1 && counter1 == Overlay.score1 * 7) { 
 					handler.removeObject(tempObject);
 					counter1 = 0;
 			}
@@ -65,22 +68,22 @@ public class Tail extends GameObject {
 //		System.out.println("tail sees playeri positsioon on: " + tailGetX() + " : " + getY());
 		
 		// Teleport to other side
-		if (x <= 3) {					//keep smaller!
-			x = (Main.WIDTH - 13);		//keep smaller!
+		if (x <= 3) { // keep smaller!
+			x = (Main.WIDTH - 13); // keep smaller!
 		}
-		
-		if (x >= (Main.WIDTH - 12)) {	//keep bigger!
-			x = 4;						//keep bigger!
+
+		if (x >= (Main.WIDTH - 12)) { // keep bigger!
+			x = 4; // keep bigger!
 		}
-		
-		if (y <= 3) {					//keep smaller!
-			y = (Main.HEIGHT - 33);		//keep smaller!
+
+		if (y <= 3) { // keep smaller!
+			y = (Main.HEIGHT - 33); // keep smaller!
 		}
-		
-		if (y >= (Main.HEIGHT - 32)) {	//keep bigger!
-			y = 4; 						//keep bigger!
+
+		if (y >= (Main.HEIGHT - 32)) { // keep bigger!
+			y = 4; // keep bigger!
 		}
-		
+
 	}
 
 	public void render(Graphics g) {						// implemented methods
