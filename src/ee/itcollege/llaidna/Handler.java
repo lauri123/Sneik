@@ -12,30 +12,37 @@ public class Handler {													// loops through all game objects, updates th
 //	LinkedList<GameObject> object = new LinkedList<GameObject>();		// list of all objects in the game
 
 	
-	// set public, cause Player in different package. list of all objects in the game.
-	// alternative to use public setter, getter and not make this LList public. Should?
-	public LinkedList<GameObject> object = new LinkedList<GameObject>();		
-	
+	// set public, cause Player in different package.
+	// List of all objects in the game.
+	// Alternative to use public setter, getter and not make this LList public.
+	// Should?
+	public LinkedList<GameObject> object = new LinkedList<GameObject>();
+
 	public void tick() {
-		for (int i = 0; i < object.size(); i++) {						// loops through ALL game objects
-			GameObject tempObject = object.get(i);						// sets tempObject to currently looped object
+		// loops through ALL game objects
+		for (int i = 0; i < object.size(); i++) {
+			// sets tempObject to currently looped object
+			GameObject tempObject = object.get(i);
 			tempObject.tick();
 		}
 	}
-	
-	public void render(Graphics g) {									// loops through all game objects and renders them
-		for (int i = 0; i < object.size(); i++) {						// 
-			GameObject tempObject = object.get(i);						// 
-			tempObject.render(g);										// 
+
+	// loops through all game objects and renders them
+	public void render(Graphics g) {
+		for (int i = 0; i < object.size(); i++) {
+			GameObject tempObject = object.get(i);
+			tempObject.render(g);
 		}
 	}
-	
-	public void addObject(GameObject object) {							// +ADD object to LinkedList
+
+	// +ADD object to LinkedList
+	public void addObject(GameObject object) {
 		this.object.add(object);
 	}
-	
-	public void removeObject(GameObject object) {						// -REMOVE object from LinkedList
+
+	// -REMOVE object from LinkedList
+	public void removeObject(GameObject object) {
 		this.object.remove(object);
 	}
-	
+
 }

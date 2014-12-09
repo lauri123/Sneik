@@ -26,6 +26,14 @@ public class Tail extends GameObject {
 	Random random = new Random(); // Construct a Random object
 	Handler handler; // create instance of Handler class
 
+	/**
+	 * Tail constructor
+	 * 
+	 * @param x	x-coordinate
+	 * @param y	y-coordinate
+	 * @param id name it
+	 * @param handler
+	 */
 	public Tail(int x, int y, Id id, Handler handler) { // constructor
 		super(x, y, id);
 		this.handler = handler; // handler into Player

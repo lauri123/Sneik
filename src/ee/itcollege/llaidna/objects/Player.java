@@ -41,29 +41,6 @@ public class Player extends GameObject {
 		this.handler = handler; // handler into Player
 	}
 		
-//		// start state players still
-//		velX = 0;
-//		velY = 0;
-//		
-//		// start direction of player moving randomly ((max-min)+min)
-//		int rm = random.nextInt(4);
-//		System.out.println("random for direction: " + rm);
-//		if (rm == 0) {
-//			velX =  2; 
-//			velY =  0;			
-//		}
-//		if (rm == 1) {
-//			velX =  0; 
-//			velY =  2;
-//		}
-//		if (rm == 2) {
-//			velX = -2; 
-//			velY =  0;
-//		}
-//		if (rm == 3) {
-//			velX =  0; 
-//			velY = -2;
-//		}
 
 	/**
 	 * Object bounds (rectangle size) to determine collisions.
@@ -235,3 +212,27 @@ public class Player extends GameObject {
 	}
 
 }
+
+//		// start state players still - inside player constructor
+//		velX = 0;
+//		velY = 0;
+//		
+//		// start direction of player moving randomly ((max-min)+min)
+//		int rm = random.nextInt(4);
+//		System.out.println("random for direction: " + rm);
+//		if (rm == 0) {
+//			velX =  2; 
+//			velY =  0;			
+//		}
+//		if (rm == 1) {
+//			velX =  0; 
+//			velY =  2;
+//		}
+//		if (rm == 2) {
+//			velX = -2; 
+//			velY =  0;
+//		}
+//		if (rm == 3) {
+//			velX =  0; 
+//			velY = -2;
+//		}
