@@ -4,17 +4,16 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 /**
- * KeyListener and "driver"
+ * KeyListener and "driver" - includes all the snake moving logic!
  * 
- * @author someone - main logic of KeyListener
  * @author lauri - modified a lot! Built it for snake type game
+ * @author someone - logic of KeyListener
  *
  */
 
 public class KeyInput extends KeyAdapter {
 
 	public static boolean visibility = true; // visibility for start & help
-
 	private Handler handler;
 
 	// constructor. put to private Handler handler
@@ -130,27 +129,3 @@ public class KeyInput extends KeyAdapter {
 		}
 	}
 }
-    	
-//    public void keyReleased(KeyEvent e) {
-//    	int key = e.getKeyCode();
-//    	
-//    	for (int i = 0; i < handler.object.size(); i++) {							// loop through all the objects
-//			GameObject tempObject = handler.object.get(i);
-//// player 1
-//			if (tempObject.getId() == ID.Player) {									// find ID.Player2
-//				if(key == KeyEvent.VK_LEFT) tempObject.setVelY(0);					// if KeyEvent = "Left" key
-//				if(key == KeyEvent.VK_UP) tempObject.setVelX(0);					// if KeyEvent = "Up" key
-//				if(key == KeyEvent.VK_RIGHT) tempObject.setVelY(0);					// if KeyEvent = "Right" key
-//				if(key == KeyEvent.VK_DOWN) tempObject.setVelX(0);					// if KeyEvent = "Down" key
-//			}
-//
-//// player 2
-//			if (tempObject.getId() == ID.Player2) {									// find ID.Player
-//				if(key == KeyEvent.VK_A) tempObject.setVelY(0);						// if KeyEvent = "A" key
-//				if(key == KeyEvent.VK_W) tempObject.setVelX(0);						// if KeyEvent = "W" key
-//				if(key == KeyEvent.VK_D) tempObject.setVelY(0);						// if KeyEvent = "D" key
-//				if(key == KeyEvent.VK_S) tempObject.setVelX(0);						// if KeyEvent = "S" key
-//			}    	
-//   
-//    }
-//}

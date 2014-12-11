@@ -5,7 +5,7 @@ import java.awt.Font;
 import java.awt.Graphics2D;
 
 /**
- * Help overlay shown at start.
+ * Help overlay shown at start of game until SPACE is pressed.
  * 
  * @author lauri
  *
@@ -15,15 +15,12 @@ public class Help {
 
 	public void render(Graphics2D g) {
 
-		// int type = AlphaComposite.SRC_OVER;
-		// AlphaComposite composite = AlphaComposite.getInstance(type, alpha);
-		g.setColor(Color.WHITE);
-		g.setFont(new Font("Roboto", Font.PLAIN, 13));
-		Color color = new Color(0, 0.2f, 0.6f, 1f); // Red
+		g.setFont(new Font("Roboto", Font.PLAIN, 13)); // Set font and size
+		Color color = new Color(0, 0.2f, 0.6f, 1f); // dark blue
 		g.setPaint(color);
-		if (KeyInput.visibility != false) {
-			g.fillRect(15, 70, 260, 203);
-			g.setPaint(Color.WHITE);
+		if (KeyInput.visibility != false) { // Disappears after pressing Space
+			g.fillRect(15, 70, 260, 203); // Draw rectangle for text bacround
+			g.setPaint(Color.WHITE); // Set color for text
 			g.drawString("\"Sneik!\"", 25, 95);
 			g.drawString("- Player 1 is RED     - use ARROW keys", 25, 120);
 			g.drawString("- Player 2 is GREEN - use WASD keys", 25, 135);
@@ -37,13 +34,9 @@ public class Help {
 			g.drawString("Press ESC to quit", 25, 250);
 			g.drawString("Press SPACE to start!", 25, 265);
 
-			// g.setColor(Color.GRAY);
-			g.setFont(new Font("Roboto", Font.PLAIN, 8));
-			// g.drawString("disclamer:", 15, Main.HEIGHT-60);
-			g.drawString("Most of the back-end code has been written by", 15,
-					Main.HEIGHT - 50);
-			g.drawString("others, even if not so clearly marked in the code!",
-					15, Main.HEIGHT - 40);
+			g.setFont(new Font("Roboto", Font.PLAIN, 7));
+			g.drawString("Most of the back-end code has been written by", 15, Main.HEIGHT - 50);
+			g.drawString("others, even if not so clearly marked in the code!", 15, Main.HEIGHT - 40);
 			g.drawString("Lauri Laidna, IA18, Dec 2014", 15, Main.HEIGHT - 30);
 		}
 	}

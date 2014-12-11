@@ -14,7 +14,6 @@ import java.awt.Graphics2D;
 public class OverlayScores {
 
 	public static int level = 0;
-
 	public static int score1 = 0; // Player1 score
 	public static int score2 = 0; // Player2 score
 	public static int scoresum = 0; // Sum of All Scores
@@ -22,28 +21,17 @@ public class OverlayScores {
 	// Level calculator
 	public void tick() {
 		scoresum = score1 + score2;
-		if (scoresum < 5)
-			level = 0;
-		if (scoresum >= 5)
-			level = 1;
-		if (scoresum >= 10)
-			level = 2;
-		if (scoresum >= 15)
-			level = 3;
-		if (scoresum >= 20)
-			level = 4;
-		if (scoresum >= 25)
-			level = 5;
-		if (scoresum >= 30)
-			level = 6;
-		if (scoresum >= 35)
-			level = 7;
-		if (scoresum >= 40)
-			level = 8;
-		if (scoresum >= 45)
-			level = 9;
-		if (scoresum >= 50)
-			level = 10;
+		if (scoresum < 5) level = 0;
+		if (scoresum >= 5) level = 1;
+		if (scoresum >= 10) level = 2;
+		if (scoresum >= 15) level = 3;
+		if (scoresum >= 20) level = 4;
+		if (scoresum >= 25) level = 5;
+		if (scoresum >= 30) level = 6;
+		if (scoresum >= 35) level = 7;
+		if (scoresum >= 40) level = 8;
+		if (scoresum >= 45) level = 9;
+		if (scoresum >= 50) level = 10;
 	}
 
 	/**

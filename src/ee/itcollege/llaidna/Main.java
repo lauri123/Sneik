@@ -2,6 +2,7 @@ package ee.itcollege.llaidna;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Frame;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferStrategy;
@@ -14,33 +15,33 @@ import ee.itcollege.llaidna.objects.Player;
 
 @SuppressWarnings("serial")
 public class Main extends Canvas implements Runnable {
-	
-//	public static final int WIDTH = 640, HEIGHT = WIDTH / 16 * 10;		// set width and height (16x10 aspect)
-	public static final int WIDTH = 350, HEIGHT = 700;					// set width and height (skyscraper)
-//	public static final int WIDTH = 1920, HEIGHT = 1040;				// set width and height
+
+	public static final int WIDTH = 350, HEIGHT = 700;
+	// public static final int WIDTH = 640, HEIGHT = WIDTH / 16 * 10;
+	// public static final int WIDTH = 1920, HEIGHT = 1200;
 	private Thread thread;
-	public static boolean running = false;								// running = true, false	
-	private Random random;												// random
-	private Handler handler;											// create instance of handler
+	public static boolean running = false; // running = true, false
+	private Random random; // random
+	private Handler handler; // create instance of handler
 	private OverlayScores overlay;
 	private Help help;
 	public static int timeri;
-	
+
 	/**
 	 * @author someone
 	 */
 	public Main() {
-		
-		TinySound.init();												// initiates TinySound
-		
-		handler = new Handler();										// create new handler
-		this.addKeyListener(new KeyInput(handler));						// listen for keys
-		
-		new Window(WIDTH, HEIGHT, "Sneik!", this);						// create new Window class
-		overlay = new OverlayScores();		
+
+		TinySound.init(); // initiates TinySound
+
+		handler = new Handler(); // create new handler
+		this.addKeyListener(new KeyInput(handler)); // listen for keys
+
+		new Window(WIDTH, HEIGHT, "Sneik!", this); // create new Window class
+		overlay = new OverlayScores();
 		help = new Help();
 		random = new Random();
-		
+
 		// Create Player1 ... with new & addObject to handler
 		// clamps x,y values so doesn't start at edge
 		handler.addObject(new Player(
@@ -53,13 +54,13 @@ public class Main extends Canvas implements Runnable {
 		// Create Player2 ... with new & addObject to handler
 		handler.addObject(new Player(
 				clamp(
-						(random.nextInt(WIDTH)),						// clamps stat X value so doesn't start at edge >> random.nextInt((WIDTH - 0)+ 0)
-						100, 											// min value allowed
-						Main.WIDTH - 100), 								// max value allowed
+						(random.nextInt(WIDTH)), // clamps stat X value so doesn't start at edge >> random.nextInt((WIDTH - 0)+ 0)
+						100, // min value allowed
+						Main.WIDTH - 100), // max value allowed
 				clamp(
-						(random.nextInt(HEIGHT)), 						// clamps stat X value so doesn't start at edge
-						100, 											// min value allowed
-						Main.HEIGHT - 100),  							// max value allowed
+						(random.nextInt(HEIGHT)), // clamps stat X value so doesn't start at edge
+						100, // min value allowed
+						Main.HEIGHT - 100), // max value allowed
 				Id.PLAYER2, 
 				handler
 				));
@@ -72,7 +73,7 @@ public class Main extends Canvas implements Runnable {
 				));
 		
 		// start music
-		PlayMusic.music(true, 0.25, true);									// true makes loop, value sets volume
+		PlayMusic.music(true, 0.25, true); // true makes loop, value sets volume
 	}
 	
 	/**
@@ -80,21 +81,23 @@ public class Main extends Canvas implements Runnable {
 	 * "synchronized" is used for threads!
 	 * @author someone
 	 */
-	public synchronized void start() {									// is being called from Window.java. Synchronized used for threads!
-		thread = new Thread(this);										// initialize new thread
-		thread.start();													// start thread
-		running = true;													// set it's running
+	public synchronized void start() { // is being called from Window.java. Synchronized used for threads!
+		thread = new Thread(this); // initialize new thread
+		thread.start(); // start thread
+		running = true; // set it's running
 	}
 	
 	/**
-	 * Stops the thread. Values running = false. Executed in the end of Game loop run().
-	 * "synchronized" is used for threads!
+	 * Stops the thread. Values running = false. Executed in the end of Game
+	 * loop run(). "synchronized" is used for threads!
+	 * 
 	 * @author someone
 	 */
-	public synchronized void stop() {									// is being called from Game > run. Synchronized used for threads!
+	// is being called from Game > run. Synchronized used for threads!
+	public synchronized void stop() {
 		try {
 			thread.join();
-			running = false;											// say it's not running
+			running = false; // say it's not running
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -106,7 +109,7 @@ public class Main extends Canvas implements Runnable {
 	 * @author someone
 	 */
 	static int FPS = 0; // make new static variable FPS to be read from Overlay
-	
+
 	public void run() { // popular game loop typed in here
 		this.requestFocus(); // don't have to click on the windows!
 		long lastTime = System.nanoTime(); // time with nanosecond precision
@@ -118,14 +121,14 @@ public class Main extends Canvas implements Runnable {
 		while (running) { // while running loop
 			long now = System.nanoTime();
 			// game speed, sped up by level
-			delta += (now - lastTime) / ns + (double) OverlayScores.level / 20; 
+			delta += (now - lastTime) / ns + (double) OverlayScores.level / 20;
 			lastTime = now;
-			
+
 			while (delta >= 1) {
 				tick();
 				delta--;
 			}
-			
+
 			if (running)
 				render();
 			frames++;
@@ -178,7 +181,8 @@ public class Main extends Canvas implements Runnable {
 
 		// Background
 		g.setColor(Color.blue); // Background color
-		g.fillRect(0, 0, WIDTH, HEIGHT); // Background filled rectangle, size of frame, repaints!
+		// Background filled rectangle, repaints!
+		g.fillRect(0, 0, WIDTH, HEIGHT); 
 		g.setColor(Color.white);
 		g.drawRect(3, 3, WIDTH-6, HEIGHT-29);
 		
@@ -194,12 +198,9 @@ public class Main extends Canvas implements Runnable {
 	/**
 	 * Clamps variable between min and max.
 	 * 
-	 * @param var
-	 *            input variable to be clamped
-	 * @param min
-	 *            minimum allowed value, clamped down to this
-	 * @param max
-	 *            maximum allowed value, clamped up to this
+	 * @param var input variable to be clamped
+	 * @param min minimum allowed value, clamped down to this
+	 * @param max maximum allowed value, clamped up to this
 	 * @return clamped var
 	 * @author lauri
 	 */
@@ -216,8 +217,7 @@ public class Main extends Canvas implements Runnable {
 	/**
 	 * Main method creates new Game instance object
 	 * 
-	 * @param args
-	 *            Typical main-method with args input
+	 * @param args Typical main-method with args input
 	 * @author lauri
 	 */
 	public static void main(String[] args) { // main method
@@ -227,14 +227,17 @@ public class Main extends Canvas implements Runnable {
 	public static void end() {
 		try {
 			Thread.sleep(2000);
-		} catch (InterruptedException e) {}
+		} catch (InterruptedException e) {
+		}
 		for (int i = 0; i < 22; i++) {
-			TinySound.setGlobalVolume(1.0 - ((double) i)/20);
+			TinySound.setGlobalVolume(1.0 - ((double) i) / 20);
 			try {
 				Thread.sleep(150);
-			} catch (InterruptedException e) {}
+			} catch (InterruptedException e) {
+			}
 		}
-//		TinySound.shutdown();
+		// TinySound.shutdown();
 		Main.running = false;
+		Window.
 	}
 }

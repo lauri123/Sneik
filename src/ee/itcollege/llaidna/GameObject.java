@@ -7,7 +7,7 @@ import java.awt.Rectangle;
 // Other objects will extend this GameObject
 
 /**
- * Objects extend this class
+ * All Objects extend this class
  * 
  * @author someone - most of logic and code
  */
@@ -56,25 +56,6 @@ public abstract class GameObject {
 		return id;
 	}
 
-	// tail ------------------------------------------------
-//
-//	public void setTailVelX(int tailVelX) {
-//		this.tailVelX = tailVelX;
-//	}
-//
-//	public void setTailVelY(int tailVelY) {
-//		this.tailVelY = tailVelY;
-//	}
-//
-//	public int getTailVelX() {
-//		return tailVelX;
-//	}
-//
-//	public int getTailVelY() {
-//		return tailVelY;
-//	}
-
-	// ------------------------------------------------
 	public void setVelX(int velX) {
 		this.velX = velX;
 	}

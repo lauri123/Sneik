@@ -4,18 +4,18 @@ import java.awt.Graphics;
 import java.util.LinkedList;
 
 /**
- * Loops through all game objects inside LinkedList... updates them, renders them to the screen
+ * Loops through all game objects inside LinkedList... updates them, renders
+ * them to the screen
+ * 
  * @author someone
  */
-public class Handler {													// loops through all game objects, updates them, renders them to the screen
 
-//	LinkedList<GameObject> object = new LinkedList<GameObject>();		// list of all objects in the game
+public class Handler { // loops through all game objects, updates them, renders them to the screen
 
-	
+	// LinkedList<GameObject> object = new LinkedList<GameObject>();
 	// set public, cause Player in different package.
 	// List of all objects in the game.
-	// Alternative to use public setter, getter and not make this LList public.
-	// Should?
+	// Alternative to use public setter, getter and not make this LL public.
 	public LinkedList<GameObject> object = new LinkedList<GameObject>();
 
 	public void tick() {

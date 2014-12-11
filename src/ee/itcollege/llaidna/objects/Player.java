@@ -40,7 +40,6 @@ public class Player extends GameObject {
 		super(x, y, id);
 		this.handler = handler; // handler into Player
 	}
-		
 
 	/**
 	 * Object bounds (rectangle size) to determine collisions.
@@ -55,44 +54,44 @@ public class Player extends GameObject {
 	// implemented methods
 	public void tick() {
 
-//		// bumps from border of window
-//		if (x <= 0 || x >= (Main.WIDTH - 14)) {		// manual clamping with if
-//			velX *= -1;
-//		}
-//		
-//		if (y <= 8 || y >= (Main.HEIGHT - 18)) {
-//			velY *= -1;
-//		}
-//		
-//		// move Player around each tick by amount of velX, velY
-		
+		// // bumps from border of window
+		// if (x <= 0 || x >= (Main.WIDTH - 14)) { // manual clamping with if
+		// velX *= -1;
+		// }
+		//
+		// if (y <= 8 || y >= (Main.HEIGHT - 18)) {
+		// velY *= -1;
+		// }
+		//
+		// // move Player around each tick by amount of velX, velY
+
 		x += velX;
 		y += velY;
-		
+
 		// Teleport to other side
-		if (x <= 3) {					//keep smaller!
-			x = (Main.WIDTH - 13);		//keep smaller!
-			PlaySFX.teleportfx();		//teleport sfx play
+		if (x <= 3) { // keep smaller!
+			x = (Main.WIDTH - 13); // keep smaller!
+			PlaySFX.teleportfx(); // teleport sfx play
 		}
-		
-		if (x >= (Main.WIDTH - 12)) {	//keep bigger!
-			x = 4;						//keep bigger!
-			PlaySFX.teleportfx();		//teleport sfx play
+
+		if (x >= (Main.WIDTH - 12)) { // keep bigger!
+			x = 4; // keep bigger!
+			PlaySFX.teleportfx(); // teleport sfx play
 		}
-		
-		if (y <= 3) {					//keep smaller!
-			y = (Main.HEIGHT - 33);		//keep smaller!
-			PlaySFX.teleportfx();		//teleport sfx play
+
+		if (y <= 3) { // keep smaller!
+			y = (Main.HEIGHT - 33); // keep smaller!
+			PlaySFX.teleportfx(); // teleport sfx play
 		}
-		
-		if (y >= (Main.HEIGHT - 32)) {	//keep bigger!
-			y = 4; 						//keep bigger!
-			PlaySFX.teleportfx();		//teleport sfx play
+
+		if (y >= (Main.HEIGHT - 32)) { // keep bigger!
+			y = 4; // keep bigger!
+			PlaySFX.teleportfx(); // teleport sfx play
 		}
-		
+
 		collision(); // check collision every tick
-		counter1 ++; // counter for TAIL object creation
-		counter2 ++; // counter for TAIL object creation
+		counter1++; // counter for TAIL object creation
+		counter2++; // counter for TAIL object creation
 
 		// add tail Player1
 		if (this.getId() == Id.PLAYER1 && OverlayScores.score1 > 0 && counter1 > 7) {
@@ -110,92 +109,101 @@ public class Player extends GameObject {
 	}
 
 	/**
-	 * Collision detection.
-	 * Loops through all objects (handler).
+	 * Collision detection. Loops through all objects (handler).
+	 * 
+	 * @author lauri
 	 * @author someone (of the basic logic)
 	 */
 	private void collision() {
-			
-			// Find collision with FOOD = SCORE + GROW TAIL!!!
-			for (int i = 0; i < handler.object.size(); i++) { // for loop through all objects in game
-				GameObject tempObject = handler.object.get(i); // create tempObject
-				if (tempObject.getId() == Id.FOOD) { // is tempObject FOOD?
-					if (getBounds().intersects(tempObject.getBounds())) { // use intersect method between getBounds & FOOD
-						
-						// Collision with FOOD
-						if (this.getId() == Id.PLAYER1) {
-							OverlayScores.score1 += 1;
-							System.out.println(this.getId() + " scored");
-							PlaySFX.scorefx1(); // sfx after scoring for player1
-							handler.addObject(new Tail(tempObject.getX(), tempObject.getY(), Id.TAIL1, handler)); // addObject to handler, create
-						}
-						if (this.getId() == Id.PLAYER2) {
-							OverlayScores.score2 += 1;
-							System.out.println(this.getId() + " scored");
-							PlaySFX.scorefx2(); // sfx after scoring for player2
-							handler.addObject(new Tail(tempObject.getX(), tempObject.getY(), Id.TAIL2, handler)); // addObject to handler, create
-						}
-						handler.removeObject(tempObject);
-						handler.addObject(new Food((Main.clamp(random.nextInt(Main.WIDTH), 25, Main.WIDTH - 40)), Main.clamp((random.nextInt(Main.HEIGHT)), 25, Main.HEIGHT - 50), Id.FOOD));	// addObject to handler, create
+
+		// Find collision with FOOD = SCORE + GROW TAIL!!!
+		// for loop through all objects in game
+		for (int i = 0; i < handler.object.size(); i++) {
+			GameObject tempObject = handler.object.get(i); // create tempObject
+			if (tempObject.getId() == Id.FOOD) { // is tempObject FOOD?
+				// use intersect method between getBounds & FOOD
+				if (getBounds().intersects(tempObject.getBounds())) {
+
+					// Collision with FOOD
+					if (this.getId() == Id.PLAYER1) {
+						OverlayScores.score1 += 1;
+						System.out.println(this.getId() + " scored");
+						PlaySFX.scorefx1(); // sfx after scoring for player1
+						// addObject to handler, create
+						handler.addObject(
+								new Tail(tempObject.getX(),tempObject.getY(), Id.TAIL1, handler));
 					}
+					if (this.getId() == Id.PLAYER2) {
+						OverlayScores.score2 += 1;
+						System.out.println(this.getId() + " scored");
+						PlaySFX.scorefx2(); // sfx after scoring for player2
+						// addObject to handler, create
+						handler.addObject(
+								new Tail(tempObject.getX(), tempObject.getY(), Id.TAIL2, handler));
+					}
+					handler.removeObject(tempObject);
+					// addObject to handler, create
+					handler.addObject(new Food((
+							Main.clamp(random.nextInt(Main.WIDTH), 25, Main.WIDTH - 40)),
+							Main.clamp((random.nextInt(Main.HEIGHT)), 25, Main.HEIGHT - 50), Id.FOOD));
+				}
+			}
+		}
+
+		// Find collision with TAIL = DIE!!!
+		// for loop through all objects in game
+		for (int i = 0; i < handler.object.size(); i++) {
+			// create tempObject
+			GameObject tempObject = handler.object.get(i);
+			// is tempObject TAIL2 and this PLAYER1?
+			if (tempObject.getId() == Id.TAIL2 && this.getId() == Id.PLAYER1) {
+				// use intersect method between getBounds this & TAIL2
+				if (getBounds().intersects(tempObject.getBounds())) {
+					System.out.println(this.getId() + " died");
+					// sfx after death
+					PlaySFX.diefx();
+					if (OverlayScores.score1 > OverlayScores.score2) {
+						PlaySFX.player1winsfx();
+					}
+					if (OverlayScores.score1 < OverlayScores.score2) {
+						PlaySFX.player2winsfx();
+					}
+					if (OverlayScores.score1 == OverlayScores.score2) {
+						PlaySFX.tiesfx();
+					}
+					System.out.println("Game OVER! Player 2 WINS with score of "
+									+ OverlayScores.score1 + " : "
+									+ OverlayScores.score2);
+					Main.end();
 				}
 			}
 
-			// Find collision with TAIL = DIE!!!
-			// for loop through all objects in game
-			for (int i = 0; i < handler.object.size(); i++) {
-				// create tempObject
-				GameObject tempObject = handler.object.get(i);
-				// is tempObject TAIL2 and this PLAYER1?
-				if (tempObject.getId() == Id.TAIL2 && this.getId() == Id.PLAYER1) {
-					// use intersect method between getBounds this & TAIL2
-					if (getBounds().intersects(tempObject.getBounds())) {
-//						Overlay.score1 = 0;
-						System.out.println(this.getId() + " died");
-						// sfx after death
-						PlaySFX.diefx();
-						if (OverlayScores.score1 > OverlayScores.score2) {
-							PlaySFX.player1winsfx();
-						}
-						if (OverlayScores.score1 < OverlayScores.score2) {
-							PlaySFX.player2winsfx();
-						}
-						if (OverlayScores.score1 == OverlayScores.score2) {
-							PlaySFX.tiesfx();
-						}
-//						Main.running = false;
-						System.out.println(
-								"Game OVER! Player 2 WINS with score of " + OverlayScores.score1 + " : " + OverlayScores.score2);
-						Main.end();
+			// is tempObject TAIL2 and this PLAYER1?
+			if (tempObject.getId() == Id.TAIL1 && this.getId() == Id.PLAYER2) {
+				// use intersect method between getBounds this & TAIL2
+				if (getBounds().intersects(tempObject.getBounds())) {
+					System.out.println(this.getId() + " died");
+					// sfx after death
+					PlaySFX.diefx();
+					if (OverlayScores.score1 > OverlayScores.score2) {
+						PlaySFX.player1winsfx();
 					}
-				}
-				
-				// is tempObject TAIL2 and this PLAYER1?
-				if (tempObject.getId() == Id.TAIL1 && this.getId() == Id.PLAYER2) {
-					// use intersect method between getBounds this & TAIL2
-					if (getBounds().intersects(tempObject.getBounds())) {
-//						Overlay.score2 = 0;
-						System.out.println(this.getId() + " died");
-						// sfx after death
-						PlaySFX.diefx();
-						if (OverlayScores.score1 > OverlayScores.score2) {
-							PlaySFX.player1winsfx();
-						}
-						if (OverlayScores.score1 < OverlayScores.score2) {
-							PlaySFX.player2winsfx();
-						}
-						if (OverlayScores.score1 == OverlayScores.score2) {
-							PlaySFX.tiesfx();
-						}
-//						Main.running = false;
-						System.out.println(
-								"Game OVER! Player 1 WINS with score of "+ OverlayScores.score1 + " : " + OverlayScores.score2);
-						Main.end();
+					if (OverlayScores.score1 < OverlayScores.score2) {
+						PlaySFX.player2winsfx();
 					}
+					if (OverlayScores.score1 == OverlayScores.score2) {
+						PlaySFX.tiesfx();
+					}
+					System.out
+							.println("Game OVER! Player 1 WINS with score of "
+									+ OverlayScores.score1 + " : "
+									+ OverlayScores.score2);
+					Main.end();
 				}
 			}
+		}
 	}
-	
+
 	// Implemented method
 	public void render(Graphics g) {
 		if (id == Id.PLAYER1) {
@@ -203,12 +211,11 @@ public class Player extends GameObject {
 			g.setColor(Color.red);
 		} else {
 			// Set color PLAYER2
-			g.setColor(Color.green);				
+			g.setColor(Color.green);
 		}
 		// Draw player object
-		g.fillOval(x, y, 10, 10);					
-//		g.drawString("x", x, y);
-		
+		g.fillOval(x, y, 10, 10);
+
 	}
 
 }
