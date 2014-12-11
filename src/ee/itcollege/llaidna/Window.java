@@ -2,6 +2,9 @@ package ee.itcollege.llaidna;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
+import java.awt.Toolkit;
+
+import javafx.stage.WindowEvent;
 
 import javax.swing.JFrame;
 
@@ -19,13 +22,13 @@ public class Window extends Canvas {
 		JFrame frame = new JFrame(title); // create a frame (JFrame library)
 
 		frame.setPreferredSize(new Dimension(width, height));
-//		frame.setMaximumSize(new Dimension(width, height));
-//		frame.setMinimumSize(new Dimension(width, height));
+		frame.setMaximumSize(new Dimension(width, height));
+		frame.setMinimumSize(new Dimension(width, height));
 
 		frame.pack();
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // close program thread
-		frame.setResizable(true); // disable window resize
+		frame.setResizable(false); // disable window resize
 		frame.setLocationRelativeTo(null); // window start location not corner
 		frame.add(game); // add Main class into frame, important
 		frame.setVisible(true); // make frame visible

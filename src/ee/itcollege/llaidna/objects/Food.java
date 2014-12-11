@@ -27,11 +27,6 @@ public class Food extends GameObject {
 	 */
 	public Food(int x, int y, Id id) {
 		super(x, y, id);
-
-		// velX = 0;
-		// velY = 5;
-		// x = r.nextInt();
-		// y = r.nextInt();
 	}
 
 	/**
@@ -44,15 +39,11 @@ public class Food extends GameObject {
 	}
 
 	public void tick() {
-		x += velX;
-		y += velY;
-
-		if (y <= 0 || y >= (Main.HEIGHT - 32)) {
-			velY *= -1;
-		}
-
 	}
 
+	/**
+	 * Draws FOOD
+	 */
 	public void render(Graphics g) {
 		g.setColor(Color.RED);
 		g.fillRect(x, y, 16, 16);

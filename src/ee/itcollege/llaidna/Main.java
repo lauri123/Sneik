@@ -221,6 +221,7 @@ public class Main extends Canvas implements Runnable {
 	 * @author lauri
 	 */
 	public static void main(String[] args) { // main method
+
 		new Main(); // new instance of Game class
 	}
 
@@ -229,15 +230,15 @@ public class Main extends Canvas implements Runnable {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 		}
-		for (int i = 0; i < 22; i++) {
-			TinySound.setGlobalVolume(1.0 - ((double) i) / 20);
+		for (int i = 0; i < 11; i++) {
+			TinySound.setGlobalVolume(1.0 - ((double) i) / 10);
 			try {
-				Thread.sleep(150);
+				Thread.sleep(300);
 			} catch (InterruptedException e) {
 			}
 		}
-		// TinySound.shutdown();
+		// new Main(); // new instance of Game class
 		Main.running = false;
-		Window.
+		System.exit(0);
 	}
 }
