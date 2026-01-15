@@ -70,7 +70,7 @@
                         <option>-Dfile.encoding=UTF-8</option>
                         <option>-Xmx512m</option>
                     </javaOptions>
-                    <type>exe</type>
+                    <type>msi</type>
                     <winDirChooser>true</winDirChooser>
                     <winShortcut>true</winShortcut>
                     <winMenu>true</winMenu>
