@@ -55,40 +55,7 @@
                 </executions>
             </plugin>
             
-            <plugin>
-                <groupId>org.panteleyev</groupId>
-                <artifactId>jpackage-maven-plugin</artifactId>
-                <version>1.7.1</version>
-                <configuration>
-                    <name>Sneik</name>
-                    <appVersion>1.0.0</appVersion>
-                    <destination>target/dist</destination>
-                    <input>target</input>
-                    <mainJar>sneik-fat.jar</mainJar>
-                    <mainClass>ee.itcollege.llaidna.Main</mainClass>
-                    <javaOptions>
-                        <option>-Dfile.encoding=UTF-8</option>
-                        <option>-Xmx512m</option>
-                    </javaOptions>
-                    <type>msi</type>
-                    <winDirChooser>true</winDirChooser>
-                    <winShortcut>true</winShortcut>
-                    <winMenu>true</winMenu>
-                    <winPerUserInstall>false</winPerUserInstall>
-                    <vendor>Lauri Laidna</vendor>
-                    <copyright>2024 Lauri Laidna</copyright>
-                    <description>Modern Java Snake Game</description>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>jpackage</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jpackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
+
         </plugins>
     </build>
 

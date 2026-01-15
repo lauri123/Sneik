@@ -29,8 +29,11 @@ jobs:
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
         
-    - name: Build with Maven and create Windows executable
-      run: mvn clean package jpackage:jpackage
+    - name: Build with Maven
+      run: mvn clean package
+      
+    - name: Create Windows executable with jpackage
+      run: jpackage --input target --main-jar sneik-fat.jar --main-class ee.itcollege.llaidna.Main --name Sneik --app-version 1.0.0 --type exe --dest target/dist --win-shortcut --win-menu --vendor "Lauri Laidna" --description "Modern Java Snake Game"
         
     - name: List distribution files
       run: ls target/dist/
