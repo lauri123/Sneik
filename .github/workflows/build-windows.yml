@@ -29,16 +29,11 @@ jobs:
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
         
-    - name: Build with Maven
-      run: mvn clean package
-      
-
-        
-    - name: Create Windows executable with jpackage
+    - name: Build with Maven and create Windows executable
       run: mvn clean package jpackage:jpackage
         
     - name: List distribution files
-      run: ls -la target/dist/
+      run: ls target/dist/
       
     - name: Upload Windows artifacts
       uses: actions/upload-artifact@v4
