@@ -33,10 +33,12 @@ jobs:
       run: mvn clean package
       
     - name: Create Windows executable with jpackage
-      run: jpackage --input target --main-jar sneik-fat.jar --main-class ee.itcollege.llaidna.Main --name Sneik --app-version 1.0.0 --type exe --dest target/dist --win-shortcut --win-menu --vendor "Lauri Laidna" --description "Modern Java Snake Game"
-        
-    - name: List distribution files
-      run: ls target/dist/
+      run: |
+        jpackage --input target --main-jar sneik-fat.jar --main-class ee.itcollege.llaidna.Main --name Sneik --app-version 1.0.0 --type exe --dest target/dist --win-shortcut --win-menu --vendor "Lauri Laidna" --description "Modern Java Snake Game" || 
+        jpackage --input target --main-jar sneik-fat.jar --main-class ee.itcollege.llaidna.Main --name Sneik --app-version 1.0.0 --type msi --dest target/dist --win-shortcut --win-menu --vendor "Lauri Laidna" --description "Modern Java Snake Game"
+      
+    - name: List created files
+      run: dir target\dist
       
     - name: Upload Windows artifacts
       uses: actions/upload-artifact@v4
