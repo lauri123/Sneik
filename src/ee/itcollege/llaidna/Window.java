@@ -4,7 +4,7 @@ import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
-import javafx.stage.WindowEvent;
+
 
 import javax.swing.JFrame;
 

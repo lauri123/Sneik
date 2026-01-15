@@ -1,0 +1,63 @@
+name: Build Windows Standalone
+
+on:
+  push:
+    branches: [ main, master ]
+    tags: [ 'v*' ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        
+    - name: Cache Maven dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2
+        key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+        restore-keys: ${{ runner.os }}-m2
+        
+    - name: Build with Maven
+      run: mvn clean package
+      
+    - name: Download JDK for jpackage
+      run: |
+        $jdkUrl = "https://download.oracle.com/java/17/latest/jdk-17_windows-x64_bin.zip"
+        Invoke-WebRequest -Uri $jdkUrl -OutFile "jdk.zip"
+        Expand-Archive -Path "jdk.zip" -DestinationPath "target/jdk-temp"
+        Move-Item "target/jdk-temp/jdk-*" "target/jdk"
+        
+    - name: Create Windows executable with jpackage
+      run: mvn jpackage:jpackage
+      env:
+        JAVA_HOME: ${{ env.JAVA_HOME }}
+        
+    - name: List distribution files
+      run: ls -la target/dist/
+      
+    - name: Upload Windows artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: sneik-windows-installer
+        path: target/dist/*
+        retention-days: 30
+        
+    - name: Create Release
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: target/dist/*
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

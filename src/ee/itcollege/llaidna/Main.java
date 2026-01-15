@@ -8,8 +8,7 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
-import kuusisto.tinysound.TinySound;
-import ee.itcollege.llaidna.audio.PlayMusic;
+import ee.itcollege.llaidna.audio.ModernAudioPlayer;
 import ee.itcollege.llaidna.objects.Food;
 import ee.itcollege.llaidna.objects.Player;
 
@@ -32,7 +31,7 @@ public class Main extends Canvas implements Runnable {
 	 */
 	public Main() {
 
-		TinySound.init(); // initiates TinySound
+		ModernAudioPlayer.init(); // initiates audio system
 
 		handler = new Handler(); // create new handler
 		this.addKeyListener(new KeyInput(handler)); // listen for keys
@@ -73,7 +72,7 @@ public class Main extends Canvas implements Runnable {
 				));
 		
 		// start music
-		PlayMusic.music(true, 0.25, true); // true makes loop, value sets volume
+		ModernAudioPlayer.playMusic(true, 0.25); // true makes loop, value sets volume
 	}
 	
 	/**
@@ -231,12 +230,13 @@ public class Main extends Canvas implements Runnable {
 		} catch (InterruptedException e) {
 		}
 		for (int i = 0; i < 11; i++) {
-			TinySound.setGlobalVolume(1.0 - ((double) i) / 10);
+			ModernAudioPlayer.setGlobalVolume(1.0 - ((double) i) / 10);
 			try {
 				Thread.sleep(300);
 			} catch (InterruptedException e) {
 			}
 		}
+		ModernAudioPlayer.stop(); // stop audio
 		// new Main(); // new instance of Game class
 		Main.running = false;
 		System.exit(0);
