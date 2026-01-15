@@ -32,17 +32,10 @@ jobs:
     - name: Build with Maven
       run: mvn clean package
       
-    - name: Download JDK for jpackage
-      run: |
-        $jdkUrl = "https://download.oracle.com/java/17/latest/jdk-17_windows-x64_bin.zip"
-        Invoke-WebRequest -Uri $jdkUrl -OutFile "jdk.zip"
-        Expand-Archive -Path "jdk.zip" -DestinationPath "target/jdk-temp"
-        Move-Item "target/jdk-temp/jdk-*" "target/jdk"
+
         
     - name: Create Windows executable with jpackage
-      run: mvn jpackage:jpackage
-      env:
-        JAVA_HOME: ${{ env.JAVA_HOME }}
+      run: mvn clean package jpackage:jpackage
         
     - name: List distribution files
       run: ls -la target/dist/
