@@ -30,7 +30,7 @@ jobs:
         restore-keys: ${{ runner.os }}-m2
         
     - name: Build with Maven and create Windows executable
-      run: mvn clean package jpackage:jpackage -Djpackage.type=exe
+      run: mvn clean package jpackage:jpackage
         
     - name: List distribution files
       run: ls target/dist/
