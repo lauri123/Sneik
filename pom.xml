@@ -20,16 +20,9 @@
     </properties>
 
     <dependencies>
-        <!-- Modern audio library to replace TinySound -->
-        <dependency>
-            <groupId>com.github.trilarion</groupId>
-            <artifactId>java-utilities</artifactId>
-            <version>v1.0.1</version>
-        </dependency>
-        
         <!-- For audio playback -->
         <dependency>
-            <groupId>org.javazone</groupId>
+            <groupId>javazoom</groupId>
             <artifactId>jlayer</artifactId>
             <version>1.0.1</version>
         </dependency>
@@ -77,8 +70,9 @@
                     <name>Sneik</name>
                     <appVersion>1.0.0</appVersion>
                     <destination>target/dist</destination>
-                    <module>sneik/ee.itcollege.llaidna.Main</module>
-                    <runtimeImage>target/jdk</runtimeImage>
+                    <input>target</input>
+                    <mainJar>sneik-fat.jar</mainJar>
+                    <mainClass>ee.itcollege.llaidna.Main</mainClass>
                     <javaOptions>
                         <option>-Dfile.encoding=UTF-8</option>
                         <option>-Xmx512m</option>
