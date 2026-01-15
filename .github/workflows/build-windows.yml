@@ -41,99 +41,41 @@ jobs:
           jar tf target/sneik-1.0.0.jar | findstr Main
         }
         
-    - name: Extract compiled classes
+    - name: Create Windows installer with jpackage (SIMPLIFIED)
       run: |
-        if (Test-Path "target/sneik-1.0.0.jar") {
-          mkdir -p target/extracted
-          cd target/extracted
-          jar xf ../sneik-1.0.0.jar
-          echo "Extracted JAR contents:"
-          dir
-        }
+        echo "Creating Windows installer for Sneik..."
         
-    - name: Create test JAR (if needed)
-      run: |
-        if (-not (Test-Path "target/sneik-1.0.0.jar")) {
-          echo "Creating test JAR from compiled classes..."
-          mkdir -p target/test-jar
-          cd target/test-jar
-          
-          # Create manifest
-          echo "Main-Class: ee.itcollege.llaidna.Main" > META-INF/MANIFEST.MF
-          echo "Class-Path: ." >> META-INF/MANIFEST.MF
-          
-          # Copy compiled classes
-          if (Test-Path "../classes") {
-            cp -r ../classes/* .
-            echo "Copied from classes directory"
-          }
-          
-          # Create JAR
-          jar cfm ../sneik-test.jar META-INF/MANIFEST.MF .
-          
-          # Use test JAR for packaging
-          cp ../sneik-test.jar ../sneik-1.0.0.jar
-        }
-        
-    - name: Create Windows installer with jpackage (Fixed PowerShell)
-      run: |
-        # Set variables using PowerShell syntax
-        $JAR_FILE = "target\sneik-1.0.0.jar"
-        $OUTPUT_DIR = "target\dist"
-        $APP_NAME = "Sneik"
-        $MAIN_CLASS = "ee.itcollege.llaidna.Main"
-        
-        echo "Creating Windows installer with the following configuration:"
-        echo "JAR_FILE: $JAR_FILE"
-        echo "OUTPUT_DIR: $OUTPUT_DIR"
-        echo "APP_NAME: $APP_NAME"
-        echo "MAIN_CLASS: $MAIN_CLASS"
-        
-        # Check if JAR exists and has main class
-        if (-not (Test-Path $JAR_FILE)) {
-          echo "ERROR: JAR file not found at $JAR_FILE"
+        # Check if JAR exists
+        if (-not (Test-Path "target\sneik-1.0.0.jar")) {
+          echo "ERROR: JAR file not found"
           exit 1
         }
         
-        # Verify main class exists in JAR
-        $MAIN_CHECK = jar tf $JAR_FILE | Select-String "ee.itcollege.llaidna.Main.class"
-        if (-not $MAIN_CHECK) {
-          echo "WARNING: Main class not found in JAR, trying fallback..."
-          # Try to find any Main.class
-          $ANY_MAIN = jar tf $JAR_FILE | Select-String "Main.class"
-          if ($ANY_MAIN) {
-            echo "Found Main class: $ANY_MAIN"
-            $MAIN_CLASS = "ee.itcollege.llaidna.Main"
-          } else {
-            echo "ERROR: No main class found in JAR"
-            jar tf $JAR_FILE
-            exit 1
-          }
-        }
-        
         # Create output directory
-        mkdir -p $OUTPUT_DIR
+        mkdir -p target\dist
         
-        # Try different jpackage approaches
-        echo "Attempting jpackage with JAR input..."
+        # Simple jpackage command - no complex variables
+        echo "Running jpackage..."
         
-        try {
-          & jpackage --type exe --input target --dest $OUTPUT_DIR --name $APP_NAME --app-version 1.0.0 --main-jar sneik-1.0.0.jar --main-class $MAIN_CLASS --vendor "Lauri123" --copyright "Copyright 2026 Lauri123" --description "A modern Java Snake game" --win-shortcut --win-menu --java-options "-Xmx512m -Dfile.encoding=UTF-8" --verbose
-        } catch {
-          echo "JAR method failed, trying directory method..."
-          
-          # Fallback: Use extracted classes
-          if (Test-Path "target\extracted") {
-            & jpackage --type exe --input target\extracted --dest $OUTPUT_DIR --name $APP_NAME --app-version 1.0.0 --main-class $MAIN_CLASS --vendor "Lauri123" --copyright "Copyright 2026 Lauri123" --description "A modern Java Snake game" --win-shortcut --win-menu --java-options "-Xmx512m -Dfile.encoding=UTF-8" --verbose
-          } else {
-            echo "ERROR: No valid input found for jpackage"
-            exit 1
-          }
-        }
+        jpackage `
+          --type exe `
+          --input target `
+          --dest target\dist `
+          --name Sneik `
+          --app-version 1.0.0 `
+          --main-jar sneik-1.0.0.jar `
+          --main-class ee.itcollege.llaidna.Main `
+          --vendor "Lauri123" `
+          --copyright "Copyright 2026 Lauri123" `
+          --description "A modern Java Snake game" `
+          --win-shortcut `
+          --win-menu `
+          --java-options "-Xmx512m -Dfile.encoding=UTF-8" `
+          --verbose
         
     - name: List build artifacts
       run: |
-        echo "Build artifacts in $OUTPUT_DIR:"
+        echo "Build artifacts in target\dist:"
         if (Test-Path "target\dist") {
           Get-ChildItem target\dist -File | Select-Object Name, Length
           echo "Contents of target\dist:"
@@ -142,36 +84,24 @@ jobs:
         
     - name: Create test script
       run: |
-        # Create a test batch script to verify installation
-        $TEST_SCRIPT = "@echo off
-        echo Testing Sneik installation...
-        echo.
-        echo Checking if executable was created...
-        if exist `"C:\Program Files\Sneik\Sneik.exe`" (
-            echo [SUCCESS] Found executable at: C:\Program Files\Sneik\Sneik.exe
-            echo.
-            echo Attempting to run Sneik...
-            echo.
-            `"C:\Program Files\Sneik\Sneik.exe`"
-            echo.
-            echo If no window appeared, check:
-            echo 1. Java runtime installation
-            echo 2. Windows event viewer for errors
-            echo 3. Run as administrator
-        ) else (
-            echo [ERROR] Executable not found!
-            echo.
-            echo Installation directory contents:
-            dir `"C:\Program Files\Sneik`" 2>nul || echo Directory not found
-        )
-        pause"
-        
-        $TEST_SCRIPT | Out-File -FilePath "target\dist\test-installation.bat" -Encoding ASCII
+        echo "@echo off" > target\dist\test-installation.bat
+        echo "echo Testing Sneik installation..." >> target\dist\test-installation.bat
+        echo "echo." >> target\dist\test-installation.bat
+        echo "echo Checking installation directory..." >> target\dist\test-installation.bat
+        echo "if exist \"C:\Program Files\Sneik\Sneik.exe\" (" >> target\dist\test-installation.bat
+        echo "    echo [SUCCESS] Found executable at: C:\Program Files\Sneik\Sneik.exe" >> target\dist\test-installation.bat
+        echo "    echo." >> target\dist\test-installation.bat
+        echo "    echo Attempting to run Sneik..." >> target\dist\test-installation.bat
+        echo "    \"C:\Program Files\Sneik\Sneik.exe\"" >> target\dist\test-installation.bat
+        echo ") else (" >> target\dist\test-installation.bat
+        echo "    echo [ERROR] Executable not found!" >> target\dist\test-installation.bat
+        echo ")" >> target\dist\test-installation.bat
+        echo "pause" >> target\dist\test-installation.bat
         
     - name: Upload Windows Installer
       uses: actions/upload-artifact@v4
       with:
-        name: sneik-windows-installer-fixed
+        name: sneik-windows-installer-final
         path: |
           target/dist/*.exe
           target/dist/*.msi
