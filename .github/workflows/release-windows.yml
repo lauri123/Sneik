@@ -50,12 +50,14 @@ jobs:
           Copy-Item -Path "target\$jarFile" -Destination $inputDir
           mkdir -p target\dist
 
+          $appVersion = $Env:GITHUB_REF_NAME -replace '^v',''
+
           jpackage `
             --type app-image `
             --input $inputDir `
             --dest target\dist `
             --name Sneik `
-            --app-version $Env:GITHUB_REF_NAME `
+            --app-version $appVersion `
             --main-jar $jarFile `
             --main-class ee.itcollege.llaidna.Main `
             --vendor "Lauri123" `
