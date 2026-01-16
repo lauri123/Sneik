@@ -45,13 +45,26 @@ jobs:
           exit 1
         }
         
+        # Create short paths to avoid Windows path limits
+        $inputDir = "C:\\jpkg-input"
+        $tempDir = "C:\\jpkg-temp"
+        
+        if (Test-Path $inputDir) { Remove-Item -Recurse -Force $inputDir }
+        if (Test-Path $tempDir) { Remove-Item -Recurse -Force $tempDir }
+        
+        New-Item -ItemType Directory -Force -Path $inputDir | Out-Null
+        New-Item -ItemType Directory -Force -Path $tempDir | Out-Null
+        
+        # Copy only the JAR into a short path input dir
+        Copy-Item -Path "target\$jarFile" -Destination $inputDir
+        
         # Create output directory
         mkdir -p target\dist
         
         # Portable app image (no installer)
         jpackage `
           --type app-image `
-          --input target `
+          --input $inputDir `
           --dest target\dist `
           --name Sneik `
           --app-version 1.0.0 `
@@ -60,6 +73,7 @@ jobs:
           --vendor "Lauri123" `
           --description "A modern Java Snake game" `
           --java-options "-Xmx512m -Dfile.encoding=UTF-8" `
+          --temp $tempDir `
           --verbose
         
     - name: Create portable ZIP
