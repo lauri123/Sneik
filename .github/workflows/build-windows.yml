@@ -1,4 +1,4 @@
-name: Build Windows Standalone - FIXED
+name: Build Windows Portable
 
 on:
   push:
@@ -31,22 +31,16 @@ jobs:
     - name: Build with Maven
       run: mvn clean package -B -DskipTests
       
-    - name: Create icon directory
-      run: mkdir -p target/icons
-      
-    - name: Check for Main class
+    - name: Create portable Windows app image
       run: |
-        echo "Checking for main class in compiled JAR..."
-        if (Test-Path "target/sneik-1.0.0.jar") {
-          jar tf target/sneik-1.0.0.jar | findstr Main
-        }
-        
-    - name: Create Windows installer with jpackage (SIMPLIFIED)
-      run: |
-        echo "Creating Windows installer for Sneik..."
+        echo "Creating portable Windows app image for Sneik..."
         
         # Check if JAR exists
-        if (-not (Test-Path "target\sneik-1.0.0.jar")) {
+        if (Test-Path "target\sneik-fat.jar") {
+          $jarFile = "sneik-fat.jar"
+        } elseif (Test-Path "target\sneik-1.0.0.jar") {
+          $jarFile = "sneik-1.0.0.jar"
+        } else {
           echo "ERROR: JAR file not found"
           exit 1
         }
@@ -54,24 +48,28 @@ jobs:
         # Create output directory
         mkdir -p target\dist
         
-        # Simple jpackage command - no complex variables
-        echo "Running jpackage..."
-        
+        # Portable app image (no installer)
         jpackage `
-          --type exe `
+          --type app-image `
           --input target `
           --dest target\dist `
           --name Sneik `
           --app-version 1.0.0 `
-          --main-jar sneik-1.0.0.jar `
+          --main-jar $jarFile `
           --main-class ee.itcollege.llaidna.Main `
           --vendor "Lauri123" `
-          --copyright "Copyright 2026 Lauri123" `
           --description "A modern Java Snake game" `
-          --win-shortcut `
-          --win-menu `
           --java-options "-Xmx512m -Dfile.encoding=UTF-8" `
           --verbose
+        
+    - name: Create portable ZIP
+      run: |
+        if (Test-Path "target\dist\Sneik") {
+          Compress-Archive -Path target\dist\Sneik -DestinationPath target\dist\sneik-windows-portable.zip
+        } else {
+          echo "ERROR: App image not found"
+          exit 1
+        }
         
     - name: List build artifacts
       run: |
@@ -82,30 +80,12 @@ jobs:
           dir target\dist
         }
         
-    - name: Create test script
-      run: |
-        echo "@echo off" > target\dist\test-installation.bat
-        echo "echo Testing Sneik installation..." >> target\dist\test-installation.bat
-        echo "echo." >> target\dist\test-installation.bat
-        echo "echo Checking installation directory..." >> target\dist\test-installation.bat
-        echo "if exist \"C:\Program Files\Sneik\Sneik.exe\" (" >> target\dist\test-installation.bat
-        echo "    echo [SUCCESS] Found executable at: C:\Program Files\Sneik\Sneik.exe" >> target\dist\test-installation.bat
-        echo "    echo." >> target\dist\test-installation.bat
-        echo "    echo Attempting to run Sneik..." >> target\dist\test-installation.bat
-        echo "    \"C:\Program Files\Sneik\Sneik.exe\"" >> target\dist\test-installation.bat
-        echo ") else (" >> target\dist\test-installation.bat
-        echo "    echo [ERROR] Executable not found!" >> target\dist\test-installation.bat
-        echo ")" >> target\dist\test-installation.bat
-        echo "pause" >> target\dist\test-installation.bat
-        
-    - name: Upload Windows Installer
+    - name: Upload Windows Portable Build
       uses: actions/upload-artifact@v4
       with:
-        name: sneik-windows-installer-final
+        name: sneik-windows-portable
         path: |
-          target/dist/*.exe
-          target/dist/*.msi
-          target/dist/test-installation.bat
+          target/dist/sneik-windows-portable.zip
         retention-days: 30
         
     - name: Upload Build Logs

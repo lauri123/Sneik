@@ -19,11 +19,14 @@ public class PlayMusic {
 	 * @author lauri
 	 */
 	public static void music(boolean loop, double volume, boolean start) {
-		Music music = TinySound.loadMusic("167849.wav");
-		music = TinySound.loadMusic(("167849.wav"), true); // true straight from file
+		Music music = TinySound.loadMusic("music/167849.wav", true);
+		if (music == null) {
+			System.err.println("Music file not found or audio not initialized.");
+			return;
+		}
 		music.setVolume(volume);
 		System.out.println("Global Volume is: " + volume);
-		if (start == true) {
+		if (start) {
 			music.play(loop); // true makes loop
 		}
 	}
