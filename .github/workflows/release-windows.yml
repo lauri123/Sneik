@@ -1,4 +1,4 @@
-name: Release Windows installer
+name: Release Windows portable build
 
 on:
   push:
@@ -21,13 +21,58 @@ jobs:
           java-version: "17"
           cache: maven
 
-      - name: Build + jpackage
+      - name: Build game
+        run: mvn -B clean package -DskipTests
+
+      - name: Create portable Windows app image
         shell: pwsh
         run: |
-          mvn -B clean package jpackage:jpackage
+          echo "Creating portable Windows app image for Sneik..."
 
-      - name: Upload installer to GitHub Release
+          if (Test-Path "target\sneik-fat.jar") {
+            $jarFile = "sneik-fat.jar"
+          } elseif (Test-Path "target\sneik-1.0.0.jar") {
+            $jarFile = "sneik-1.0.0.jar"
+          } else {
+            echo "ERROR: JAR file not found"
+            exit 1
+          }
+
+          $inputDir = "C:\\jpkg-input"
+          $tempDir = "C:\\jpkg-temp"
+
+          if (Test-Path $inputDir) { Remove-Item -Recurse -Force $inputDir }
+          if (Test-Path $tempDir) { Remove-Item -Recurse -Force $tempDir }
+
+          New-Item -ItemType Directory -Force -Path $inputDir | Out-Null
+          New-Item -ItemType Directory -Force -Path $tempDir | Out-Null
+
+          Copy-Item -Path "target\$jarFile" -Destination $inputDir
+          mkdir -p target\dist
+
+          jpackage `
+            --type app-image `
+            --input $inputDir `
+            --dest target\dist `
+            --name Sneik `
+            --app-version $Env:GITHUB_REF_NAME `
+            --main-jar $jarFile `
+            --main-class ee.itcollege.llaidna.Main `
+            --vendor "Lauri123" `
+            --description "A modern Java Snake game" `
+            --java-options "-Xmx512m -Dfile.encoding=UTF-8" `
+            --temp $tempDir `
+            --verbose
+
+          if (Test-Path "target\dist\Sneik") {
+            Compress-Archive -Path target\dist\Sneik -DestinationPath target\dist\sneik-windows-portable.zip
+          } else {
+            echo "ERROR: App image not found"
+            exit 1
+          }
+
+      - name: Upload portable build to GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            target/dist/*.exe
+            target/dist/sneik-windows-portable.zip
