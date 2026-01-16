@@ -120,8 +120,9 @@ public class Main extends Canvas implements Runnable {
 		long timer = System.currentTimeMillis(); // current time in ms
 		while (running) { // while running loop
 			long now = System.nanoTime();
-			// game speed, sped up by level
-			delta += (now - lastTime) / ns + (double) OverlayScores.level / 20;
+			// game speed, gently sped up by level
+			double speedBoost = Math.min(0.25, OverlayScores.level * 0.02);
+			delta += (now - lastTime) / ns + speedBoost;
 			lastTime = now;
 
 			while (delta >= 1) {
