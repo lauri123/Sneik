@@ -12,7 +12,7 @@ import kuusisto.tinysound.TinySound;
 public class PlaySFX {
 
 	public static void scorefx1() {
-		Sound score = TinySound.loadSound("music/sfx/213149.wav");
+		Sound score = TinySound.loadSound("sfx/213149.wav");
 		if (score != null) {
 			score.play();
 		}
@@ -20,7 +20,7 @@ public class PlaySFX {
 	}
 
 	public static void scorefx2() {
-		Sound die = TinySound.loadSound("music/sfx/212977.wav");
+		Sound die = TinySound.loadSound("sfx/212977.wav");
 		if (die != null) {
 			die.play();
 		}
@@ -28,7 +28,7 @@ public class PlaySFX {
 	}
 
 	public static void teleportfx() {
-		Sound teleport = TinySound.loadSound("music/sfx/238283.wav");
+		Sound teleport = TinySound.loadSound("sfx/238283.wav");
 		if (teleport != null) {
 			teleport.play();
 		}
@@ -36,7 +36,7 @@ public class PlaySFX {
 	}
 
 	public static void diefx() {
-		Sound diefx = TinySound.loadSound("music/sfx/147262.wav");
+		Sound diefx = TinySound.loadSound("sfx/147262.wav");
 		if (diefx != null) {
 			diefx.play();
 		}
@@ -44,7 +44,7 @@ public class PlaySFX {
 	}
 
 	public static void player1winsfx() {
-		Sound player1wins = TinySound.loadSound("music/sfx/player1wins.wav");
+		Sound player1wins = TinySound.loadSound("sfx/player1wins.wav");
 		if (player1wins != null) {
 			player1wins.play();
 		}
@@ -52,7 +52,7 @@ public class PlaySFX {
 	}
 
 	public static void player2winsfx() {
-		Sound player2wins = TinySound.loadSound("music/sfx/player2wins.wav");
+		Sound player2wins = TinySound.loadSound("sfx/player2wins.wav");
 		if (player2wins != null) {
 			player2wins.play();
 		}
@@ -60,7 +60,7 @@ public class PlaySFX {
 	}
 
 	public static void tiesfx() {
-		Sound tie = TinySound.loadSound("music/sfx/tie.wav");
+		Sound tie = TinySound.loadSound("sfx/tie.wav");
 		if (tie != null) {
 			tie.play();
 		}
